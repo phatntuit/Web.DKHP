@@ -1,0 +1,15 @@
+Home	Sinh viên/Quản trị	Trợ giúp	Liên hệ
+Sinh viên->>
+	Thông tin sinh viên
+	Thông tin học phí
+	Đăng ký học phần
+	Thông tin đăng ký
+	Kết quả học tập
+Quản trị
+	Quản lý sinh viên
+	Quản lý học phần
+	Quản lý phòng học
+	Quản lý giáo viên
+	Quản lý tiên quyết/học trước
+	Thu học phí
+
