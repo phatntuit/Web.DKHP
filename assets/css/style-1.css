@@ -7,7 +7,7 @@ body {
     height: 100%;
     font-family: 'Lato',sans-serif;
 	font-weight: 300;
-    color: #2A2626;
+    color: #666;
     background-color: #fff;
 }
 
@@ -251,7 +251,7 @@ hr {
 .marginbot-20{margin-bottom:20px !important;}
 .marginbot-30{margin-bottom:30px !important;}
 .marginbot-40{margin-bottom:40px !important;}
-.marginbot-50{margin-bottom:50px !important;}
+.marginbot-50{margin-bottom:25px !important;}
 
 /* ===========================
 --- General sections
@@ -791,7 +791,7 @@ Parallax
 }
 /*Login form popup*/
 .modal-header, .close {
-      background-color: #1a7eab;
+      background-color: #5cb85c;
       color:white !important;
       text-align: center;
       font-size: 30px;

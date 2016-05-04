@@ -36,3 +36,9 @@
 	});
 
 })(jQuery);
+// login form popup
+$(document).ready(function(){
+    $("#loginform").click(function(){
+        $("#myModal").modal();
+    });
+});

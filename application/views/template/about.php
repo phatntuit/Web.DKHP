@@ -1,6 +1,6 @@
 <!-- Section: about -->
     <section id="about" class="home-section text-center">
-		<div class="heading-about">
+		<div class="heading-about" style="margin-left:12px;">
 			<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
@@ -21,39 +21,47 @@
 				<hr class="marginbot-50">
 			</div>
 		</div>
-        <div class="row">
-        	<div class="col-xs-3 col-sm-2 col-md-2">
+        <div class="row" >
+        	<div class="col-xs-1 col-sm-2 col-md-2">
         	</div>
-            <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="col-xs-3 col-sm-3 col-md-3">
 				<div class="wow bounceInUp" data-wow-delay="0.2s">
-                <div class="team boxed-grey">
+                <!-- <div class="team boxed-grey"> -->
+                <div class="col-xs-11 col-sm-11 col-md-11">
                     <div class="inner">
 						<h5>Phát Nguyễn</h5>
                         <p class="subtitle">Web Designer</p>
-                        <div class="avatar"><img src="assets/img/team/master.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <!-- <div class="avatar"><img src="assets/img/team/master.jpg" alt="" class="img-responsive img-circle" /></div> -->
+                        <div class="row"><img src="assets/img/team/master.jpg" alt="" class="img-responsive img-circle" /></div>
                     </div>
                 </div>
 				</div>
             </div>
-			<div class="col-xs-6 col-sm-3 col-md-3">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<div class="wow bounceInUp" data-wow-delay="0.5s">
-                <div class="team boxed-grey">
+                <!-- <div class="team boxed-grey"> -->
+                <div class="col-xs-11 col-sm-11 col-md-11">
                     <div class="inner">
 						<h5>Nghĩa Nguyễn</h5>
                         <p class="subtitle">Data Manager</p>
-                        <div class="avatar"><img src="assets/img/team/member_nghia.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <!-- <div class="avatar"> -->
+                        <div class="row">
+                        <img src="assets/img/team/member_nghia.jpg" alt="" class="img-responsive img-circle" /></div>
 
                     </div>
                 </div>
 				</div>
             </div>
-			<div class="col-xs-6 col-sm-3 col-md-3">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<div class="wow bounceInUp" data-wow-delay="0.8s">
-                <div class="team boxed-grey">
+                <!-- <div class="team boxed-grey"> -->
+                <div class="col-xs-11 col-sm-11 col-md-11">
                     <div class="inner">
 						<h5>Quyền Anh</h5>
-                        <p class="subtitle">Modeler</p>
-                        <div class="avatar"><img src="assets/img/team/member_quyen.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <p class="subtitle">PHP Developer</p>
+                        <!-- <div class="avatar"> -->
+                        <div class="row">
+                        <img src="assets/img/team/member_quyen.jpg" alt="" class="img-responsive img-circle" /></div>
 
                     </div>
                 </div>
