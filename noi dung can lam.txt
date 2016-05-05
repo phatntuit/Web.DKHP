@@ -1,0 +1,15 @@
+Home	Sinh viên/Quản trị	Trợ giúp	Liên hệ
+Sinh viên->>
+	Thông tin sinh viên->Quyen
+	Thông tin học phí->tam thoi bo qua de update csdl
+	Đăng ký học phần->>tam thoi bo qua de update csdl
+	Thông tin đăng ký->tam thoi bo qua de update csdl
+	Kết quả học tập->tam thoi bo qua de update csdl
+Quản trị
+	Quản lý sinh viên->Phat
+	Quản lý học phần->Nghia
+	Quản lý phòng học->Quyen
+	Quản lý giáo viên->Quyen
+	Quản lý tiên quyết/học trước->Nghia
+	Thu học phí
+
