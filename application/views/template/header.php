@@ -68,7 +68,7 @@
         <li class="active"><a href="">Trang chủ</a></li>
         <!-- xử lý đăng nhập -->
         <li class="dropdown hidden">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="#">Thông tin sinh viên</a></li>
             <li><a href="#">Thông tin học phí</a></li>
@@ -92,7 +92,7 @@
           else
           {
           ?>
-           <li id="loginform"><a href="#">Đăng nhập</a></li>
+           <li id="loginform"><a>Đăng nhập</a></li>
           <?php } ?>
       </ul>
     </div>
@@ -120,7 +120,7 @@
             <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
             <input type="password" class="form-control" id="psw" name="pwd" placeholder="Passwords">
           </div>
-          <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
+          <button type="button" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
         </form>
       </div>
       <div class="modal-footer">
