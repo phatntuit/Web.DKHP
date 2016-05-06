@@ -303,8 +303,9 @@ hr {
 
 .intro {
 	width:100%;
-  height: 90%;
+  height: 100%;
 	position:relative;
+  background: #1a7eab;
 	/*background: url(../img/bg1.jpg) no-repeat top center;*/
 }
 
