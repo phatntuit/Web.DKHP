@@ -163,7 +163,7 @@
      <h4>Trang quản lý đăng ký học phần</h4>
    </div>
    <div class="page-scroll">
-     <a href="#" class="btn btn-circle">
+     <a href="#content" class="btn btn-circle">
       <i class="fa fa-angle-double-down animated"></i>
     </a>
   </div>
