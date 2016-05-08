@@ -72,9 +72,6 @@ $("#mytable #checkall").click(function () {
     
     $("[data-toggle=tooltip]").tooltip();
 });
-<<<<<<< HEAD
-
-=======
 //teacher form
 $(document).ready(function(){
 $("#mytable #checkall").click(function () {
@@ -92,4 +89,14 @@ $("#mytable #checkall").click(function () {
     
     $("[data-toggle=tooltip]").tooltip();
 });
->>>>>>> quyenva
+//datetime picker
+//change class below
+$('.datepicker').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        orientation: "top auto",
+        todayBtn: true,
+        todayHighlight: true,  
+    });
+
