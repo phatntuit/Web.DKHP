@@ -32,7 +32,7 @@
 						<h5>Phát Nguyễn</h5>
                         <p class="subtitle">Web Designer</p>
                         <!-- <div class="avatar"><img src="assets/img/team/master.jpg" alt="" class="img-responsive img-circle" /></div> -->
-                        <div class="row"><img src="assets/img/team/master.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <div class="row"><img src="<?php echo base_url('assets/img/team/master.jpg'); ?>" alt="" class="img-responsive img-circle" /></div>
                     </div>
                 </div>
 				</div>
@@ -46,7 +46,7 @@
                         <p class="subtitle">Data Manager</p>
                         <!-- <div class="avatar"> -->
                         <div class="row">
-                        <img src="assets/img/team/member_nghia.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <img src="<?php echo base_url('assets/img/team/member_nghia.jpg'); ?>" alt="" class="img-responsive img-circle" /></div>
 
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <p class="subtitle">PHP Developer</p>
                         <!-- <div class="avatar"> -->
                         <div class="row">
-                        <img src="assets/img/team/member_quyen.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <img src="<?php echo base_url('assets/img/team/member_quyen.jpg'); ?>" alt="" class="img-responsive img-circle" /></div>
 
                     </div>
                 </div>
