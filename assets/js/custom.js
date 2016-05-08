@@ -91,7 +91,8 @@ $("#mytable #checkall").click(function () {
 });
 //datetime picker
 //change class below
-$('.datepicker').datepicker({
+$(document).ready(function(){
+$('.form-group .datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
         todayHighlight: true,
@@ -99,4 +100,4 @@ $('.datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,  
     });
-
+});
