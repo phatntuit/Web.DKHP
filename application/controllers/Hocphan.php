@@ -9,12 +9,6 @@ class Hocphan extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Hocphan_model');
-		$this->data['monhoc']=$this->Hocphan_model->getmonhoc();
-		$this->data['khoa']=$this->Hocphan_model->getkhoa();
-		$this->data['hocky']=$this->Hocphan_model->gethocky();
-		$this->data['namhoc']=$this->Hocphan_model->getnamhoc();
-		$this->data['giaovien']=$this->Hocphan_model->getgiaovien();
-		$this->data['phong']=$this->Hocphan_model->getphong();
 		$this->data['hocphan']=$this->Hocphan_model->gethocphan();
 	}
 	public function index()

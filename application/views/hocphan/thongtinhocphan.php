@@ -5,7 +5,10 @@
 		<div class="row"><p></p></div>
 		<div class="container">
 			<div class="row">
-				<button class="btn btn-primary btn-success" data-title="add" data-toggle="modal" data-target="#add" ><span class="glyphicon glyphicon-plus">Thêm</button>
+				<button class="btn btn-primary btn-success" data-title="add" data-toggle="modal" data-target="#add" ><span class="glyphicon glyphicon-plus">Thêm</button></br></br>
+				<?php if (empty($hocphan)) echo "<h3>Hiện chưa có học phần</h3>";
+					else{
+				?>
 				<div class="table-responsive">
 					<table id="mytable" class="table table-bordred table-striped">
 						<thead>      
@@ -23,6 +26,8 @@
 							<th>Tín Chỉ</th>
 							<th>Hình Thức</th>
 							<th>Sĩ số</th>
+							<th>Ngày bắt đầu</th>
+							<th>Ngày kết thúc</th>
 							<th>Chỉnh Sửa</th>
 							<th>Xóa</th>
 						</thead>
@@ -43,12 +48,14 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
 								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 
@@ -61,16 +68,70 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<input class="form-control " type="text" placeholder="Mohsin" >
+
 						</div>
 						<div class="form-group">
 
-							<input class="form-control " type="text" placeholder="Irshad">
 						</div>
 						<div class="form-group">
-							<textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
 
+						</div>
+						<div class="form-group">
 
+						</div>
+						<div class="form-group">
+
+						</div>
+						<div class="form-group">
+
+						</div>
+						<div class="form-group">
+							Sĩ Số
+							<input class="form-control " type="text" id="siso" >
+						</div>
+						<div class="form-group">
+
+							Thứ
+							<select style="margin-right:10px;" id="thu">
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+							</select>
+							
+							Tiết Học
+							<select style="margin-right:10px;" id="tiethoc">
+								<option value="1,2,3">1,2,3</option>
+								<option value="1,2,3,4">1,2,3,4</option>
+								<option value="1,2,3,4,5">1,2,3,4,5</option>
+								<option value="4,5">4,5</option>
+								<option value="6,7,8">6,7,8</option>
+								<option value="6,7,8,9">6,7,8,9</option>
+								<option value="6,7,8,9,10">6,7,8,9,10</option>
+								<option value="9,10">9,10</option>
+							</select>
+					
+							Cách Tuần
+							<select style="margin-right:10px;" id="cachtuan">
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+							Hình Thức
+							<select id="hinhthuc">
+								<option value="LT">Lý Thuyết</option>
+								<option value="TH">Thực Hành</option>
+							</select>
+							
+						</div>
+						<div class="form-group">
+							Ngày Bắt Đầu
+							<input id="ngaybatdau" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+						</div>
+						<div class="form-group">
+							Ngày Kết thúc
+							<input id="ngayketthuc" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
 						</div>
 					</div>
 					<div class="modal-footer ">
