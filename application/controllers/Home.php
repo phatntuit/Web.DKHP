@@ -59,6 +59,6 @@ class Home extends CI_Controller {
 			'pwd'=>$this->input->post('pwd')
 			);
 		//Either you can print value or you can send value to database
-		// echo json_encode($data);
+		echo json_encode($data);
 	}
 }

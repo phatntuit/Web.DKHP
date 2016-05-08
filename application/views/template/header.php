@@ -26,46 +26,6 @@
   <script src="<?php echo base_url();?>assets/js/wow.min.js"></script>
   <!-- Custom Theme JavaScript -->
   <script src="<?php echo base_url();?>assets/js/custom.js"></script>
-  <script type="text/javascript">
-    // Ajax post
-    // $(document).ready(function() 
-    // {
-    //   $("#login").click(function(e) 
-    //   {
-    //     e.preventDefault();
-    //     var user_name = $("#username").val();
-    //     var password = $("#pwd").val();
-    //     jQuery.ajax(
-    //     {
-    //       type: "POST",
-    //       url: "<?php echo site_url('Home/Login'); ?>",
-    //       dataType: 'json',
-    //       data: {name: user_name, pwd: password},
-    //       success: function(res)
-    //       {
-    //         if (res)
-    //         {
-    //           alert('sucess');
-    //         }
-    //       }
-    //     });
-    //   });
-    // });
-    function login()
-    {
-      var url="<?php echo site_url(''); ?>";
-      $.ajax(
-      {
-        url:url,
-        type:'POST',
-        data:$('#form').serialize(),
-        dataType:'JSON',
-        sucess:function(data){
-          $('#myModal').modal('hide');
-        }
-      });
-    }
-  </script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
@@ -101,7 +61,7 @@
           </ul>
         </li>
         <!-- kết thúc xử lý đăng nhập -->
-        <li><a href="<?php echo base_url()."hocphi/" ?>">Trợ giúp</a></li>
+        <li><a href="#">Trợ giúp</a></li>
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
