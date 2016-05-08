@@ -24,41 +24,15 @@ class Home extends CI_Controller {
 		$this->load->view('template/header',$this->data);
 		$this->load->view('home');
 	}
-	private function _validate()
-	{
-		$data = array();
-		$data['error_string'] = array();
-		$data['inputerror'] = array();
-		$data['status'] = TRUE;
-
-		if($this->input->post('username') == '')
-		{
-			$data['inputerror'][] = 'username';
-			$data['error_string'][] = 'user name is required';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('pwd') == '')
-		{
-			$data['inputerror'][] = 'Password';
-			$data['error_string'][] = 'Password is required';
-			$data['status'] = FALSE;
-		}
-
-		if($data['status'] === FALSE)
-		{
-			echo json_encode($data);
-			exit();
-		}
-	}
 	public function Login()
 	{
-		$this->_validate();
 		$data = array(
-			'username' => $this->input->post('username'),
+			'username' => $this->input->post('name'),
 			'pwd'=>$this->input->post('pwd')
 			);
 		//Either you can print value or you can send value to database
 		// echo json_encode($data);
+		$this->load->view('template/header',$data);
+		$this->load->view('home');
 	}
 }

@@ -10,10 +10,10 @@
   <title><?php echo $page_title;?></title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet">
+  <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
 
   <!-- Fonts -->
-  <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
   <!-- Squad theme CSS -->
   <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
@@ -28,43 +28,29 @@
   <script src="<?php echo base_url();?>assets/js/custom.js"></script>
   <script type="text/javascript">
     // Ajax post
-    // $(document).ready(function() 
-    // {
-    //   $("#login").click(function(e) 
-    //   {
-    //     e.preventDefault();
-    //     var user_name = $("#username").val();
-    //     var password = $("#pwd").val();
-    //     jQuery.ajax(
-    //     {
-    //       type: "POST",
-    //       url: "<?php echo site_url('Home/Login'); ?>",
-    //       dataType: 'json',
-    //       data: {name: user_name, pwd: password},
-    //       success: function(res)
-    //       {
-    //         if (res)
-    //         {
-    //           alert('sucess');
-    //         }
-    //       }
-    //     });
-    //   });
-    // });
-    function login()
+    $(document).ready(function() 
     {
-      var url="<?php echo site_url(''); ?>";
-      $.ajax(
+      $("#login").click(function(e) 
       {
-        url:url,
-        type:'POST',
-        data:$('#form').serialize(),
-        dataType:'JSON',
-        sucess:function(data){
-          $('#myModal').modal('hide');
-        }
+        e.preventDefault();
+        var user_name = $("#username").val();
+        var password = $("#pwd").val();
+        jQuery.ajax(
+        {
+          type: "POST",
+          url: "<?php echo base_url(); ?>Home/Login",
+          dataType: 'json',
+          data: {name: user_name, pwd: password},
+          success: function(res)
+          {
+            if (res)
+            {
+              alert('sucess');
+            }
+          }
+        });
       });
-    }
+    });
   </script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -87,10 +73,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Trang chủ</a></li>
+        <li class="active"><a href="<?php echo base_url();?>">Trang chủ</a></li>
         <!-- xử lý đăng nhập -->
         <li class="dropdown hidden">
-          <a class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="#">Thông tin sinh viên</a></li>
             <li><a href="#">Thông tin học phí</a></li>
@@ -101,7 +87,7 @@
           </ul>
         </li>
         <!-- kết thúc xử lý đăng nhập -->
-        <li><a href="<?php echo base_url()."hocphi/" ?>">Trợ giúp</a></li>
+        <li><a href="#">Trợ giúp</a></li>
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
@@ -133,7 +119,7 @@
           <h4><span class="glyphicon glyphicon-log-in"  style="font-size:1.3em;"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" method="post" action="#" id="form">
+          <form role="form" method="post">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="User name">
@@ -142,7 +128,7 @@
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
               <input type="password" class="form-control" id="psw" name="pwd" placeholder="Passwords">
             </div>
-            <button type="button" class="btn btn-success btn-block" id="login" onclick="login()"><span class="glyphicon glyphicon-off"></span>Login</button>
+            <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -163,7 +149,7 @@
      <h4>Trang quản lý đăng ký học phần</h4>
    </div>
    <div class="page-scroll">
-     <a href="#content" class="btn btn-circle">
+     <a href="#" class="btn btn-circle">
       <i class="fa fa-angle-double-down animated"></i>
     </a>
   </div>

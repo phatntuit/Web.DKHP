@@ -9,10 +9,10 @@
 						</a>
 					</div>
 					</div>
-					<p>&copy;Copyright 2016 - Squard. All rights reserved.<i>Customize by <a href="//fb.com/Phatpropk" target="_blank">PNQ</a> team</i></p>
+					<p>&copy;Copyright 2016 - Squard. All rights reserved.<i>Customize by <a href="http://pnesd.byethost5.com" target="_blank">PNQ</a> team</i></p>
 				</div>
 			</div>	
 		</div>
-</footer>
+	</footer>
 </body>
 </html>
