@@ -20,6 +20,8 @@ class DangKy extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->data['page_title']='Đăng ký  | Hệ thống đăng ký học phần';
+		$this->load->view('template/header',$this->data);
 		$this->load->view('dangky');
 	}
 }
