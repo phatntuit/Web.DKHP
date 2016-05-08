@@ -79,7 +79,7 @@
           </ul>
         </li>
         <!-- kết thúc xử lý đăng nhập -->
-        <li><a href="#">Trợ giúp</a></li>
+        <li><a href="<?php echo base_url()."hocphi/" ?>">Trợ giúp</a></li>
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
