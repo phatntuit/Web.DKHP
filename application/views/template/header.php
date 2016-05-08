@@ -1,6 +1,6 @@
+<!-- <?php //session_start(); ?> -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +30,8 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
 	<div id="preloader">
-   <div id="load"></div>
- </div>
+    <div id="load"></div>
+  </div>
  <section id="home"></section>
  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" >
   <div class="container">
@@ -39,9 +39,9 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
         <i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#home">
-        <h1>University of Information Technology</h1>
-      </a>
+      <!-- <a class="navbar-brand" href="#home">
+        <h1>UIT</h1>
+      </a> -->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,10 +65,10 @@
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
-        if(isset($username))
+        if(isset($id))
         {
           ?>
-          <li id="user"><a href="#"><?php echo $username; ?></a></li>
+          <li id="user"><a href="#"><?php echo $id; ?></a></li>
           <?php
         }
         else
@@ -93,16 +93,16 @@
           <h4><span class="glyphicon glyphicon-log-in"  style="font-size:1.3em;"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" method="post" action="#" id="form">
+          <form role="form" method="post" action="#" id="form" >
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="User name">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
-              <input type="password" class="form-control" id="psw" name="pwd" placeholder="Passwords">
+              <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Passwords">
             </div>
-            <button type="button" class="btn btn-success btn-block" id="login" onclick="login()"><span class="glyphicon glyphicon-off"></span>Login</button>
+            <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
           </form>
         </div>
         <div class="modal-footer">
