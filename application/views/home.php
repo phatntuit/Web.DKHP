@@ -6,6 +6,3 @@
 	</section>
 	<?php $this->load->view('template/about.php'); ?>
 	<?php $this->load->view('template/footer.php'); ?>
-</body>
-
-</html>
