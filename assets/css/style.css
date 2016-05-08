@@ -803,7 +803,7 @@ Parallax
   }
 @media (min-width:768px) 
 {
-  .modal-dialog {
+  #myModal>.modal-dialog {
     width:300px;
     margin:30px auto
   }
