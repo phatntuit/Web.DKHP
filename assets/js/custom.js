@@ -92,7 +92,7 @@ $("#mytable #checkall").click(function () {
 //datetime picker
 //change class below
 $(document).ready(function(){
-$('.form-group .datepicker').datepicker({
+$('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
         todayHighlight: true,
