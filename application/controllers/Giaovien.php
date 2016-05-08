@@ -9,10 +9,16 @@ class Giaovien extends  CI_Controller
 	}
 	public function index()
 	{	
-		//$this->load->model('Giaovien_model');
-	//	$data['sinhvien']=$this->hocphi_model->show();
-	//	$this->load->view('hocphi_view',$data);
-		//$hocphi['hocphi'] = $this->hocphi_model->showhocphi();
+		$this->data['page_title'] = 'Thông tin giáo viên';
+		$this->load->model('Giaovien_model');
+		$this->data['giaovien'] = $this->Giaovien_model->show();
+		$this->load->view('template/header',$this->data);
 		$this->load->view('giaovien_view');
+	}
+	public function ajax_edit($id)
+	{
+		$data = $this->person->get_by_id($id);
+		$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+		echo json_encode($data);
 	}
 }
