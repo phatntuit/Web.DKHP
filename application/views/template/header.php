@@ -11,7 +11,9 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
-
+  <!-- data time -->
+  <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
+  <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
   <!-- Fonts -->
   <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
