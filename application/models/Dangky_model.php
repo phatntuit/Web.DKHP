@@ -7,7 +7,7 @@ class Dangky_model extends CI_model
 	
 	public function __construct()
 	{
-		parent::__contruct();
+		parent::__construct();
 	}
 	public function getdata()
 	{

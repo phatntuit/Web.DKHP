@@ -65,7 +65,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Trang chủ</a></li>
+        <li class="active"><a href="<?php echo base_url();?>">Trang chủ</a></li>
         <!-- xử lý đăng nhập -->
         <li class="dropdown hidden">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
