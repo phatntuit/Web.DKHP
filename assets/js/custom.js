@@ -98,5 +98,5 @@ $('.datepicker').datepicker({
         orientation: "top auto",
         todayBtn: true,
         todayHighlight: true,  
-    });
+   });
 
