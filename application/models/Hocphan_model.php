@@ -12,7 +12,9 @@ class Hocphan_model extends CI_model
 	public function gethocphan()
 	{
 		$q=$this->db->query('CALL join_hocphan()');
-		return $q->result_object();
+		$result= $q->result_object();
+		mysqli_next_result( $this->db->conn_id );
+		return $result;
 	}
 	public function getgiaovien()
 	{
