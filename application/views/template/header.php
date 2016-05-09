@@ -69,10 +69,10 @@
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
-        if(isset($username))
+        if(isset($_SESSION['id']))
         {
           ?>
-          <li id="user"><a href="#"><?php echo $username; ?></a></li>
+          <li id="user"><a href="#"><?php echo $_SESSION['id']; ?></a></li>
           <?php
         }
         else
