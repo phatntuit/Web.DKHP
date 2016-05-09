@@ -28,7 +28,7 @@ class Giaovien extends  CI_Controller
 				'Dienthoai' => $this->input->post('Dienthoai'),
 				'Email' => $this->input->post('Email'),
 			);
-		$insert = $this->giaovien->save($data);
+		$insert = $this->Giaovien_model->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
 
