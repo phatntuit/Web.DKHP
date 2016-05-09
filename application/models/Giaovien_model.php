@@ -14,5 +14,11 @@ class Giaovien_model extends CI_model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function save($data)
+	{
+		$this->db->insert($this->table, $data);
+		return $this->db->insert_id();
+	}
+
 }
 ?>
