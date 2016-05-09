@@ -23,8 +23,8 @@ class User extends  CI_Controller
 			$user=$this->User_model->get_user();
 			//set session data
 			// set session user datas
-				$_SESSION['id']      = $user->Manguoidung;
-				$_SESSION['quyen']     =$user->Quyen;
+			$_SESSION['id']      = $user->Manguoidung;
+			$_SESSION['quyen']     =$user->Quyen;
 			//load view
 			$this->load->view('home');
 		}
