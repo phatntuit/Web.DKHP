@@ -5,7 +5,7 @@
 		<div class="row"><p></p></div>
 		<div class="container">
 			<div class="row">
-				<button class="btn btn-primary btn-success" data-title="add" data-toggle="modal" data-target="#add" ><span class="glyphicon glyphicon-plus">Thêm</button></br></br>
+				<button class="btn btn-primary btn-success" id="addhocphan" data-toggle="modal" ><span class="glyphicon glyphicon-plus">Thêm</button></br></br>
 				<?php if (empty($hocphan)) echo "<h3>Hiện chưa có học phần</h3>";
 					else{
 				?>
@@ -64,78 +64,115 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-						<h4 class="modal-title custom_align" id="Heading">Thêm Học Phần</h4>
+						<h4 class="modal-title custom_align" id="Heading"></h4>
 					</div>
 					<div class="modal-body">
-						<div class="form-group">
+						<div class="modal-body form">
+						<form id="formadd" action="#">
+							<div class="form-body">
+								<div class="form-group">
+									Môn Học
+									<select class="selectpicker  " id="monhoc" data-width="100%">
+										<?php foreach ($monhoc as $mh) {?>
+											<option value="<?php echo $mh->Mamonhoc?>"><?php echo $mh->Tenmonhoc;?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="form-group">
+									Khoa
+									<select class="selectpicker  " id="khoa" data-width="100%">
+										<?php foreach ($khoa as $kh) {?>
+											<option value="<?php echo $kh->Makhoa?>"><?php echo $kh->Tenkhoa;?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="form-group">
+									Giáo Viên
+									<select class="selectpicker  " id="giaovien" data-width="100%">
+										<?php foreach ($giaovien as $gv) {?>
+											<option value="<?php echo $gv->Magiaovien?>"><?php echo $gv->Tengiaovien;?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="form-group">
 
-						</div>
-						<div class="form-group">
+								</div>
+								<div class="form-group">
 
-						</div>
-						<div class="form-group">
+								</div>
+								<div class="form-group">
 
-						</div>
-						<div class="form-group">
-
-						</div>
-						<div class="form-group">
-
-						</div>
-						<div class="form-group">
-
-						</div>
-						<div class="form-group">
-							Sĩ Số
-							<input class="form-control " type="text" id="siso" >
-						</div>
-						<div class="form-group">
-
-							Thứ
-							<select style="margin-right:10px;" id="thu">
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-							</select>
-							
-							Tiết Học
-							<select style="margin-right:10px;" id="tiethoc">
-								<option value="1,2,3">1,2,3</option>
-								<option value="1,2,3,4">1,2,3,4</option>
-								<option value="1,2,3,4,5">1,2,3,4,5</option>
-								<option value="4,5">4,5</option>
-								<option value="6,7,8">6,7,8</option>
-								<option value="6,7,8,9">6,7,8,9</option>
-								<option value="6,7,8,9,10">6,7,8,9,10</option>
-								<option value="9,10">9,10</option>
-							</select>
-					
-							Cách Tuần
-							<select style="margin-right:10px;" id="cachtuan">
-								<option value="1">1</option>
-								<option value="2">2</option>
-							</select>
-							Hình Thức
-							<select id="hinhthuc">
-								<option value="LT">Lý Thuyết</option>
-								<option value="TH">Thực Hành</option>
-							</select>
-							
-						</div>
-						<div class="form-group">
-							Ngày Bắt Đầu
-							<input id="ngaybatdau" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-						</div>
-						<div class="form-group">
-							Ngày Kết thúc
-							<input id="ngayketthuc" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-						</div>
+								</div>
+								
+								<div class="form-group">
+									Tiết Bắt Đầu
+									<select class="selectpicker " id="tietbatdau" data-width="100px" data-size="5">
+										<option value="1" selected>1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6,">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+									
+									Tiết Kết Thúc
+									<select class="selectpicker" data-width="100px" data-size="5" id="tietketthuc">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6,">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="form-group">
+									Thứ
+									<select class="selectpicker " id="thu" data-width="100px">
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+									</select>
+								
+									Cách Tuần
+									<select class="selectpicker" data-width="100px" id="cachtuan">
+										<option value="1" selected>1</option>
+										<option value="2">2</option>
+									</select>
+									Hình Thức
+									<select class="selectpicker " data-width="25%" id="hinhthuc">
+										<option value="LT" selected>Lý Thuyết</option>
+										<option value="TH">Thực Hành</option>
+									</select>
+									
+								</div>
+								<div class="form-group">
+									Sĩ Số
+									<input class="form-control " type="number" id="siso" >
+								</div>
+								<div class="form-group">
+									Ngày Bắt Đầu
+									<input id="ngaybatdau" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+								</div>
+								<div class="form-group">
+									Ngày Kết Thúc
+									<input id="ngayketthuc" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+								</div>
+							</div>
+						</form>
 					</div>
 					<div class="modal-footer ">
-						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
+						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="them"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
 					</div>
 				</div>
 				<!-- /.modal-content --> 

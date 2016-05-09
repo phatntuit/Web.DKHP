@@ -11,7 +11,7 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
-
+  <link href="<?php echo base_url('assets/css/bootstrap-select.css'); ?>" rel="stylesheet" type="text/css">
   <!-- Fonts -->
   <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
@@ -19,39 +19,17 @@
   <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/color/default.css" rel="stylesheet">
   <!-- Core JavaScript Files -->
-  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>  
-  <script src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
-  <script src="<?php echo base_url();?>assets/js/wow.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>  
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/wow.min.js"></script>
   <!-- Custom Theme JavaScript -->
-  <script src="<?php echo base_url();?>assets/js/custom.js"></script>
-  <script type="text/javascript">
-    // Ajax post
-    $(document).ready(function() 
-    {
-      $("#login").click(function(e) 
-      {
-        e.preventDefault();
-        var user_name = $("#username").val();
-        var password = $("#pwd").val();
-        jQuery.ajax(
-        {
-          type: "POST",
-          url: "<?php echo base_url(); ?>Home/Login",
-          dataType: 'json',
-          data: {name: user_name, pwd: password},
-          success: function(res)
-          {
-            if (res)
-            {
-              alert('sucess');
-            }
-          }
-        });
-      });
-    });
-  </script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
+    <!-- data time -->
+  <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
@@ -91,10 +69,10 @@
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
-        if(isset($username))
+        if(isset($_SESSION['id']))
         {
           ?>
-          <li id="user"><a href="#"><?php echo $username; ?></a></li>
+          <li id="user"><a href="#"><?php echo $_SESSION['id']; ?></a></li>
           <?php
         }
         else

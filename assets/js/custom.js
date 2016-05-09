@@ -91,6 +91,7 @@ $("#mytable #checkall").click(function () {
 });
 //datetime picker
 //change class below
+$(document).ready(function(){
 $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
@@ -98,5 +99,50 @@ $('.datepicker').datepicker({
         orientation: "top auto",
         todayBtn: true,
         todayHighlight: true,  
+<<<<<<< HEAD
    });
 
+=======
+    });
+});
+//bootstrap-select
+$('.selectpicker').selectpicker({
+  style: 'btn-info',
+  size: 2,
+});
+//change tiết bắt đầu
+//$(document).ready(function(){
+	//$("#tietbatdau").change(function(){
+	//	a= $("#tietbatdau").val()
+	//	b=$("#tietketthuc").val()
+	//	if(a>b) alert("test")
+	//})
+//})
+//change tiết kết thúc
+$(document).ready(function(){
+	$("#tietketthuc").change(function(){
+		tietbd=$("#tietbatdau").val()
+		tietkt=$("#tietketthuc").val()
+		tietkt=parseInt(tietkt)
+		tietbd=parseInt(tietbd)
+		if(tietkt<tietbd){
+			alert("Tiết bắt đầu phải nhỏ hơn tiết kết thúc")
+			$("#tietketthuc").val()=tietkt
+		}
+	})
+})
+//add học phần. show form
+$(document).ready(function(){
+	$("#addhocphan").click(function(){
+		//$('#formadd')[0].reset(); // reset form on modals
+	    $('#add').modal('show'); // show bootstrap modal
+	    $('.modal-title').text('Thêm Học Phần'); // Set Title to Bootstrap modal title
+	})
+})
+//add học phần
+$(document).ready(function(){
+	$("#them").click(function(){
+		
+	})
+})
+>>>>>>> refs/remotes/origin/master
