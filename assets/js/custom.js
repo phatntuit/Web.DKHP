@@ -119,6 +119,8 @@ $(document).ready(function(){
 	$("#tietketthuc").change(function(){
 		tietbd=$("#tietbatdau").val()
 		tietkt=$("#tietketthuc").val()
+		tietkt=parseInt(tietkt)
+		tietbd=parseInt(tietbd)
 		if(tietkt<tietbd){
 			alert("Tiết bắt đầu phải nhỏ hơn tiết kết thúc")
 			$("#tietketthuc").val()=tietkt

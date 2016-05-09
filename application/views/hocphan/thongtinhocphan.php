@@ -66,7 +66,8 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 						<h4 class="modal-title custom_align" id="Heading"></h4>
 					</div>
-					<div class="modal-body form">
+					<div class="modal-body">
+						<div class="modal-body form">
 						<form id="formadd" action="#">
 							<div class="form-body">
 								<div class="form-group">

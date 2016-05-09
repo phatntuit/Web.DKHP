@@ -13,7 +13,6 @@ class Hocphan extends CI_Controller
 		$this->data['monhoc']=$this->Hocphan_model->getmonhoc();
 		$this->data['giaovien']=$this->Hocphan_model->getgiaovien();
 		$this->data['khoa']=$this->Hocphan_model->getkhoa();
-		
 	}
 	public function index()
 	{
