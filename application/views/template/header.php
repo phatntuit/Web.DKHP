@@ -11,7 +11,9 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
-  <link href="<?php echo base_url('assets/css/bootstrap-select.css'); ?>" rel="stylesheet" type="text/css">
+  <!-- data time -->
+  <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
+  <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
   <!-- Fonts -->
   <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
@@ -19,17 +21,13 @@
   <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/color/default.css" rel="stylesheet">
   <!-- Core JavaScript Files -->
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-select.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>  
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/wow.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>  
+  <script src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
+  <script src="<?php echo base_url();?>assets/js/wow.min.js"></script>
   <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
-    <!-- data time -->
-  <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/custom.js"></script>
   <script type="text/javascript">
     // Ajax post
     $(document).ready(function() 
