@@ -14,5 +14,11 @@ class Giaovien_model extends CI_model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function Get_Gv()
+	{
+		$sp_data = $this->db->query("CALL GET_GV()");
+		$result = $sp_data->result_array();
+		return $result;
+	}
 }
 ?>
