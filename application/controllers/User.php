@@ -25,8 +25,7 @@ class User extends  CI_Controller
 			// set session user datas
 			$_SESSION['id']      = $user->Manguoidung;
 			$_SESSION['quyen']     =$user->Quyen;
-			//load view
-			$this->load->view('home');
+			http_redirect('');
 		}
 
 	}
