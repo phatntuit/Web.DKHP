@@ -19,6 +19,7 @@ class Hocphan extends CI_Controller
 	}
 	public function index()
 	{
+		
 		$this->data['page_title']='Thông tin học phần';
 		$this->load->view('template/header',$this->data);
 		$this->load->view('hocphan/thongtinhocphan');

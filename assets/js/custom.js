@@ -115,7 +115,7 @@ $(document).ready(function(){
 //add học phần. show form
 $(document).ready(function(){
 	$("#addhocphan").click(function(){
-		//$('#formadd')[0].reset(); // reset form on modals
+		$('#formadd')[0].reset(); // reset form on modals
 	    $('#add').modal('show'); // show bootstrap modal
 	    $('.modal-title').text('Thêm Học Phần'); // Set Title to Bootstrap modal title
 	})
@@ -134,7 +134,7 @@ $(document).ready(function(){
 			contentType: "application/json; charset=utf-8",
 			success: function(data)
 			{
-				alert()
+				alert($('#tietketthuc').val())
 				$("#btthemhocphan").text("Thêm")
 				$("#btthemhocphan").attr('disabled',false)
 			},
