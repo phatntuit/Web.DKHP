@@ -63,7 +63,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sinh viên
                   <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" id="dropmenu">
                   <li><a href="#">Thông tin sinh viên</a></li>
                   <li><a href="#">Thông tin học phí</a></li>
                   <li><a href="#">Kết quả học tập</a></li>
@@ -80,7 +80,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị
                   <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" id="dropmenu">
                   <li><a href="#">Thông tin sinh viên</a></li>
                   <li><a href="#">Học phí</a></li>
                   <li><a href="#">Học phần</a></li>
@@ -162,7 +162,7 @@
      <h4>Trang quản lý đăng ký học phần</h4>
    </div>
    <div class="page-scroll">
-     <a href="#" class="btn btn-circle">
+     <a href="#content" class="btn btn-circle">
       <i class="fa fa-angle-double-down animated"></i>
     </a>
   </div>
