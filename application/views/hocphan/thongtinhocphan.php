@@ -72,7 +72,7 @@
 							<div class="form-body">
 								<div class="form-group">
 									Môn Học
-									<select class="selectpicker  " id="monhoc" data-width="100%">
+									<select class="selectpicker  " id="monhoc" data-width="100%" title="--Chọn môn học--">
 										<?php foreach ($monhoc as $mh) {?>
 											<option value="<?php echo $mh->Mamonhoc?>"><?php echo $mh->Tenmonhoc;?></option>
 										<?php } ?>
@@ -80,7 +80,7 @@
 								</div>
 								<div class="form-group">
 									Khoa
-									<select class="selectpicker  " id="khoa" data-width="100%">
+									<select class="selectpicker  " id="khoa" data-width="100%" title="--Chọn khoa--">
 										<?php foreach ($khoa as $kh) {?>
 											<option value="<?php echo $kh->Makhoa?>"><?php echo $kh->Tenkhoa;?></option>
 										<?php } ?>
@@ -88,25 +88,40 @@
 								</div>
 								<div class="form-group">
 									Giáo Viên
-									<select class="selectpicker  " id="giaovien" data-width="100%">
+									<select class="selectpicker  " id="giaovien" data-width="100%" title="--Chọn giáo viên--">
 										<?php foreach ($giaovien as $gv) {?>
 											<option value="<?php echo $gv->Magiaovien?>"><?php echo $gv->Tengiaovien;?></option>
 										<?php } ?>
 									</select>
 								</div>
 								<div class="form-group">
-
+									Phòng
+									<select class="selectpicker  " id="phong" data-width="100%" title="--Chọn phòng học">
+										<?php foreach ($phong as $ph) {?>
+											<option value="<?php echo $ph->Maphong?>"><?php echo $ph->Maphong;?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<div class="form-group">
-
+									Năm Học
+									<select class="selectpicker  " id="namhoc" data-width="100%" title="--Chọn năm học--">
+										<?php foreach ($namhoc as $nh) {?>
+											<option value="<?php echo $nh->Manamhoc?>"><?php echo $nh->Tennamhoc;?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<div class="form-group">
-
+									Học Kỳ
+									<select class="selectpicker  " id="hocky" data-width="100%" title="--Chọn học kỳ">
+										<?php foreach ($hocky as $hk) {?>
+											<option value="<?php echo $hk->Mahocky?>"><?php echo $hk->Tenhocky;?></option>
+										<?php } ?>
+									</select>
 								</div>
 								
 								<div class="form-group">
 									Tiết Bắt Đầu
-									<select class="selectpicker " id="tietbatdau" data-width="100px" data-size="5">
+									<select class="selectpicker " id="tietbatdau" data-width="100px" data-size="5" >
 										<option value="1" selected>1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -118,9 +133,8 @@
 										<option value="9">9</option>
 										<option value="10">10</option>
 									</select>
-									
 									Tiết Kết Thúc
-									<select class="selectpicker" data-width="100px" data-size="5" id="tietketthuc">
+									<select class="selectpicker" data-width="100px" data-size="5" id="tietketthuc" >
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -135,7 +149,7 @@
 								</div>
 								<div class="form-group">
 									Thứ
-									<select class="selectpicker " id="thu" data-width="100px">
+									<select class="selectpicker " id="thu" data-width="100px" >
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
@@ -145,12 +159,12 @@
 									</select>
 								
 									Cách Tuần
-									<select class="selectpicker" data-width="100px" id="cachtuan">
-										<option value="1" selected>1</option>
+									<select class="selectpicker" data-width="100px" id="cachtuan" >
+										<option value="1">1</option>
 										<option value="2">2</option>
 									</select>
 									Hình Thức
-									<select class="selectpicker " data-width="25%" id="hinhthuc">
+									<select class="selectpicker " data-width="25%" id="hinhthuc" >
 										<option value="LT" selected>Lý Thuyết</option>
 										<option value="TH">Thực Hành</option>
 									</select>
@@ -171,8 +185,9 @@
 							</div>
 						</form>
 					</div>
+					</div>
 					<div class="modal-footer ">
-						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="them"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
+						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="btthemhocphan"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
 					</div>
 				</div>
 				<!-- /.modal-content --> 

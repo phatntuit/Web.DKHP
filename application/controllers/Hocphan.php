@@ -13,12 +13,20 @@ class Hocphan extends CI_Controller
 		$this->data['monhoc']=$this->Hocphan_model->getmonhoc();
 		$this->data['giaovien']=$this->Hocphan_model->getgiaovien();
 		$this->data['khoa']=$this->Hocphan_model->getkhoa();
+		$this->data['phong']=$this->Hocphan_model->getphong();
+		$this->data['hocky']=$this->Hocphan_model->gethocky();
+		$this->data['namhoc']=$this->Hocphan_model->getnamhoc();
 	}
 	public function index()
 	{
 		$this->data['page_title']='Thông tin học phần';
 		$this->load->view('template/header',$this->data);
 		$this->load->view('hocphan/thongtinhocphan');
+	}
+	public function addhocphan()
+	{
+		//$this->_validate();
+		echo json_encode(array("status" => TRUE));
 	}
 }
 ?>
