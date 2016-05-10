@@ -99,12 +99,8 @@ $('.datepicker').datepicker({
         orientation: "top auto",
         todayBtn: true,
         todayHighlight: true,  
-<<<<<<< HEAD
    });
-
-=======
     });
-});
 //bootstrap-select
 $('.selectpicker').selectpicker({
   style: 'btn-info',
@@ -145,4 +141,3 @@ $(document).ready(function(){
 		
 	})
 })
->>>>>>> refs/remotes/origin/master

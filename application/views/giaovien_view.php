@@ -1,5 +1,3 @@
-
-<link href="<?php echo base_url('assets/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
 <div class="row"></div>
 <section id="content">
     <div class="row" id="result">
@@ -56,7 +54,10 @@
         </div>
 	</div>
 </div>
+<script src="<?php echo base_url();?>assets/datatables/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url();?>assets/datatables/js/dataTables.bootstrap.js"></script>
+
 <script type="text/javascript">
 
 var save_method; //for save method string
@@ -65,7 +66,7 @@ var table;
 $(document).ready(function() {
 
     //datatables
-    // table = $('#table').DataTable({ 
+    // table = $('#table').dataTable({ 
 
     //     "processing": true, //Feature control the processing indicator.
     //     "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -73,7 +74,7 @@ $(document).ready(function() {
 
     //     // Load data for the table's content from an Ajax source
     //     "ajax": {
-    //         "url": "<?php echo site_url('giaovien/ajax_list')?>",
+    //         "url": "<?php echo base_url('giaovien/ajax_list')?>",
     //         "type": "POST"
     //     },
 
@@ -263,7 +264,7 @@ function delete_person(id)
                         <div class="form-group">
                             <label class="control-label col-md-3">Giới tính</label>
                             <div class="col-md-9">
-                                <select name="gender" class="form-control">
+                                <select name="Gioitinh" class="form-control">
                                     <option value="">--Select Gender--</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
