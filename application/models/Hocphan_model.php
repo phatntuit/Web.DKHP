@@ -9,6 +9,20 @@ class Hocphan_model extends CI_model
 	{
 		parent::__construct();
 	}
+	// ---------------------------
+	/* test mã số */
+	function Randomstr($length) 
+	{
+		$ch=substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    	return  $ch;
+	}
+	public function Taoma($mamon,$hinhthuc)
+	{
+		$this->load->model('Taoma');
+
+	}
+	/* kết thúc phần test*/
+	//----------------------------
 	public function gethocphan()
 	{
 		$q=$this->db->query('CALL join_hocphan()');
