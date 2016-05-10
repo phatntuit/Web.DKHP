@@ -82,8 +82,8 @@ $('.datepicker').datepicker({
         orientation: "top auto",
         todayBtn: true,
         todayHighlight: true,  
+   });
     });
-});
 //bootstrap-select
 $('.selectpicker').selectpicker({
   style: 'btn-info',
