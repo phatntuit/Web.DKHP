@@ -14,19 +14,30 @@ class User extends  CI_Controller
 	{
 		//$this->_validate();
 		$data = array(
-			'username' => $this->input->post('username'),
+			'id' => $this->input->post('id'),
 			'pwd'=>$this->input->post('pwd')
 			);
+		// print_r($data);
 		$this->load->model('User_model');
-		if ($this->User_model->resolve_user_login($username,$pwd)==true) {
+		$this->User_model->check_login($data['id'],$data['pwd']);
+		$check=$this->User_model->check_login($data['id'],$data['pwd']);
+		if ($check==true) {
 			#login thanh cong
-			$user=$this->User_model->get_user();
+			$user= $this->User_model->get_user($data['id']);
 			//set session data
-			// set session user datas
-			$_SESSION['id']      = $user->Manguoidung;
-			$_SESSION['quyen']     =$user->Quyen;
-			http_redirect('');
+			$_SESSION['id']      = $user[0]['Manguoidung'];
+			$_SESSION['quyen']     =$user[0]['Quyen'];
+			//call view
+			redirect(site_url(''));
 		}
+		else
+			echo "Error.";
 
+	}
+	public function logout()
+	{
+		# code...
+		session_destroy();
+		redirect(site_url(''));
 	}
 }

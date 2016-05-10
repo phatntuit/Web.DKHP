@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url();?>assets/css/animate.css" rel="stylesheet" />
-  <!-- Squad theme CSS -->
+  <!-- Default theme CSS -->
   <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/color/default.css" rel="stylesheet">
   <!-- Core JavaScript Files -->
@@ -25,11 +25,11 @@
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>  
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/wow.min.js"></script>
-  <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
     <!-- data time -->
   <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
@@ -53,31 +53,66 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="<?php echo base_url();?>">Trang chủ</a></li>
         <!-- xử lý đăng nhập -->
-        <li class="dropdown hidden">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Thông tin sinh viên</a></li>
-            <li><a href="#">Thông tin học phí</a></li>
-            <li><a href="#">Kết quả học tập</a></li>
-            <li><a href="#">Thời khóa biểu</a></li>
-            <li><a href="#">Thông tin đăng ký học phần</a></li>
-            <li class="disabled"><a href="#" >Đăng ký học phần</a></li>
-          </ul>
-        </li>
+        <?php 
+          if(isset($_SESSION['quyen']))
+          {
+            if($_SESSION['quyen']=='MQ002')
+            {
+         ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sinh viên
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Thông tin sinh viên</a></li>
+                  <li><a href="#">Thông tin học phí</a></li>
+                  <li><a href="#">Kết quả học tập</a></li>
+                  <li><a href="#">Thời khóa biểu</a></li>
+                  <li><a href="#">Thông tin đăng ký học phần</a></li>
+                  <li class="disabled"><a href="#" >Đăng ký học phần</a></li>
+                </ul>
+              </li>
+          <?php 
+            }
+            else{
+          ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Thông tin sinh viên</a></li>
+                  <li><a href="#">Học phí</a></li>
+                  <li><a href="#">Học phần</a></li>
+                  <li><a href="#">Quản lý tài khoản</a></li>
+                  <li><a href="#">Quản lý giáo viên</a></li>
+                  <li class="disabled"><a href="#" >Quản lý phòng học</a></li>
+                </ul>
+              </li>
+          <?php }}?>
         <!-- kết thúc xử lý đăng nhập -->
         <li><a href="#">Trợ giúp</a></li>
         <li><a href="#">Liên hệ</a></li>
         <li><a href="#about">Về chúng tôi</a></li>
         <?php 
-        if(isset($_SESSION['id']))
+        if(isset($_SESSION['id']) )
         {
-          ?>
-          <li id="user"><a href="#"><?php echo $_SESSION['id']; ?></a></li>
-          <?php
-        }
+        ?>
+            <li id="user" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <?php echo $_SESSION['id']; ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Đổi mật khẩu</a></li>
+                <li><a href="<?php echo site_url('User/logout') ?>">Đăng xuất</a></li>
+              </ul>
+            </li>
+        <?php 
+        } 
         else
         {
-          ?>
+        ?>
           <li id="loginform"><a href="#">Đăng nhập</a></li>
           <?php } ?>
         </ul>
@@ -97,10 +132,10 @@
           <h4><span class="glyphicon glyphicon-log-in"  style="font-size:1.3em;"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" method="post">
+          <form role="form" method="post" action="<?php echo site_url('User/Login'); ?>">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="User name">
+              <input type="text" class="form-control" id="id" name="id" placeholder="User name">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
