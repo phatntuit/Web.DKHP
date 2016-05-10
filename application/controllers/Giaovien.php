@@ -5,6 +5,7 @@ class Giaovien extends  CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Giaovien_model','giaovien');
 		
 	}
 	public function index()
@@ -34,20 +35,20 @@ class Giaovien extends  CI_Controller
 
 	public function ajax_list()
 	{
-		$giaovien = $this->Giaovien_model->show();
-		//$data = array();
+		$giaovien = $this->Giaovien_model->get_datatables();
+		$data = array();
 		$no = $_POST['start'];
 		foreach ($giaovien as $gv) {
 			$no++;
 			$row = array();
 			//$row[] = $gv->Magiaovien;
-			$row[] = $person->Tengiaovien;
-			$row[] = $person->Mahocvi;
-			$row[] = $person->Gioitinh;
-			$row[] = $person->Ngaysinh;
-			$row[] = $person->Diachi;
-			$row[] = $person->Dienthoai;
-			$row[] = $person->Email;
+			$row[] = $gv->Tengiaovien;
+			$row[] = $gv->Mahocvi;
+			$row[] = $gv->Gioitinh;
+			$row[] = $gv->Ngaysinh;
+			$row[] = $gv->Diachi;
+			$row[] = $gv->Dienthoai;
+			$row[] = $gv->Email;
 			
 
 			//add html for action
@@ -59,12 +60,13 @@ class Giaovien extends  CI_Controller
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->person->count_all(),
-						"recordsFiltered" => $this->person->count_filtered(),
+						"recordsTotal" => $this->Giaovien_model->count_all(),
+						"recordsFiltered" => $this->Giaovien_model->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format
 		echo json_encode($output);
+
 	}
 	public function ajax_edit($id)
 	{
