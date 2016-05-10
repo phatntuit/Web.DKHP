@@ -819,7 +819,3 @@ Parallax
   }
 }
 /*header*/
-.navbar-right .dropdown-menu #dropmenu {
-  right: 1;
-  left: auto;
-}
