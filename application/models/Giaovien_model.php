@@ -30,8 +30,8 @@ class Giaovien_model extends CI_model
 	}
 	public function save($data)
 	{
-		$this->db->insert($this->table, $data);
-		return $this->db->insert_id();
+		 $this->db->insert('giaovien', $data);
+
 	}
 	private function _get_datatables_query()
 	{

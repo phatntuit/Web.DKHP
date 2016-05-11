@@ -5,7 +5,7 @@ class Giaovien extends  CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Giaovien_model','giaovien');
+		$this->load->model('Giaovien_model');
 		
 	}
 	public function index()
@@ -21,15 +21,16 @@ class Giaovien extends  CI_Controller
 	{
 		//$this->_validate();
 		$data = array(
-				'Tengiaovien' => $this->input->post('Tengiaovien'),
-				'Mahocvi' => $this->input->post('Mahocvi'),
-				'Gioitinh' => $this->input->post('Gioitinh'),
-				'Diachi' => $this->input->post('Diachi'),
-				'Ngaysinh' => $this->input->post('Ngaysinh'),
-				'Dienthoai' => $this->input->post('Dienthoai'),
-				'Email' => $this->input->post('Email'),
+				'Magiaovien' =>$this->input->get('Magiaovien'),
+				'Tengiaovien' => $this->input->get('Tengiaovien'),
+				'Mahocvi' => $this->input->get('Mahocvi'),
+				'Gioitinh' => $this->input->get('Gioitinh'),
+				'Ngaysinh' => $this->input->get('Ngaysinh'),
+				'Diachi' => $this->input->get('Diachi'),
+				'Dienthoai' => $this->input->get('Dienthoai'),
+				'Email' => $this->input->get('Email'),
 			);
-		$insert = $this->Giaovien_model->save($data);
+		 $this->Giaovien_model->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
 
