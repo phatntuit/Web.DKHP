@@ -159,7 +159,7 @@
 
     <div class="slogan">
      <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
-     <h4>Trang quản lý đăng ký học phần</h4>
+     <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
    </div>
    <div class="page-scroll">
      <a href="#content" class="btn btn-circle">
