@@ -9,7 +9,18 @@ class Sinhvien extends  CI_Controller
 	public function index()
 	{	
 		$this->load->model('Sinhvien_model');
-		$mssv=$this->Sinhvien_model->Taoma();
-		echo "$mssv";
+		$this->data['page_title'] = 'Quản lý sinh viên';
+		$this->load->view('sinhvien_view',$this->data);
+		
 	}
+	//test ajax
+	// public function index()
+	// {	
+	// 	$this->load->view('test_ajax');
+	// }
+	// public function test()
+	// {
+	// 	$user=array('name' =>'Phat','diem'=>'10' );
+	// 	echo json_encode($user);
+	// }
 }
