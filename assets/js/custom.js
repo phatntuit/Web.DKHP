@@ -72,23 +72,6 @@ $("#mytable #checkall").click(function () {
     
     $("[data-toggle=tooltip]").tooltip();
 });
-//teacher form
-$(document).ready(function(){
-$("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
-
-        } else {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
-});
 //datetime picker
 //change class below
 $(document).ready(function(){
@@ -106,14 +89,6 @@ $('.selectpicker').selectpicker({
   style: 'btn-info',
   size: 2,
 });
-//change tiết bắt đầu
-//$(document).ready(function(){
-	//$("#tietbatdau").change(function(){
-	//	a= $("#tietbatdau").val()
-	//	b=$("#tietketthuc").val()
-	//	if(a>b) alert("test")
-	//})
-//})
 //change tiết kết thúc
 $(document).ready(function(){
 	$("#tietketthuc").change(function(){
@@ -123,21 +98,51 @@ $(document).ready(function(){
 		tietbd=parseInt(tietbd)
 		if(tietkt<tietbd){
 			alert("Tiết bắt đầu phải nhỏ hơn tiết kết thúc")
-			$("#tietketthuc").val()=tietkt
+			$("#tietketthuc").val(tietbd)
+		}
+	})
+})
+//change ngày kết thúc
+$(document).ready(function(){
+	$('#ngayketthuc').change(function(){
+		ngaybd=$('#ngaybatdau').val()
+		if($('#ngayketthuc').val()<$('#ngaybatdau').val()){
+			alert("Ngày kết thúc không được nhỏ hơn ngày bắt đầu")
+			$('#ngayketthuc').val(ngaybd)
 		}
 	})
 })
 //add học phần. show form
 $(document).ready(function(){
 	$("#addhocphan").click(function(){
-		//$('#formadd')[0].reset(); // reset form on modals
+		$('#formadd')[0].reset(); // reset form on modals
 	    $('#add').modal('show'); // show bootstrap modal
 	    $('.modal-title').text('Thêm Học Phần'); // Set Title to Bootstrap modal title
 	})
 })
 //add học phần
 $(document).ready(function(){
-	$("#them").click(function(){
-		
+	$("#btthemhocphan").click(function(){
+		$("#btthemhocphan").text("Đang lưu....")
+		$("#btthemhocphan").attr('disabled',true)
+		url="Hocphan/addhocphan"
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: $('#formadd').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				alert($('#tietketthuc').val())
+				$("#btthemhocphan").text("Thêm")
+				$("#btthemhocphan").attr('disabled',false)
+			},
+            error: function (jqXHR, textStatus, errorThrown) {
+
+                $("#btthemhocphan").text("Thêm")
+				$("#btthemhocphan").attr('disabled',false)
+            }
+		})
 	})
 })

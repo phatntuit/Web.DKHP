@@ -7,23 +7,25 @@ class User_model extends CI_model
 	
 	public function __construct()
 	{
-		parent::__contruct();
+		parent::__construct();
 	}
-	public function resolve_user_login($id, $password) {
-		$this->db->select('matkhau');
-		$this->db->from('nguoidung');
-		$this->db->where('manguoidung', $id);
-		// $hash = $this->db->get()->row('password');
-		if($password==$this->db->get()->row('matkhau'))
+	public function check_login($id,$pwd)
+	{
+		$query="SELECT * FROM nguoidung WHERE Manguoidung = ? and Matkhau= ?";
+		$result=$this->db->query($query,array($id,$pwd));
+		$num=$result->num_rows();
+		if($num==true)
 			return true;
 		return false;
+
 	}
-	public function get_user($id) {
-		
-		$this->db->from('nguoidung');
-		$this->db->where('manguoidung', $id);
-		return $this->db->get()->row();
-		
+	public function Get_user($id)
+	{
+		$sql="select * from nguoidung where manguoidung =?";
+		$exec=$this->db->query($sql,array($id));
+		$result=$exec->result_array();
+		//print_r($result);
+		return $result;
 	}
 
 }
