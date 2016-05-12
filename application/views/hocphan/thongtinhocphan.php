@@ -9,17 +9,16 @@
 				<?php if (empty($hocphan)) echo "<h3>Hiện chưa có học phần</h3>";
 					else{
 				?>
-				<div class="table-responsive">
-					<table id="mytable" class="table table-bordred table-striped">
-						<thead>      
-							<th><input type="checkbox" id="checkall" /></th>
+				<div class="table-responsive" id="table-hp">
+					<table id="tablehocphan" class="table table-bordred table-striped">
+						<thead>
 							<th>Mã Lớp</th>
 							<th>Môn Học</th>
 							<th>Khoa</th>
 							<th>Giáo Viên</th>
 							<th>Phòng</th>
-							<th>Học kỳ</th>   
-							<th>Năm Học</th>
+							<th>Năm Học</th>   
+							<th>Học Kỳ</th>
 							<th>Thứ</th>
 							<th>Tiết Học</th>
 							<th>Cách Tuần</th>
@@ -32,25 +31,27 @@
 							<th>Xóa</th>
 						</thead>
 						<tbody>
-							<?php foreach ($hocphan as $hp) {}?>
+							<?php foreach ($hocphan as $hp) {?>
 							<tr>
-								<td><?php ?></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td><?php echo $hp->Malop?></td>
+								<td><?php echo $hp->Tenmonhoc?></td>
+								<td><?php echo $hp->Tenkhoa?></td>
+								<td><?php echo $hp->Tengiaovien?></td>
+								<td><?php echo $hp->Maphong?></td>
+								<td><?php echo $hp->Tennamhoc?></td>
+								<td><?php echo $hp->Tenhocky?></td>
+								<td><?php echo $hp->Thu?></td>
+								<td><?php for($i=$hp->Tietbatdau;$i<=$hp->Tietketthuc;$i++) echo $i.',';?></td>
+								<td><?php echo $hp->Cachtuan?></td>
+								<td><?php echo $hp->Sotinchi?></td>
+								<td><?php echo $hp->Hinhthuc?></td>
+								<td><?php echo $hp->Sisodukien?></td>
+								<td><?php echo $hp->Ngaybatdau?></td>
+								<td><?php echo $hp->Ngayketthuc?></td>
 								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
 								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
 							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -58,191 +59,190 @@
 			</div>
 		</div>
 
-		<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+		<div class="modal fade" id="modal-hocphan" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 						<h4 class="modal-title custom_align" id="Heading"></h4>
 					</div>
-					<div class="modal-body">
-						<div class="modal-body form">
-							<form id="formadd" action="#">
-								<div class="form-body">
-									<div class="form-group">
-										<label class="control-label col-md-3">Môn Học</label>
-										<div class="col-md-9">
-											<select class="form-control  " id="monhoc" >
-												<option value="">--Chọn môn học--</option>
-												<?php foreach ($monhoc as $mh) {?>
-													<option value="<?php echo $mh->Mamonhoc?>"><?php echo $mh->Tenmonhoc;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-md-3">Khoa</label>
-										<div class="cold-md-9">
-											<select class="form-control  " id="khoa">
-												<option value="">--Chọn khoa--</option>
-												<?php foreach ($khoa as $kh) {?>
-													<option value="<?php echo $kh->Makhoa?>"><?php echo $kh->Tenkhoa;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Giáo Viên</label>
-										<div class="cold-md-9">
-											<select class="form-control  " id="giaovien">
-												<option value="">--Chọn giáo viên--</option>
-												<?php foreach ($giaovien as $gv) {?>
-													<option value="<?php echo $gv->Magiaovien?>"><?php echo $gv->Tengiaovien;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Phòng</label>
-										<div class="cold-md-9">
-											<select class="form-control  " id="phong">
-												<option value="">--Chọn phòng--</option>
-												<?php foreach ($phong as $ph) {?>
-													<option value="<?php echo $ph->Maphong?>"><?php echo $ph->Maphong;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Năm Học</label>
-										<div class="cold-md-9">
-											<select class="form-control  " id="namhoc">
-												<option value="">--Chọn năm học--</option>
-												<?php foreach ($namhoc as $nh) {?>
-													<option value="<?php echo $nh->Manamhoc?>"><?php echo $nh->Tennamhoc;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Học Kỳ</label>
-										<div class="cold-md-9">
-											<select class="form-control  " id="hocky">
-												<option value="">--Chọn học kỳ--</option>
-												<?php foreach ($hocky as $hk) {?>
-													<option value="<?php echo $hk->Mahocky?>"><?php echo $hk->Tenhocky;?></option>
-												<?php } ?>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Tiết Bắt Đầu</label>
-										<div class="cold-md-9">
-											<select class="form-control " id="tietbatdau" >
-												<option value="">--Chọn tiết bắt đầu--</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6,">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Tiết Kết Thúc</label>
-										<div class="cold-md-9">
-											<select class="form-control" id="tietketthuc" >
-												<option value="">--Chọn tiết kết thúc--</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6,">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Thứ</label>
-										<div class="cold-md-9">
-											<select class="form-control " id="thu" >
-												<option value="">--Chọn thứ--</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Cách Tuần</label>
-										<div class="cold-md-9">
-											<select class="form-control" id="cachtuan" >
-												<option value="">--Cách tuần--</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Hình Thức</label>
-										<div class="cold-md-9">
-											<select class="form-control " id="hinhthuc" >
-												<option value="">--Chọn hình thức--</option>
-												<option value="LT">Lý Thuyết</option>
-												<option value="TH">Thực Hành</option>
-											</select>
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Sĩ Số</label>
-										<div class="cold-md-9">
-											<input class="form-control " type="number" id="siso" >
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Ngày Bắt Đầu</label>
-										<div class="cold-md-9">
-											<input id="ngaybatdau" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-											<span class="help-block"></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label cold-md-3">Ngày Kết Thúc</label>
-										<div class="cold-md-9">
-											<input id="ngayketthuc" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-											<span class="help-block"></span>
-										</div>
+					<div class="modal-body form">
+						<form id="formhocphan" action="#">
+							<div class="form-body">
+								<div class="form-group"><input name="malop" type="text"></div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Môn Học</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="monhoc" name="monhoc">
+											<option value="">--Chọn môn học--</option>
+											<?php foreach ($monhoc as $mh) {?>
+												<option value="<?php echo $mh->Mamonhoc?>"><?php echo $mh->Tenmonhoc;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
 									</div>
 								</div>
-							</form>
-						</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Khoa</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="khoa" name="khoa">
+											<option value="">--Chọn khoa--</option>
+											<?php foreach ($khoa as $kh) {?>
+												<option value="<?php echo $kh->Makhoa?>"><?php echo $kh->Tenkhoa;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Giáo Viên</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="giaovien" name="giaovien">
+											<option value="">--Chọn giáo viên--</option>
+											<?php foreach ($giaovien as $gv) {?>
+												<option value="<?php echo $gv->Magiaovien?>"><?php echo $gv->Tengiaovien;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Phòng</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="phong" name="phong">
+											<option value="">--Chọn phòng--</option>
+											<?php foreach ($phong as $ph) {?>
+												<option value="<?php echo $ph->Maphong?>"><?php echo $ph->Maphong;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Năm Học</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="namhoc" name="namhoc">
+											<option value="">--Chọn năm học--</option>
+											<?php foreach ($namhoc as $nh) {?>
+												<option value="<?php echo $nh->Manamhoc?>"><?php echo $nh->Tennamhoc;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Học Kỳ</label>
+									<div class="col-md-9">
+										<select class="form-control  " id="hocky" name="hocky">
+											<option value="">--Chọn học kỳ--</option>
+											<?php foreach ($hocky as $hk) {?>
+												<option value="<?php echo $hk->Mahocky?>"><?php echo $hk->Tenhocky;?></option>
+											<?php } ?>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Tiết Bắt Đầu</label>
+									<div class="col-md-9">
+										<select class="form-control " id="tietbatdau" name="tietbatdau">
+											<option value="">--Chọn tiết bắt đầu--</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6,">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group" id="err-class">
+									<label class="control-label col-md-3">Tiết Kết Thúc</label>
+									<div class="col-md-9">
+										<select class="form-control" id="tietketthuc" name="tietketthuc">
+											<option value="">--Chọn tiết kết thúc--</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6,">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select>
+										<span class="help-block" id="err"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Thứ</label>
+									<div class="col-md-9">
+										<select class="form-control " id="thu" name="thu">
+											<option value="">--Chọn thứ--</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Cách Tuần</label>
+									<div class="col-md-9">
+										<select class="form-control" id="cachtuan" name="cachtuan">
+											<option value="">--Cách tuần--</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Hình Thức</label>
+									<div class="col-md-9">
+										<select class="form-control " id="hinhthuc" name="hinhthuc">
+											<option value="">--Chọn hình thức--</option>
+											<option value="LT">Lý Thuyết</option>
+											<option value="TH">Thực Hành</option>
+										</select>
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Sĩ Số</label>
+									<div class="col-md-9">
+										<input class="form-control " type="number" id="siso" name="siso">
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Ngày Bắt Đầu</label>
+									<div class="col-md-9">
+										<input id="ngaybatdau" name="ngaybatdau" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+										<span class="help-block"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">Ngày Kết Thúc</label>
+									<div class="col-md-9">
+										<input id="ngayketthuc" name="ngayketthuc" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+										<span class="help-block"></span>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 					<div class="modal-footer ">
-						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="btthemhocphan"><span class="glyphicon glyphicon-ok-sign"></span> Thêm</button>
+						<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" id="btluu"><span class="glyphicon glyphicon-ok-sign"></span> Lưu</button>
 					</div>
 				</div>
 				<!-- /.modal-content --> 

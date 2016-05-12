@@ -30,6 +30,9 @@
     <!-- data time -->
   <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+  <!--data table-->
+  <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet">
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
     // Ajax post
     $(document).ready(function() 
