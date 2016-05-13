@@ -51,6 +51,8 @@ class Hocphan extends CI_Controller
 						foreach ($hocphan as $hp) {
 							$tiethoc='';
 							for($i=$hp->Tietbatdau;$i<=$hp->Tietketthuc;$i++) $tiethoc.= $i.',';
+							$ht='';
+							if($hp->Hinhthuc=="LT") $ht.="Lý Thuyết";else $ht.="Thực Hành";
 							$tb.='<tr>
 								<td>'.$hp->Malop.'</td>
 								<td>'.$hp->Tenmonhoc.'</td>
@@ -63,12 +65,12 @@ class Hocphan extends CI_Controller
 								<td>'.$tiethoc.'</td>
 								<td>'.$hp->Cachtuan.'</td>
 								<td>'.$hp->Sotinchi.'</td>
-								<td>'.$hp->Hinhthuc.'</td>
+								<td>'.$ht.'</td>
 								<td>'.$hp->Sisodukien.'</td>
 								<td>'.$hp->Ngaybatdau.'</td>
 								<td>'.$hp->Ngayketthuc.'</td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-toggle="modal" onclick="edithocphan('.$hp->Malop.')"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-toggle="modal" onclick="deletehocphan('.$hp->Malop.')" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
 								</tr>';
 						}
 						$tb.='</tbody></table>';
@@ -100,6 +102,8 @@ class Hocphan extends CI_Controller
 	}
 	private function _validate()
 	{
+		$now = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
+        $now=date("Y-m-d",strtotime($now->format('Y-m-d')));
 		$data = array();
 		$data['error_string'] = array();
 		$data['inputerror'] = array();
@@ -186,6 +190,24 @@ class Hocphan extends CI_Controller
 		{
 			$data['inputerror'][] = 'ngayketthuc';
 			$data['error_string'][] = 'Vui lòng điền ngày kết thúc';
+			$data['status'] = FALSE;
+		}
+		if($this->input->get('tietketthuc')<$this->input->get('tietbatdau'))
+		{
+			$data['inputerror'][] = 'tietketthuc';
+			$data['error_string'][] = 'Tiết kết thúc phải lớn hơn tiết bắt đầu';
+			$data['status'] = FALSE;
+		}
+		if($this->input->get('ngayketthuc')<$this->input->get('ngaybatdau'))
+		{
+			$data['inputerror'][] = 'ngayketthuc';
+			$data['error_string'][] = 'Ngày kết thúc phải lớn hơn ngày bắt đầu';
+			$data['status'] = FALSE;
+		}
+		if($this->input->get('ngaybatdau')<$now)
+		{
+			$data['inputerror'][] = 'ngaybatdau';
+			$data['error_string'][] = 'Ngày bắt đầu không được nằm trong quá khứ';
 			$data['status'] = FALSE;
 		}
 		if($data['status'] === FALSE)

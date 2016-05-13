@@ -89,35 +89,11 @@ $('.selectpicker').selectpicker({
   style: 'btn-info',
   size: 2,
 });
-//change tiết kết thúc
-$(document).ready(function(){
-	$("#tietketthuc").change(function(){
-		tietbd=$("#tietbatdau").val()
-		tietkt=$("#tietketthuc").val()
-		tietkt=parseInt(tietkt)
-		tietbd=parseInt(tietbd)
-		if(tietkt<tietbd){
-			alert("dfghj")
-			//$('#err-class').addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-            $('#err').html('sdfvgbh'); 
-			//$("#tietketthuc").val('')
-		}
-	})
-})
-//change ngày kết thúc
-$(document).ready(function(){
-	$('#ngayketthuc').change(function(){
-		ngaybd=$('#ngaybatdau').val()
-		if($('#ngayketthuc').val()<$('#ngaybatdau').val()){
-			$('[id="ngayketthuc"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-            $('[id="ngayketthuc"]').next().text(data.error_string[i]); 
-			$('#ngayketthuc').val(ngaybd)
-		}
-	})
-})
+var method_save
 //add học phần. show form
 $(document).ready(function(){
 	$("#addhocphan").click(function(){
+		method_save="add"
 		$('#formhocphan')[0].reset(); // reset form on modals
 		$('.form-group').removeClass('has-error'); // clear error class
     	$('.help-block').empty(); // clear error string
@@ -125,6 +101,20 @@ $(document).ready(function(){
 	    $('.modal-title').text('Thêm Học Phần'); // Set Title to Bootstrap modal title
 	})
 })
+function edithocphan(malop)
+{
+	method_save="edit"
+	$('#formhocphan')[0].reset(); // reset form on modals
+	$('.form-group').removeClass('has-error'); // clear error class
+	$('.help-block').empty(); // clear error string
+    $('#modal-hocphan').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Chỉnh Sửa Học Phần'); // Set Title to Bootstrap modal title
+}
+function deletehocphan(malop)
+{
+	$('#deletehocphan').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Xóa Học Phần'); // Set Title to Bootstrap modal title
+}
 //add học phần
 $(document).ready(function(){
 	$("#btluu").click(function(){

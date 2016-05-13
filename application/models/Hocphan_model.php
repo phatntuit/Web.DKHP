@@ -50,6 +50,18 @@ class Hocphan_model extends CI_model
 	{
 		$this->db->insert('hocphan',$data);
 	}
+	//lấy số tín chỉ của lớp dựa trên hình thức trong bảng môn học
+	public function gettinchi($mamon,$hinhthuc)
+	{
 
+	}
+	//kiểm tra trạng thái của phòng đã được xếp lịch hay chưa?
+	public function kiemtraphongtrong($namhoc,$hocky,$maphong,$thu,$tietbatdau,$tietketthuc)
+	{
+		$q=$this->db->query("CALL kiemtraphongtrong('$hocky','$namhoc','$thu','$maphong','$tietbatdau','$tietketthuc')");
+		$q=$q->result_object();
+		mysqli_next_result( $this->db->conn_id );
+		return $q->row_count;
+	}
 }
 ?>
