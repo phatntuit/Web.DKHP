@@ -42,18 +42,18 @@ $(document).ready(function(){
 		$("#myModal").modal();
 	});
 	//login
-	$("#login").click(function(){
-		var url="<?php echo site_url('User/Login'); ?>";
-		$.ajax(
-		{
-			url:url,
-			type:'POST',
-			data:{username : $('#username'),pwd:$('#pwd')},
-			sucess:function(data){
-				$('#myModal').modal('hide');
-			}
-		});
-	});
+	// $("#login").click(function(){
+	// 	var url="<?php echo site_url('User/Login'); ?>";
+	// 	$.ajax(
+	// 	{
+	// 		url:url,
+	// 		type:'POST',
+	// 		data:{username : $('#username'),pwd:$('#pwd')},
+	// 		sucess:function(data){
+	// 			$('#myModal').modal('hide');
+	// 		}
+	// 	});
+	// });
 });
 //checked table
 $(document).ready(function(){
