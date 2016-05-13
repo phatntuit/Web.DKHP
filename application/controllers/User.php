@@ -15,7 +15,7 @@ class User extends  CI_Controller
 		//$this->_validate();
 		$data = array(
 			'id' => $this->input->post('id'),
-			'pwd'=>$this->input->post('pwd')
+			'pwd'=>md5($this->input->post('pwd'))
 			);
 		// print_r($data);
 		$this->load->model('User_model');

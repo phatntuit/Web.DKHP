@@ -12,30 +12,34 @@ $this->load->view('template/header');?>
 				<button class="btn btn-default">Reload</button>
 			</div>
 			</br>
-			<table class="table table-hover table-responsive table-striped">
+			<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+				<table class="table table-hover table-responsive table-striped">
 				<thead>
 					<tr>
-						<th>Tên</th>
-						<th>Tuổi</th>
+						<th>Mã số sinh viên</th>
+						<th>Họ tên</th>
 						<th>Giới tính</th>
-						<th>Năm sinh</th>
+						<th>Ngày sinh</th>
+						<th>Quê quán</th>
+						<th>Ngành</th>
+						<th>Khóa</th>
 					</tr>
 				</thead>
 				<tbody>
+					<?php foreach ($sinhvien as $sv) { ?>
 					<tr>
-						<td>Phát</td>
-						<td>21</td>
-						<td>Nam</td>
-						<td>1995</td>
+						<td><?php echo $sv['Mssv']; ?></td>
+						<td><?php echo $sv['Hoten']; ?></td>
+						<td><?php echo $sv['Gioitinh']; ?></td>
+						<td><?php echo $sv['Ngaysinh']; ?></td>
+						<td><?php echo $sv['Quequan']; ?></td>
+						<td><?php echo $sv['Tennganh']; ?></td>
+						<td><?php echo $sv['Makhoahoc']; ?></td>
 					</tr>
-					<tr>
-						<td>Phát</td>
-						<td>21</td>
-						<td>Nam</td>
-						<td>1995</td>
-					</tr>
+					<?php } ?>
 				</tbody>
 			</table>
+			</div>
 		</div>
 		</div>
 	</div>
@@ -55,9 +59,6 @@ $this->load->view('template/header');?>
 								<label for="">label</label>
 								<input type="text" class="form-control" id="" placeholder="Input field">
 							</div>
-						
-							
-						
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>

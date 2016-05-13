@@ -15,5 +15,11 @@ class Sinhvien_model extends CI_model
 		$this->load->model('Taoma');
 		return $this->Taoma->Matudong($tenid,$tenbang,$chuoi,$limit);
 	}
+	public function Get_sv()
+	{
+		$sp_data = $this->db->query("CALL GET_SV()");
+		$result = $sp_data->result_array();
+		return $result;
+	}
 }
 ?>
