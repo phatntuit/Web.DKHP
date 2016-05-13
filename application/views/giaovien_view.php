@@ -29,7 +29,7 @@
         <td><?php echo $gv->Diachi; ?> </td>
         <td><?php echo $gv->Dienthoai; ?> </td>
         <td><?php echo $gv->Email; ?> </td>
-        <td><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('.$giaovien->Magiaovien.')"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
+        <td><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person()"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
         <td><a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('.$giaovien->Magiaovien.')"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
 
   </tr>
@@ -115,45 +115,6 @@ function click_person()
             },
         });
 
-}
-
-function edit_person(Magiaovien)
-{
-    save_method = 'update';
-    $('#form')[0].reset(); // reset form on modals
-    $('.form-group').removeClass('has-error'); // clear error class
-    $('.help-block').empty(); // clear error string
-
-    //Ajax Load data from ajax
-    $.ajax({
-        url : "<?php echo base_url('giaovien/ajax_edit/')?>/" + Magiaovien,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-
-            $('[name="Magiaovien"]').val(data.Magiaovien);
-            $('[name="Tengiaovien"]').val(data.Tengiaovien);
-            $('[name="Mahocvi"]').val(data.Mahocvi);
-            $('[name="Gioitinh"]').val(data.Gioitinh);
-            $('[name="Ngaysinh"]').val(data.Ngaysinh);
-            $('[name="Diachi"]').val(data.Diachi);
-            $('[name="Dienthoai"]').val(data.Dienthoai);
-            $('[name="Email"]').val(data.Email);
-            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error get data from ajax');
-        }
-    });
-}
-
-function reload_table()
-{
-    table.ajax.reload(null,false); //reload datatable ajax 
 }
 
 function save()
@@ -244,12 +205,7 @@ function delete_person(id)
                     
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Ma GV</label>
-                            <div class="col-md-9">
-                                 <input type="text" name="Magiaovien" /> 
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
+                            <input type="hidden" name="Magiaovien" /> 
                         <div class="form-group">
                             <label class="control-label col-md-3">Tên giáo viên</label>
                             <div class="col-md-9">

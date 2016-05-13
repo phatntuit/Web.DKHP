@@ -7,6 +7,11 @@ class Giaovien_model extends CI_model
 		$query_result = $query->result_object();
 		return $query_result;
 	}
+	public function update($where, $data)
+	{
+		$this->db->update($this->table, $data, $where);
+		return $this->db->affected_rows();
+	}
 	function get_datatables()
 	{
 		$this->_get_datatables_query();
