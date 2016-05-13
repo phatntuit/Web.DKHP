@@ -52,6 +52,7 @@ $this->load->view('template/header');?>
 						<h4 class="modal-title">Thêm sinh viên</h4>
 					</div>
 					<div class="modal-body">
+						<form action="#" method="POST" role="form" onsubmit="Testajaxpost();">		
 							<div class="form-group">
 								<label>Input :</label>
 								<input type="text" class="form-control" id="test" placeholder="Input field">
