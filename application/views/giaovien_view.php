@@ -1,5 +1,3 @@
-
-<link href="<?php echo base_url('assets/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
 <div class="row"></div>
 <section id="content">
     <div class="row" id="result">
@@ -12,7 +10,6 @@
         <div class="table-responsive">
               <table id="mytable" class="table table-bordred table-striped">
                    <thead>
-                   <th><input type="checkbox" id="checkall" /></th>
                    <th>Tên giáo viên</th>
                     <th>Giới tính</th>
                      <th>Học vị</th>
@@ -23,9 +20,8 @@
                       <th stle="width:125px;">Action</th>
                    </thead>
     <tbody>
-   <!--   <?php foreach($giaovien as $gv){?>
+      <?php foreach($giaovien as $gv){?>
       <tr>
-        <td><input type="checkbox" class="checkthis" /></td>
         <td><?php echo $gv->Tengiaovien; ?> </td>
         <td><?php echo $gv->Gioitinh; ?> </td>
         <td><?php echo $gv->Mahocvi; ?> </td>
@@ -33,10 +29,11 @@
         <td><?php echo $gv->Diachi; ?> </td>
         <td><?php echo $gv->Dienthoai; ?> </td>
         <td><?php echo $gv->Email; ?> </td>
-        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+        <td><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('.$giaovien->Magiaovien.')"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
+        <td><a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('.$giaovien->Magiaovien.')"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+
   </tr>
-      <?php } ?>-->
+      <?php } ?>
     </tbody>
 </table>
 
@@ -56,7 +53,6 @@
         </div>
 	</div>
 </div>
-<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
 
 var save_method; //for save method string
@@ -64,30 +60,6 @@ var table;
 
 $(document).ready(function() {
 
-    //datatables
-    // table = $('#table').DataTable({ 
-
-    //     "processing": true, //Feature control the processing indicator.
-    //     "serverSide": true, //Feature control DataTables' server-side processing mode.
-    //     "order": [], //Initial no order.
-
-    //     // Load data for the table's content from an Ajax source
-    //     "ajax": {
-    //         "url": "<?php echo site_url('giaovien/ajax_list')?>",
-    //         "type": "POST"
-    //     },
-
-    //     //Set column definition initialisation properties.
-    //     "columnDefs": [
-    //     { 
-    //         "targets": [ -1 ], //last column
-    //         "orderable": false, //set not orderable
-    //     },
-    //     ],
-
-    // });
-
-    //datepicker
     $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
@@ -121,6 +93,28 @@ function add_person()
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Thêm Giáo Viên'); // Set Title to Bootstrap modal title
+}
+function click_person()
+{
+   
+        url="<?php echo base_url('giaovien/ajax_add') ?>"
+        $.ajax({
+            url : url,
+            type:"GET",
+            data:$('#form').serialize(),
+            dataType: "JSON",
+            contentType:"application/json",
+            success: function(data)
+            {
+                $('#modal_form').modal('hide');
+                reload_table();
+            },
+            error: function(err)
+            {
+
+            },
+        });
+
 }
 
 function edit_person(Magiaovien)
@@ -217,7 +211,7 @@ function delete_person(id)
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo site_url('person/ajax_delete')?>/"+id,
+            url : "<?php echo base_url('giaovien/ajax_delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
@@ -235,6 +229,9 @@ function delete_person(id)
     }
 }
 </script>
+  <?php $query = $this->db->get('hocvi');
+        $hocvi = $query->result_object();
+  ?>
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -244,29 +241,41 @@ function delete_person(id)
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value="" name="Magiaovien"/> 
+                    
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Tên giáo viên</label>
+                            <label class="control-label col-md-3">Ma GV</label>
                             <div class="col-md-9">
-                                <input name="Tengiaovien" placeholder="Nguyễn nghĩa" class="form-control" type="text">
+                                 <input type="text" name="Magiaovien" /> 
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Mã học vị</label>
+                            <label class="control-label col-md-3">Tên giáo viên</label>
                             <div class="col-md-9">
-                                <input name="Mahocvi" placeholder="HV001" class="form-control" type="text">
+                                <input name="Tengiaovien" id="demo" placeholder="Nguyễn nghĩa" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Học vị</label>
+                            <div class="col-md-9">
+                                <select name="Mahocvi" class="form-control">
+                                    <?php foreach($hocvi as $hv){?>
+                                    <option value='<?php echo "$hv->Mahocvi" ?>'><?php echo "$hv->Tenhocvi" ?></option>
+                                    <?php } ?>
+                                </select>
+                                
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Giới tính</label>
                             <div class="col-md-9">
-                                <select name="gender" class="form-control">
-                                    <option value="">--Select Gender--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                <select name="Gioitinh" class="form-control">
+                                    <option value="">--Chọn giới tính--</option>
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
                                 </select>
                                 <span class="help-block"></span>
                             </div>
@@ -303,7 +312,7 @@ function delete_person(id)
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+                <button type="button" id="btnSave" onclick="click_person()" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal-content -->
