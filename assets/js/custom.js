@@ -153,7 +153,6 @@ $(document).ready(function(){
 		})
 	})
 })
-<<<<<<< HEAD
 var table
 //remove thông báo lỗi
 $(document).ready(function(){
@@ -168,5 +167,3 @@ $(document).ready(function(){
     //$('#tablehocphan').DataTable()
 })
 
-=======
->>>>>>> refs/remotes/origin/master

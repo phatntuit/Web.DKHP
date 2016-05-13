@@ -100,7 +100,6 @@ class Hocphan extends CI_Controller
 		$this->Hocphan_model->addhocphan($data);
 		echo json_encode(array("status" => TRUE));
 	}
-<<<<<<< HEAD
 	private function _validate()
 	{
 		$now = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
@@ -217,7 +216,6 @@ class Hocphan extends CI_Controller
 			exit();
 		}
 	}
-=======
 	// Hàm bên dưới đang test mã lớp 
 	public function test()
 	{
@@ -226,6 +224,5 @@ class Hocphan extends CI_Controller
 		echo $ch;
 	}
 	//// kết thúc phần test
->>>>>>> refs/remotes/origin/master
 }
 ?>
