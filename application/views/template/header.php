@@ -28,7 +28,6 @@
   <!-- data time -->
   <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
-<<<<<<< HEAD
   <!--data table-->
   <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
@@ -58,12 +57,10 @@
       });
     });
   </script>
-=======
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
   <!-- Custom Theme JavaScript -->
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
->>>>>>> refs/remotes/origin/master
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
