@@ -48,8 +48,8 @@
 								<td><?php echo $hp->Sisodukien?></td>
 								<td><?php echo $hp->Ngaybatdau?></td>
 								<td><?php echo $hp->Ngayketthuc?></td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-toggle="modal" onclick="edithocphan(<?php echo $hp->Malop?>)"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-toggle="modal" onclick="deletehocphan(<?php echo $hp->Malop?>)" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-toggle="modal" onclick="edithocphan('<?php echo $hp->Malop; ?>')"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-toggle="modal" onclick="deletehocphan('<?php echo $hp->Malop; ?>')"><span class="glyphicon glyphicon-trash"></span></button></p></td>
 							</tr>
 							<?php } ?>
 						</tbody>
