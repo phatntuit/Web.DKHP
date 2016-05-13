@@ -216,13 +216,5 @@ class Hocphan extends CI_Controller
 			exit();
 		}
 	}
-	// Hàm bên dưới đang test mã lớp 
-	public function test()
-	{
-		$this->load->model('Hocphan_model');
-		$ch=$this->Hocphan_model->Randomstr(1);
-		echo $ch;
-	}
-	//// kết thúc phần test
 }
 ?>
