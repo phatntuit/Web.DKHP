@@ -28,10 +28,42 @@
   <!-- data time -->
   <link href="<?php echo base_url('assets/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+<<<<<<< HEAD
+  <!--data table-->
+  <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet">
+  <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    // Ajax post
+    $(document).ready(function() 
+    {
+      $("#login").click(function(e) 
+      {
+        e.preventDefault();
+        var user_name = $("#username").val();
+        var password = $("#pwd").val();
+        jQuery.ajax(
+        {
+          type: "POST",
+          url: "<?php echo base_url(); ?>Home/Login",
+          dataType: 'json',
+          data: {name: user_name, pwd: password},
+          success: function(res)
+          {
+            if (res)
+            {
+              alert('sucess');
+            }
+          }
+        });
+      });
+    });
+  </script>
+=======
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
   <!-- Custom Theme JavaScript -->
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
+>>>>>>> refs/remotes/origin/master
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->

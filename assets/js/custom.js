@@ -89,60 +89,81 @@ $('.selectpicker').selectpicker({
   style: 'btn-info',
   size: 2,
 });
-//change tiết kết thúc
-$(document).ready(function(){
-	$("#tietketthuc").change(function(){
-		tietbd=$("#tietbatdau").val()
-		tietkt=$("#tietketthuc").val()
-		tietkt=parseInt(tietkt)
-		tietbd=parseInt(tietbd)
-		if(tietkt<tietbd){
-			alert("Tiết bắt đầu phải nhỏ hơn tiết kết thúc")
-			$("#tietketthuc").val(tietbd)
-		}
-	})
-})
-//change ngày kết thúc
-$(document).ready(function(){
-	$('#ngayketthuc').change(function(){
-		ngaybd=$('#ngaybatdau').val()
-		if($('#ngayketthuc').val()<$('#ngaybatdau').val()){
-			alert("Ngày kết thúc không được nhỏ hơn ngày bắt đầu")
-			$('#ngayketthuc').val(ngaybd)
-		}
-	})
-})
+var method_save
 //add học phần. show form
 $(document).ready(function(){
 	$("#addhocphan").click(function(){
-		$('#formadd')[0].reset(); // reset form on modals
-	    $('#add').modal('show'); // show bootstrap modal
+		method_save="add"
+		$('#formhocphan')[0].reset(); // reset form on modals
+		$('.form-group').removeClass('has-error'); // clear error class
+    	$('.help-block').empty(); // clear error string
+	    $('#modal-hocphan').modal('show'); // show bootstrap modal
 	    $('.modal-title').text('Thêm Học Phần'); // Set Title to Bootstrap modal title
 	})
 })
+function edithocphan(malop)
+{
+	method_save="edit"
+	$('#formhocphan')[0].reset(); // reset form on modals
+	$('.form-group').removeClass('has-error'); // clear error class
+	$('.help-block').empty(); // clear error string
+    $('#modal-hocphan').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Chỉnh Sửa Học Phần'); // Set Title to Bootstrap modal title
+}
+function deletehocphan(malop)
+{
+	$('#deletehocphan').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Xóa Học Phần'); // Set Title to Bootstrap modal title
+}
 //add học phần
 $(document).ready(function(){
-	$("#btthemhocphan").click(function(){
-		$("#btthemhocphan").text("Đang lưu....")
-		$("#btthemhocphan").attr('disabled',true)
+	$("#btluu").click(function(){
+		$("#btluu").text("Đang lưu....")
+		$("#btluu").attr('disabled',true)
 		url="Hocphan/addhocphan"
 		$.ajax({
 			url: url,
 			type: "GET",
-			data: $('#formadd').serialize(),
+			data: $('#formhocphan').serialize(),
 			dataType: 'JSON',
 			contentType: "application/json; charset=utf-8",
 			success: function(data)
 			{
-				alert($('#tietketthuc').val())
-				$("#btthemhocphan").text("Thêm")
-				$("#btthemhocphan").attr('disabled',false)
+				if(data.status)
+				{
+					$('#modal-hocphan').modal('hide')
+					$('div#table-hp').load ('Hocphan/get_new_data', 'update=true', 'refresh');
+				}
+				else{
+					for (var i = 0; i < data.inputerror.length; i++) 
+                	{
+                    	$('[id="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                    	$('[id="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                	}
+				}
+				$("#btluu").text("Lưu")
+				$("#btluu").attr('disabled',false)
 			},
-            error: function (jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown)
+            {
 
-                $("#btthemhocphan").text("Thêm")
-				$("#btthemhocphan").attr('disabled',false)
+                $("#btluu").text("Lưu")
+				$("#btluu").attr('disabled',false)
             }
 		})
 	})
 })
+var table
+//remove thông báo lỗi
+$(document).ready(function(){
+	$("input").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    $("select").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    //$('#tablehocphan').DataTable()
+})
+
