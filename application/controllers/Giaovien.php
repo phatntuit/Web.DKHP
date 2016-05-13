@@ -17,11 +17,18 @@ class Giaovien extends  CI_Controller
 		$this->load->view('template/header',$this->data);
 		$this->load->view('giaovien_view');
 	}
+	public function taoma()
+	{
+		$this->load->model('Taoma');
+		$ma = $this->Taoma->Matudong("Magiaovien","giaovien","GV",5);
+		return $ma;
+
+	}
 	public function ajax_add()
 	{
 		//$this->_validate();
 		$data = array(
-				'Magiaovien' =>$this->input->get('Magiaovien'),
+				'Magiaovien' => $this->taoma(),
 				'Tengiaovien' => $this->input->get('Tengiaovien'),
 				'Mahocvi' => $this->input->get('Mahocvi'),
 				'Gioitinh' => $this->input->get('Gioitinh'),
@@ -34,6 +41,21 @@ class Giaovien extends  CI_Controller
 		echo json_encode(array("status" => TRUE));
 	}
 
+	public function ajax_update()
+	{
+		$this->_validate();
+		$data = array(
+				'Tengiaovien' => $this->input->post('Tengiaovien'),
+				'Mahocvi' => $this->input->post('Mahocvi'),
+				'Gioitinh' => $this->input->post('Gioitinh'),
+				'Ngaysinh' => $this->input->post('Ngaysinh'),
+				'Diachi' => $this->input->post('Diachi'),
+				'Dienthoai' => $this->input->post('Dienthoai'),
+				'Email' => $this->input->post('Email'),
+			);
+		$this->Giaovien_model->update(array('id' => $this->input->post('id')), $data);
+		echo json_encode(array("status" => TRUE));
+	}
 	public function ajax_list()
 	{
 		$giaovien = $this->Giaovien_model->get_datatables();
@@ -71,7 +93,7 @@ class Giaovien extends  CI_Controller
 	}
 	public function ajax_edit($id)
 	{
-		$data = $this->person->get_by_id($id);
+		$data = $this->Giaovien_model->get_by_id($id);
 		$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 		echo json_encode($data);
 	}
