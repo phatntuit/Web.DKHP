@@ -27,6 +27,25 @@ class User_model extends CI_model
 		//print_r($result);
 		return $result;
 	}
+	// test
+	public function check_login_md5($id,$pwd)
+	{
+		$error="";
+		$ck=0;
+		$quyen="";
+		$sql="CALL CHECK_LOGIN('$id','$pwd',@p3,@p4,@p5)";
+		//$this->db->trans_start();
+		$result=$this->db->query($sql);
+		$this->db->query($sql); // not need to get output
+        $query = $this->db->query("SELECT @p3 as error,@p4 as ck ,@p5 as quyen");
+		//$this->db->trans_complete();
+        if($query->num_rows() > 0)
+            $result = $query->result_array();
+        //print_r($result);
+        return $result;
+
+	}
+	// end test
 
 }
 ?>
