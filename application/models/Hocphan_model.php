@@ -67,7 +67,11 @@ class Hocphan_model extends CI_model
 	//lấy số tín chỉ của lớp dựa trên hình thức trong bảng môn học
 	public function gettinchi($mamon,$hinhthuc)
 	{
-
+		$this->db->query("CALL Gettinchi('$mamon','$hinhthuc',@tc)");
+		$q=$this->db->query("select @tc as tinchi");
+		$result=$q->result_array();
+		//mysqli_next_result( $this->db->conn_id );
+		return $result;
 	}
 	//kiểm tra trạng thái của phòng đã được xếp lịch hay chưa?
 	public function kiemtraphongtrong($namhoc,$hocky,$maphong,$thu,$tietbatdau,$tietketthuc)
@@ -76,6 +80,14 @@ class Hocphan_model extends CI_model
 		$q=$q->result_object();
 		mysqli_next_result( $this->db->conn_id );
 		return $q->row_count;
+	}
+	//lấy sức chứa của phòng
+	public function getsucchua($maphong)
+	{
+		//mysqli_next_result( $this->db->conn_id );
+		$q=$this->db->query("CALL getsucchua('$maphong')");
+		
+		return $q->result_object();
 	}
 }
 ?>
