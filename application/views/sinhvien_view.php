@@ -62,6 +62,7 @@ $this->load->view('template/header');?>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Save</button>
+						<div id="result"></div>
 					</div>
 				</div>
 			</div>
