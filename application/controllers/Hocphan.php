@@ -24,6 +24,11 @@ class Hocphan extends CI_Controller
         $this->load->view('template/header',$this->data);
 		$this->load->view('hocphan/thongtinhocphan');   
 	}
+	public function Taoma()
+	{
+		$re=$this->Hocphan_model->Taomath("IS201.H01");
+		echo $re;
+	}
 	public function get_new_data(){
 		$hocphan=$this->Hocphan_model->gethocphan();
 		$tb='';
