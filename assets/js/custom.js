@@ -167,20 +167,20 @@ $(document).ready(function(){
     //$('#tablehocphan').DataTable()
 });
 // Test ajax post
-function Testajaxpost() {
-	var url="<php echo site_url('Sinhvien/Testajax') ?>";
-	$.ajax({
-		url:url,
-		type:'POST',
-		dataType:'text',
-		data :{'in' : $('#test')},
-		success: function(data) {
-			$('#result').html(data);
-		},
-		error: function() {
-			$('#result').html(data);
-		}
-	});
-}
+// function Testajaxpost() {
+// 	var url="<php echo site_url('Sinhvien/Testajax') ?>";
+// 	$.ajax({
+// 		url:url,
+// 		type:'POST',
+// 		dataType:'text',
+// 		data :{'in' : $('#test')},
+// 		success: function(data) {
+// 			$('#result').html(data);
+// 		},
+// 		error: function() {
+// 			$('#result').html(data);
+// 		}
+// 	});
+// }
 //
 
