@@ -31,7 +31,7 @@
   <!--data table-->
   <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     // Ajax post
     $(document).ready(function() 
     {
@@ -56,9 +56,9 @@
         });
       });
     });
-  </script>
+  </script> -->
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>assets/datatables/js/dataTables.bootstrap.js"></script>
   <!-- Custom Theme JavaScript -->
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/custom.js"></script>
 </head>

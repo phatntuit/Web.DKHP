@@ -8,6 +8,7 @@ class Hocphan_model extends CI_model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Taoma');
 	}
 	// ---------------------------
 	/* test mã số */
@@ -16,10 +17,29 @@ class Hocphan_model extends CI_model
 		$ch=substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     	return  $ch;
 	}
-	public function Taoma($mamon,$hinhthuc)
+	public function Taoma($mamon,$namhoc)
 	{
-		$this->load->model('Taoma');
-
+		$limit=9;
+		$tenbang="hocphan";
+		$tenid="malop";
+		$sql="CALL  GET_CHAR('$namhoc',@p1)";
+		$this->db->query($sql);
+		$sql="SELECT @p1 AS ch";
+		$result=$this->db->query($sql);
+		$result=$result->result_array();
+		$char=$result[0]['ch'];
+		$chuoi=$mamon.".".$char;
+		$ma=$this->Taoma->Matudong($tenid,$tenbang,$chuoi,$limit);
+		return $ma;
+	}
+	public function Taomath($maloplt)
+	{
+		$limit=11;
+		$tenbang="hocphan";
+		$tenid="malop";
+		$chuoi=$maloplt.".";
+		$ma=$this->Taoma->Matudong($tenid,$tenbang,$chuoi,$limit);
+		return $ma;
 	}
 	/* kết thúc phần test*/
 	//----------------------------
