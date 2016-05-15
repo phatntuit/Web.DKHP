@@ -9,8 +9,24 @@ class Giaovien_model extends CI_model
 	}
 	public function update($where, $data)
 	{
-		$this->db->update($this->table, $data, $where);
-		return $this->db->affected_rows();
+		$this->db->update('giaovien', $data, $where);
+		//return $this->db->affected_rows();
+		//$ma = $this->input->get('Magiaovien');
+		//echo $ma;
+		//$this->db->where('Magiaovien',$ma);
+		//$this->db->where('Magiaovien',$ma);
+		//$this->db->update('giaovien',$data);
+	}
+
+	public function add($data)
+	{
+		 $this->db->insert('giaovien', $data);
+	}
+
+	public function delete_by_id($id)
+	{
+		$this->db->where('Magiaovien', $id);
+		$this->db->delete('giaovien');
 	}
 	function get_datatables()
 	{
@@ -22,22 +38,19 @@ class Giaovien_model extends CI_model
 	}
 	public function get_by_id($id)
 	{
-		$this->db->from($this->table);
+		$this->db->from('giaovien');
 		$this->db->where('Magiaovien',$id);
 		$query = $this->db->get();
 		return $query->row();
 	}
-	public function Get_Gv()
+	public function getgiaovien()
 	{
-		$sp_data = $this->db->query("CALL GET_GV()");
-		$result = $sp_data->result_array();
+		$giaovien = $this->db->query("CALL GET_GV()");
+		$result = $giaovien->result_object();
+		mysqli_next_result( $this->db->conn_id );
 		return $result;
 	}
-	public function save($data)
-	{
-		 $this->db->insert('giaovien', $data);
-
-	}
+	
 	private function _get_datatables_query()
 	{
 		

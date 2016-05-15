@@ -7,7 +7,7 @@
 	<div class="row">
     <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i>Thêm giáo viên</button>
         <div class="col-md-12">
-        <div class="table-responsive">
+        <div class="table-responsive" id="newtable">
               <table id="mytable" class="table table-bordred table-striped">
                    <thead>
                    <th>Tên giáo viên</th>
@@ -29,8 +29,8 @@
         <td><?php echo $gv->Diachi; ?> </td>
         <td><?php echo $gv->Dienthoai; ?> </td>
         <td><?php echo $gv->Email; ?> </td>
-        <td><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person()"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
-        <td><a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('.$giaovien->Magiaovien.')"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+        <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_giaovien('<?php echo $gv->Magiaovien; ?>')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
+        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_giaovien('<?php echo $gv->Magiaovien ?>')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
 
   </tr>
       <?php } ?>
@@ -57,9 +57,28 @@
 
 var save_method; //for save method string
 var table;
-
 $(document).ready(function() {
+    table = $('#table').DataTable({ 
 
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo base_url('giaovien/ajax_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ -1 ], //last column
+            "orderable": false, //set not orderable
+        },
+        ],
+
+    });
     $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
@@ -85,6 +104,38 @@ $(document).ready(function() {
 
 });
 
+function reload_table()
+{
+    table.ajax.reload(null,false); //reload datatable ajax 
+}
+function edit_giaovien(Magiaovien)
+{
+    save_method='edit';
+    $('#modal_form').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Sửa Giáo Viên'); // Set Title to Bootstrap modal title
+    url="<?php echo base_url('giaovien/ajax_edit')?>/" + Magiaovien;
+    $.ajax({
+        url:url,
+        type: "GET",
+        dataType: "JSON",
+        success:function(data)
+        {
+            $('[name="Magiaovien"]').val(data.Magiaovien);
+            $('[name="Tengiaovien"]').val(data.Tengiaovien);
+            $('[name="Mahocvi"]').val(data.Mahocvi);
+            $('[name="Gioitinh"]').val(data.Gioitinh);
+            $('[name="Ngaysinh"]').val(data.Ngaysinh);
+            $('[name="Diachi"]').val(data.Diachi);
+            $('[name="Dienthoai"]').val(data.Dienthoai);
+            $('[name="Email"]').val(data.Email);
+        },
+        error:function(data)
+        {
+            alert('Error');
+        }
+    });
+            
+}
 function add_person()
 {
     save_method = 'add';
@@ -94,10 +145,14 @@ function add_person()
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Thêm Giáo Viên'); // Set Title to Bootstrap modal title
 }
-function click_person()
+function save()
 {
-   
-        url="<?php echo base_url('giaovien/ajax_add') ?>"
+        $('#btnSave').text('saving...'); 
+        $('#btnSave').attr('disabled',true);
+        if(save_method=='edit')
+            url="<?php echo base_url('giaovien/ajax_update')?>";
+        else
+             url="<?php echo base_url('giaovien/ajax_add') ?>";
         $.ajax({
             url : url,
             type:"GET",
@@ -106,69 +161,36 @@ function click_person()
             contentType:"application/json",
             success: function(data)
             {
-                $('#modal_form').modal('hide');
-                reload_table();
+                if(data.status)
+                {
+                    $('#modal_form').modal('hide');
+                    alert('Thành công');
+                    //reload_table();
+                    $('div#newtable').load ('Giaovien/Get_new_data', 'update=true', 'refresh');
+                }
+                else
+                {
+                    for (var i = 0; i < data.inputerror.length; i++) 
+                    {
+                        $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                        $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                    }
+                }
+                $('#btnSave').text('save'); //change button text
+                $('#btnSave').attr('disabled',false); //set button enable 
             },
             error: function(err)
             {
-
+                alert('Error adding / update data');
+                $('#btnSave').text('save'); 
+                $('#btnSave').attr('disabled',false);
             },
         });
 
 }
-
-function save()
+function delete_giaovien(id)
 {
-    $('#btnSave').text('saving...'); //change button text
-    $('#btnSave').attr('disabled',true); //set button disable 
-    var url;
-
-    if(save_method == 'add') {
-        url = "<?php echo base_url('giaovien/ajax_add')?>";
-    } else {
-        url = "<?php echo base_url('giaovien/ajax_update')?>";
-    }
-
-    // ajax adding data to database
-    $.ajax({
-        url : url,
-        type: "POST",
-        data: $('#form').serialize(),
-        dataType: "JSON",
-        success: function(data)
-        {
-
-            if(data.status) //if success close modal and reload ajax table
-            {
-                $('#modal_form').modal('hide');
-                reload_table();
-            }
-            else
-            {
-                for (var i = 0; i < data.inputerror.length; i++) 
-                {
-                    $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-                    $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                }
-            }
-            $('#btnSave').text('save'); //change button text
-            $('#btnSave').attr('disabled',false); //set button enable 
-
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error adding / update data');
-            $('#btnSave').text('save'); //change button text
-            $('#btnSave').attr('disabled',false); //set button enable 
-
-        }
-    });
-}
-
-function delete_person(id)
-{
-    if(confirm('Are you sure delete this data?'))
+    if(confirm('Bạn có thật sự muốn xóa ?'))
     {
         // ajax delete data to database
         $.ajax({
@@ -179,7 +201,9 @@ function delete_person(id)
             {
                 //if success reload ajax table
                 $('#modal_form').modal('hide');
-                reload_table();
+                alert('Xóa thành công');
+                $('div#newtable').load ('Giaovien/Get_new_data', 'update=true', 'refresh');
+                //reload_table();
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -202,14 +226,12 @@ function delete_person(id)
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    
+                    <input type="hidden" name="Magiaovien" />
                     <div class="form-body">
-                        <div class="form-group">
-                            <input type="hidden" name="Magiaovien" /> 
                         <div class="form-group">
                             <label class="control-label col-md-3">Tên giáo viên</label>
                             <div class="col-md-9">
-                                <input name="Tengiaovien" id="demo" placeholder="Nguyễn nghĩa" class="form-control" type="text">
+                                <input name="Tengiaovien" placeholder="Trần Anh Dũng" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -230,8 +252,8 @@ function delete_person(id)
                             <div class="col-md-9">
                                 <select name="Gioitinh" class="form-control">
                                     <option value="">--Chọn giới tính--</option>
-                                    <option value="male">Nam</option>
-                                    <option value="female">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
                                 </select>
                                 <span class="help-block"></span>
                             </div>
@@ -268,7 +290,7 @@ function delete_person(id)
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="click_person()" class="btn btn-primary">Save</button>
+                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal-content -->
