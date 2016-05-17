@@ -122,6 +122,15 @@ class Giaovien extends  CI_Controller
 			$data['error_string'][] = '*Vui lòng nhập Email';
 			$data['status'] = FALSE;
 		}
+		//if($this->giaovien_view->EmailValidate() ===0)
+		//{
+		//	$data['inputerror'][] = 'Email';
+		//	$data['error_string'][] = '*Vui lòng nhập Email đúng ';
+		//	;$data['status'] = FALSE;
+		//}
+		
+		 
+		
 		if($data['status'] === FALSE)
 		{
 			echo json_encode($data);
@@ -153,8 +162,8 @@ class Giaovien extends  CI_Controller
        			 		<td>'.$gv->Diachi.'</td>
         				<td>'.$gv->Dienthoai.'</td>
         				<td>'.$gv->Email.'</td>
-        <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_giaovien('.$gv->Magiaovien.')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
-        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_giaovien('.$gv->Magiaovien.')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
+        <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_giaovien('."'".$gv->Magiaovien."'".')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
+        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_giaovien('."'".$gv->Magiaovien."'".')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
         <tr>';
 
                    }

@@ -113,6 +113,9 @@ function edit_giaovien(Magiaovien)
     save_method='edit';
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Sửa Giáo Viên'); // Set Title to Bootstrap modal title
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
     url="<?php echo base_url('giaovien/ajax_edit')?>/" + Magiaovien;
     $.ajax({
         url:url,
@@ -282,8 +285,8 @@ function delete_giaovien(id)
                         <div class="form-group">
                             <label class="control-label col-md-3">Email</label>
                             <div class="col-md-9">
-                                <input name="Email" placeholder="vonganhquyen@gmail.com" class="form-control" type="text">
-                                <span class="help-block"></span>
+                                <input name="Email" id="email" placeholder="vonganhquyen@gmail.com" class="form-control required email" type="email">
+                                <span id="ClasSpan" class="help-block"></span>
                             </div>
                         </div>
                     </div>
@@ -298,7 +301,41 @@ function delete_giaovien(id)
 </div><!-- /.modal -->
   </div>
 </section>
+<script type="text/javascript">
+
+function IsEmail(email) {
+    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+        data.status = false ; 
+}
+$(function(){
+    $.fn.EmailValidate = function() {
+    return this.each(function() {
+        $(this).slideUp();
+    });
+};
+    $("#btnSave").click(function(){
+        if (IsEmail($("#email").val()))
+        {
+           return 0;
+        }
+           
+        else {
+        $('#ClasSpan').append('<span>Email không hợp lệ</span>');
+        $('#email').keypress(function () {
+            $('span', '#itemspan').empty().remove();
+            //data:$('#form').serialize();
+            //data.status == false;
+        return 1;
+            
+        });
+            }       
+
+    });
+});
+</script>
 <?php $this->load->view('template/about.php'); ?>
 <?php $this->load->view('template/footer.php'); ?>
+
 
 
