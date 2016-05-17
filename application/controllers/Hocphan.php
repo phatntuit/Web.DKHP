@@ -24,6 +24,15 @@ class Hocphan extends CI_Controller
         $this->load->view('template/header',$this->data);
 		$this->load->view('hocphan/thongtinhocphan');   
 	}
+	public function Taoma()
+	{
+		$re=$this->Hocphan_model->Taoma("SS001","2016-2017");
+		foreach ($re as $key) {
+			echo $key['ma']."</br>".$key['ck_th']."</br>".$key['tc'];
+		}
+		echo "<br>";
+		print_r($re);
+	}
 	public function get_new_data(){
 		$hocphan=$this->Hocphan_model->gethocphan();
 		$tb='';
@@ -69,8 +78,8 @@ class Hocphan extends CI_Controller
 								<td>'.$hp->Sisodukien.'</td>
 								<td>'.$hp->Ngaybatdau.'</td>
 								<td>'.$hp->Ngayketthuc.'</td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-toggle="modal" onclick="edithocphan('.$hp->Malop.')"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-toggle="modal" onclick="deletehocphan('.$hp->Malop.')" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-toggle="modal" onclick="edithocphan('."'".$hp->Malop."'".')"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+								<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-toggle="modal" onclick="deletehocphan('."'".$hp->Malop."'".')" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
 								</tr>';
 						}
 						$tb.='</tbody></table>';
@@ -80,6 +89,10 @@ class Hocphan extends CI_Controller
 	public function addhocphan()
 	{
 		$this->_validate();
+		$tinchi=$this->Hocphan_model->gettinchi($this->input->get('monhoc'),$this->input->get('hinhthuc'));
+		foreach ($tinchi as $tc) {
+			$sotinchi=$tc['tinchi'];
+		}
 		$data=array(
 			'Malop'=>$this->input->get('malop'),
 			'Mamonhoc'=>$this->input->get('monhoc'),
@@ -92,6 +105,7 @@ class Hocphan extends CI_Controller
 			'Tietketthuc'=>$this->input->get('tietketthuc'),
 			'Thu'=>$this->input->get('thu'),
 			'Cachtuan'=>$this->input->get('cachtuan'),
+			'Sotinchi'=>$sotinchi,
 			'Hinhthuc'=>$this->input->get('hinhthuc'),
 			'Sisodukien'=>$this->input->get('siso'),
 			'Ngaybatdau'=>$this->input->get('ngaybatdau'),
@@ -108,6 +122,15 @@ class Hocphan extends CI_Controller
 		$data['error_string'] = array();
 		$data['inputerror'] = array();
 		$data['status'] = TRUE;
+		$tinchi=$this->Hocphan_model->gettinchi($this->input->get('monhoc'),$this->input->get('hinhthuc'));
+		foreach ($tinchi as $tc) {
+			$sotinchi=$tc['tinchi'];
+		}
+		//$phong=$this->Hocphan_model->getsucchua($this->input->get('phong'));
+		//foreach ($phong as $key) {
+		//	$succhua=$key->Succhua;
+		//	$loaiphong=$key->Loaiphong;
+		//}
 		if($this->input->get('monhoc')=='')
 		{
 			$data['inputerror'][] = 'monhoc';
@@ -210,6 +233,19 @@ class Hocphan extends CI_Controller
 			$data['error_string'][] = 'Ngày bắt đầu không được nằm trong quá khứ';
 			$data['status'] = FALSE;
 		}
+		if($sotinchi==''){
+			$data['inputerror'][] = 'monhoc';
+			if($this->input->get('hinhthuc')=='LT')
+				$data['error_string'][] = 'Môn học này không học lý thuyết';
+			else $data['error_string'][] = 'Môn học này không học thực hành';
+			$data['status'] = FALSE;
+		}
+		//if($this->input->get('siso')>$succhua)
+		//{
+		//	$data['inputerror'][] = 'siso';
+		//	$data['error_string'][] = "Sĩ số vượt quá sức chứa của phòng(".$succhua.")";
+		//	$data['status'] = FALSE;
+		//}
 		if($data['status'] === FALSE)
 		{
 			echo json_encode($data);

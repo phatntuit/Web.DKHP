@@ -26,4 +26,8 @@ class Sinhvien extends  CI_Controller
 	// 	$user=array('name' =>'Phat','diem'=>'10' );
 	// 	echo json_encode($user);
 	// }
+	// public function Testajax()
+	// {
+	// 	$input=
+	// }
 }
