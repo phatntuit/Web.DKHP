@@ -26,8 +26,12 @@ class Hocphan extends CI_Controller
 	}
 	public function Taoma()
 	{
-		$re=$this->Hocphan_model->Taomath("IS201.H01");
-		echo $re;
+		$re=$this->Hocphan_model->Taoma("SS001","2016-2017");
+		foreach ($re as $key) {
+			echo $key['ma']."</br>".$key['ck_th']."</br>".$key['tc'];
+		}
+		echo "<br>";
+		print_r($re);
 	}
 	public function get_new_data(){
 		$hocphan=$this->Hocphan_model->gethocphan();

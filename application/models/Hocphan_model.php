@@ -22,6 +22,7 @@ class Hocphan_model extends CI_model
 		$limit=9;
 		$tenbang="hocphan";
 		$tenid="malop";
+		// stored 1
 		$sql="CALL  GET_CHAR('$namhoc',@p1)";
 		$this->db->query($sql);
 		$sql="SELECT @p1 AS ch";
@@ -30,7 +31,26 @@ class Hocphan_model extends CI_model
 		$char=$result[0]['ch'];
 		$chuoi=$mamon.".".$char;
 		$ma=$this->Taoma->Matudong($tenid,$tenbang,$chuoi,$limit);
-		return $ma;
+		//  stored 2
+		$sql="CALL  KT_TH('$mamon',@p1)";
+		$this->db->query($sql);
+		$sql="SELECT @p1 AS ck";
+		$result=$this->db->query($sql);
+		$result=$result->result_array();
+		$char=$result[0]['ck'];
+		$ck_th=$char;
+		// stored 3
+		$ht='LT';
+		$sql="CALL Gettinchi('$mamon','$ht',@p1)";
+		$this->db->query($sql);
+		$sql="SELECT @p1 AS tc";
+		$result=$this->db->query($sql);
+		$result=$result->result_array();
+		$char=$result[0]['tc'];
+		$tc=$char;
+		// return 
+		$re['res']=array('ma'=>$ma,'ck_th'=>$ck_th,'tc'=>$tc);
+		return $re;
 	}
 	public function Taomath($maloplt)
 	{
