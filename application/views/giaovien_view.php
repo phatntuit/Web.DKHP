@@ -58,34 +58,13 @@
 var save_method; //for save method string
 var table;
 $(document).ready(function() {
-    table = $('#table').DataTable({ 
-
-        "processing": true, //Feature control the processing indicator.
-        "serverSide": true, //Feature control DataTables' server-side processing mode.
-        "order": [], //Initial no order.
-
-        // Load data for the table's content from an Ajax source
-        "ajax": {
-            "url": "<?php echo base_url('giaovien/ajax_list')?>",
-            "type": "POST"
-        },
-
-        //Set column definition initialisation properties.
-        "columnDefs": [
-        { 
-            "targets": [ -1 ], //last column
-            "orderable": false, //set not orderable
-        },
-        ],
-
-    });
     $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
-        todayHighlight: true,  
+        todayHighlight: true,
     });
 
     //set input/textarea/select event when change value, remove class error and remove text help block 
@@ -278,7 +257,7 @@ function delete_giaovien(id)
                         <div class="form-group">
                             <label class="control-label col-md-3">Điện thoại</label>
                             <div class="col-md-9">
-                                <input name="Dienthoai" placeholder="0967076900" class="form-control" type="text">
+                                <input name="Dienthoai" placeholder="0967076900" class="form-control phoneNumber_inputControl" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -301,39 +280,6 @@ function delete_giaovien(id)
 </div><!-- /.modal -->
   </div>
 </section>
-<script type="text/javascript">
-
-function IsEmail(email) {
-    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-        return expr.test(email);
-        data.status = false ; 
-}
-$(function(){
-    $.fn.EmailValidate = function() {
-    return this.each(function() {
-        $(this).slideUp();
-    });
-};
-    $("#btnSave").click(function(){
-        if (IsEmail($("#email").val()))
-        {
-           return 0;
-        }
-           
-        else {
-        $('#ClasSpan').append('<span>Email không hợp lệ</span>');
-        $('#email').keypress(function () {
-            $('span', '#itemspan').empty().remove();
-            //data:$('#form').serialize();
-            //data.status == false;
-        return 1;
-            
-        });
-            }       
-
-    });
-});
-</script>
 <?php $this->load->view('template/about.php'); ?>
 <?php $this->load->view('template/footer.php'); ?>
 
