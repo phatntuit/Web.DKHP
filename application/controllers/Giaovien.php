@@ -74,6 +74,10 @@ class Giaovien extends  CI_Controller
 		$data['error_string'] = array();
 		$data['inputerror'] = array();
 		$data['status'] = TRUE;
+		$email = $this->input->get('Email');
+		$phone = $this->input->get('Dienthoai');
+		$date = $this->input->get('Ngaysinh');
+		$year = substr("$date",0,3);
 
 		if($this->input->get('Tengiaovien') == '')
 		{
@@ -102,6 +106,13 @@ class Giaovien extends  CI_Controller
 			$data['error_string'][] = '*Vui lòng nhập ngày sinh';
 			$data['status'] = FALSE;
 		}
+		else if($date > '1993/01/01')
+		{
+			$data['inputerror'][] = 'Ngaysinh';
+			$data['error_string'][] = '*Ngày sinh không hợp lệ';
+			$data['status'] = FALSE;
+		}
+
 
 		if($this->input->get('Diachi') == '')
 		{
@@ -116,21 +127,25 @@ class Giaovien extends  CI_Controller
 			$data['error_string'][] = '*Vui lòng nhập điện thoại';
 			$data['status'] = FALSE;
 		}
+		else if(!(preg_match("/^[0]{1}[0-9]{5}[0-9]{4}$/", $phone) || preg_match("/^[0]{1}[0-9]{5}[0-9]{5}$/", $phone)) )
+    	{
+      		$data['inputerror'][] = 'Dienthoai';
+			$data['error_string'][] = '*SĐT không hợp lệ';
+			$data['status'] = FALSE;
+    	}
 		if($this->input->get('Email') == '')
 		{
 			$data['inputerror'][] = 'Email';
 			$data['error_string'][] = '*Vui lòng nhập Email';
 			$data['status'] = FALSE;
 		}
-		//if($this->giaovien_view->EmailValidate() ===0)
-		//{
-		//	$data['inputerror'][] = 'Email';
-		//	$data['error_string'][] = '*Vui lòng nhập Email đúng ';
-		//	;$data['status'] = FALSE;
-		//}
-		
-		 
-		
+		else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+		{
+			$data['inputerror'][] = 'Email';
+			$data['status'] = FALSE;
+			$data['error_string'][] = '*Email không hợp lệ';
+
+		}
 		if($data['status'] === FALSE)
 		{
 			echo json_encode($data);
