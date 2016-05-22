@@ -19,10 +19,9 @@ class User extends  CI_Controller
 			);
 		// print_r($data);
 		$this->load->model('User_model');
-		$this->User_model->check_login($data['id'],$data['pwd']);
+		$check=$this->User_model->check_login($data['id'],$data['pwd']);
 		$thamso=$this->User_model->Get_thamso();
 		mysqli_next_result( $this->db->conn_id );
-		$check=$this->User_model->check_login($data['id'],$data['pwd']);
 		if ($check==true) {
 			#login thanh cong
 			$user= $this->User_model->get_user($data['id']);

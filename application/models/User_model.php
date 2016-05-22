@@ -9,16 +9,6 @@ class User_model extends CI_model
 	{
 		parent::__construct();
 	}
-	public function check_login($id,$pwd)
-	{
-		$query="SELECT * FROM nguoidung WHERE Manguoidung = ? and Matkhau= ?";
-		$result=$this->db->query($query,array($id,$pwd));
-		$num=$result->num_rows();
-		if($num==true)
-			return true;
-		return false;
-
-	}
 	public function Get_user($id)
 	{
 		$sql="select * from nguoidung where manguoidung =?";
@@ -28,7 +18,7 @@ class User_model extends CI_model
 		return $result;
 	}
 	// test
-	public function check_login_md5($id,$pwd)
+	public function check_login($id,$pwd)
 	{
 		$error="";
 		$ck=0;
