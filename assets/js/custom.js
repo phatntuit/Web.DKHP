@@ -206,5 +206,10 @@ $(document).ready(function(){
             }
 		})
 	})
+	$('#asd').click(function(){
+		$('#erro').addClass('alert-danger')
+		$('#erro').removeClass('alert-info')
+		
+	})
 })
 

@@ -27,6 +27,7 @@ class DangKy extends CI_Controller {
 	public function dangkynhanh()
 	{
 		$dsmh=$this->input->get('edit-dsmh');
+		$dsmh=strtoupper($dsmh);
 		$data=explode("\n", $dsmh);
 		echo json_encode($data);
 	}
