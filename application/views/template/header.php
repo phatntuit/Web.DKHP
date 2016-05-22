@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,32 +30,6 @@
   <!--data table-->
   <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet">
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
-  <!-- <script type="text/javascript">
-    // Ajax post
-    $(document).ready(function() 
-    {
-      $("#login").click(function(e) 
-      {
-        e.preventDefault();
-        var user_name = $("#username").val();
-        var password = $("#pwd").val();
-        jQuery.ajax(
-        {
-          type: "POST",
-          url: "<?php echo base_url(); ?>Home/Login",
-          dataType: 'json',
-          data: {name: user_name, pwd: password},
-          success: function(res)
-          {
-            if (res)
-            {
-              alert('sucess');
-            }
-          }
-        });
-      });
-    });
-  </script> -->
   <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>assets/datatables/js/dataTables.bootstrap.js"></script>
   <!-- Custom Theme JavaScript -->

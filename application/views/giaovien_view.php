@@ -58,34 +58,13 @@
 var save_method; //for save method string
 var table;
 $(document).ready(function() {
-    table = $('#table').DataTable({ 
-
-        "processing": true, //Feature control the processing indicator.
-        "serverSide": true, //Feature control DataTables' server-side processing mode.
-        "order": [], //Initial no order.
-
-        // Load data for the table's content from an Ajax source
-        "ajax": {
-            "url": "<?php echo base_url('giaovien/ajax_list')?>",
-            "type": "POST"
-        },
-
-        //Set column definition initialisation properties.
-        "columnDefs": [
-        { 
-            "targets": [ -1 ], //last column
-            "orderable": false, //set not orderable
-        },
-        ],
-
-    });
     $('.datepicker').datepicker({
         autoclose: true,
         format: "yyyy-mm-dd",
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
-        todayHighlight: true,  
+        todayHighlight: true,
     });
 
     //set input/textarea/select event when change value, remove class error and remove text help block 
@@ -113,6 +92,9 @@ function edit_giaovien(Magiaovien)
     save_method='edit';
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Sửa Giáo Viên'); // Set Title to Bootstrap modal title
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
     url="<?php echo base_url('giaovien/ajax_edit')?>/" + Magiaovien;
     $.ajax({
         url:url,
@@ -275,15 +257,15 @@ function delete_giaovien(id)
                         <div class="form-group">
                             <label class="control-label col-md-3">Điện thoại</label>
                             <div class="col-md-9">
-                                <input name="Dienthoai" placeholder="0967076900" class="form-control" type="text">
+                                <input name="Dienthoai" placeholder="0967076900" class="form-control phoneNumber_inputControl" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Email</label>
                             <div class="col-md-9">
-                                <input name="Email" placeholder="vonganhquyen@gmail.com" class="form-control" type="text">
-                                <span class="help-block"></span>
+                                <input name="Email" id="email" placeholder="vonganhquyen@gmail.com" class="form-control required email" type="email">
+                                <span id="ClasSpan" class="help-block"></span>
                             </div>
                         </div>
                     </div>
@@ -300,5 +282,6 @@ function delete_giaovien(id)
 </section>
 <?php $this->load->view('template/about.php'); ?>
 <?php $this->load->view('template/footer.php'); ?>
+
 
 
