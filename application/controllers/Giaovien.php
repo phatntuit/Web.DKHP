@@ -127,13 +127,13 @@ class Giaovien extends  CI_Controller
 			$data['error_string'][] = '*Vui lòng nhập điện thoại';
 			$data['status'] = FALSE;
 		}
-		else if(!(preg_match("/^[0]{1}[0-9]{5}[0-9]{4}$/", $phone) || preg_match("/^[0]{1}[0-9]{5}[0-9]{5}$/", $phone)) )
+		else if(!(preg_match("/^[09]{2}[0-9]{4}[0-9]{4}$/", $phone) || preg_match("/^[01]{2}[0-9]{4}[0-9]{5}$/", $phone)) )
     	{
       		$data['inputerror'][] = 'Dienthoai';
 			$data['error_string'][] = '*SĐT không hợp lệ';
 			$data['status'] = FALSE;
     	}
-		if($this->input->get('Email') == '')
+		 if($this->input->get('Email') == '')
 		{
 			$data['inputerror'][] = 'Email';
 			$data['error_string'][] = '*Vui lòng nhập Email';
