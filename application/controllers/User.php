@@ -20,6 +20,8 @@ class User extends  CI_Controller
 		// print_r($data);
 		$this->load->model('User_model');
 		$this->User_model->check_login($data['id'],$data['pwd']);
+		$thamso=$this->User_model->Get_thamso();
+		mysqli_next_result( $this->db->conn_id );
 		$check=$this->User_model->check_login($data['id'],$data['pwd']);
 		if ($check==true) {
 			#login thanh cong
@@ -27,6 +29,10 @@ class User extends  CI_Controller
 			//set session data
 			$_SESSION['id']      = $user[0]['Manguoidung'];
 			$_SESSION['quyen']     =$user[0]['Quyen'];
+			$_SESSION['hocky']     =$thamso[0]['Hocky'];
+			$_SESSION['namhoc']     =$thamso[0]['Namhoc'];
+			$_SESSION['ngaybatdau']  =$thamso[0]['Ngaybatdaudk'];
+			$_SESSION['ngayketthuc']     =$thamso[0]['Ngayketthucdk'];
 			//call view
 			redirect(site_url(''));
 		}

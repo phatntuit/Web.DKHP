@@ -45,6 +45,14 @@ class User_model extends CI_model
         return $result;
 
 	}
+	public function Get_thamso()
+	{
+		$sql="CALL GET_THAMSO()";
+		$query=$this->db->query($sql);
+		if($query->num_rows() > 0)
+            $result = $query->result_array();
+        return $result;
+	}
 	// end test
 
 }
