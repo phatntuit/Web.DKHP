@@ -183,4 +183,28 @@ $(document).ready(function(){
 // 	});
 // }
 //
+$(document).ready(function(){
+	$('#dangky').click(function(){
+		url="Dangky/dangkynhanh"
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: $('#edit-dsmh').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				//alert(data)
+				for (var i = 0; i < data.length; i++) 
+            	{
+                	alert(data[i])
+            	}
+			},
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+
+            }
+		})
+	})
+})
 

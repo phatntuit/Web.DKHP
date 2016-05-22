@@ -122,11 +122,31 @@ class Hocphan extends CI_Controller
 		foreach ($tinchi as $tc) {
 			$sotinchi=$tc['tinchi'];
 		}
-		//$phong=$this->Hocphan_model->getsucchua($this->input->get('phong'));
-		//foreach ($phong as $key) {
-		//	$succhua=$key->Succhua;
-		//	$loaiphong=$key->Loaiphong;
-		//}
+		if($this->input->get('phong')!=''){
+			$phong=$this->Hocphan_model->getsucchua($this->input->get('phong'));
+			foreach ($phong as $key) {
+				$succhua=$key->Succhua;
+				$loaiphong=$key->Loaiphong;
+			}
+			if($this->input->get('siso')>$succhua)
+			{
+				$data['inputerror'][] = 'siso';
+				$data['error_string'][] = "Sĩ số vượt quá sức chứa của phòng(".$succhua.")";
+				$data['status'] = FALSE;
+			}
+			if($this->input->get('hinhthuc')=='LT' and $loaiphong='TH')
+			{
+				$data['inputerror'][] = 'phong';
+				$data['error_string'][] = '';
+				$data['status'] = FALSE;
+			}
+			if($this->input->get('hinhthuc')=='TH' and $loaiphong='LT')
+			{
+				$data['inputerror'][] = 'phong';
+				$data['error_string'][] = '';
+				$data['status'] = FALSE;
+			}
+		}
 		if($this->input->get('monhoc')=='')
 		{
 			$data['inputerror'][] = 'monhoc';
@@ -236,12 +256,6 @@ class Hocphan extends CI_Controller
 			else $data['error_string'][] = 'Môn học này không học thực hành';
 			$data['status'] = FALSE;
 		}
-		//if($this->input->get('siso')>$succhua)
-		//{
-		//	$data['inputerror'][] = 'siso';
-		//	$data['error_string'][] = "Sĩ số vượt quá sức chứa của phòng(".$succhua.")";
-		//	$data['status'] = FALSE;
-		//}
 		if($data['status'] === FALSE)
 		{
 			echo json_encode($data);
