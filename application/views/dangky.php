@@ -3,6 +3,13 @@
 		<div class="row" id="result">
 			<div class="container"><br><br><br>
 				<div>
+					<div class="alert alert-info alert-dismissible" role="alert" id="erro">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						gfyjhjnb jbjhj
+					</div>
+				</div>
+				<button id="asd">dfgjh</button>
+				<div>
 					<div class="form-wrapper"><span><a data-toggle="collapse" data-target="#dangkynhanh">Đăng ký nhanh</a><hr></span></div><br>
 					<div id="dangkynhanh" class="collapse">
 						<label>Đăng ký nhanh</label>
