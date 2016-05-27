@@ -112,12 +112,6 @@
                 <li><a href="<?php echo site_url('User/logout') ?>">Đăng xuất</a></li>
               </ul>
             </li>
-            <?php 
-          } 
-          else
-          {
-            ?>
-            <li id="loginform"><a href="#">Đăng nhập</a></li>
             <?php } ?>
           </ul>
         </div>
@@ -125,50 +119,32 @@
       </div>
       <!-- /.container -->
     </nav>
-    <!-- login form -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
+    <!-- Section: intro -->
+    <section id="intro" class="intro">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header" style="padding:35px 50px;">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4><span class="glyphicon glyphicon-log-in"  style="font-size:1.3em;"></span> Login</h4>
-          </div>
-          <div class="modal-body" style="padding:40px 50px;">
-            <form role="form" method="post" action="<?php echo site_url('User/Login'); ?>">
-              <div class="form-group">
-                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                <input type="text" class="form-control" id="id" name="id" placeholder="User name">
-              </div>
-              <div class="form-group">
-                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
-                <input type="password" class="form-control" id="psw" name="pwd" placeholder="Passwords">
-              </div>
-              <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <!-- <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p> -->
+      <div class="slogan">
+       <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
+       <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
+     </div>
+     <div class="page-scroll">
+       <a href="#content" class="btn btn-circle">
+        <i class="fa fa-angle-double-down animated"></i>
+      </a>
+    </div>
+  </section>
+  <!-- /Section: intro -->
+  <div class="row">
+  </br>
+</div>
+<section id="content">
+  <div class="row" id="result">
+    <div class="container">
+      <?php if(isset($_SESSION['id'])==False ){ ?>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="login_area">
+          <?php $this->load->view('template/login'); ?>
         </div>
-      </div>
-      
+        <?php } ?>
     </div>
   </div>
-  <!-- end login form -->
-  <!-- Section: intro -->
-  <section id="intro" class="intro">
-
-    <div class="slogan">
-     <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
-     <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
-   </div>
-   <div class="page-scroll">
-     <a href="#content" class="btn btn-circle">
-      <i class="fa fa-angle-double-down animated"></i>
-    </a>
-  </div>
 </section>
-	<!-- /Section: intro -->

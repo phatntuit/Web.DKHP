@@ -36,24 +36,29 @@
 	});
 
 })(jQuery);
-// login form popup
+// login form
 $(document).ready(function(){
-	$("#loginform").click(function(){
-		$("#myModal").modal();
+	$("#login").click(function (e)
+	{
+		e.preventDefault();
+		var url_reload="<?php echo current_url(); ?>";
+		var url="<?php echo site_url('User/Login'); ?>";
+		alert("Hello ! I'm still logining!");
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: $('#formlogin').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success:function(data){
+				//print code
+			},
+			error:function(error){
+				//print code
+			}
+		});
+
 	});
-	//login
-	// $("#login").click(function(){
-	// 	var url="<?php echo site_url('User/Login'); ?>";
-	// 	$.ajax(
-	// 	{
-	// 		url:url,
-	// 		type:'POST',
-	// 		data:{username : $('#username'),pwd:$('#pwd')},
-	// 		sucess:function(data){
-	// 			$('#myModal').modal('hide');
-	// 		}
-	// 	});
-	// });
 });
 //checked table
 $(document).ready(function(){
@@ -183,4 +188,33 @@ $(document).ready(function(){
 // 	});
 // }
 //
+$(document).ready(function(){
+	$('#dangky').click(function(){
+		url="Dangky/dangkynhanh"
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: $('#edit-dsmh').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				//alert(data)
+				for (var i = 0; i < data.length; i++) 
+            	{
+                	alert(data[i])
+            	}
+			},
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+
+            }
+		})
+	})
+	$('#asd').click(function(){
+		$('#erro').addClass('alert-danger')
+		$('#erro').removeClass('alert-info')
+		
+	})
+})
 

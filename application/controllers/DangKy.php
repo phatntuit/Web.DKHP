@@ -24,4 +24,11 @@ class DangKy extends CI_Controller {
 		$this->load->view('template/header',$this->data);
 		$this->load->view('dangky');
 	}
+	public function dangkynhanh()
+	{
+		$dsmh=$this->input->get('edit-dsmh');
+		$dsmh=strtoupper($dsmh);
+		$data=explode("\n", $dsmh);
+		echo json_encode($data);
+	}
 }

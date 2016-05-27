@@ -9,12 +9,16 @@ class Dangky_model extends CI_model
 	{
 		parent::__construct();
 	}
-	public function getdata()
+	public function gethocphan()
 	{
-		$query= $this->db->get('');
+		$query= $this->db->get('hocphan');
     	$query_result= $query->result_object();
     	return $query_result;
 	}
+	//kiểm tra tính tồn tại của mã lớp
+	public function kiemtradsml()
+	{
 
+	}
 }
 ?>
