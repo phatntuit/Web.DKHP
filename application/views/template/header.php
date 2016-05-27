@@ -73,7 +73,7 @@
               <li><a href="#">Kết quả học tập</a></li>
               <li><a href="#">Thời khóa biểu</a></li>
               <li><a href="#">Thông tin đăng ký học phần</a></li>
-              <li class="disabled"><a href="#" >Đăng ký học phần</a></li>
+              <li><a href="<?php echo base_url('dangky')?>" >Đăng ký học phần</a></li>
             </ul>
           </li>
           <?php 

@@ -158,7 +158,6 @@ $(document).ready(function(){
 		})
 	})
 })
-var table
 //remove thông báo lỗi
 $(document).ready(function(){
 	$("input").change(function(){
@@ -199,11 +198,86 @@ $(document).ready(function(){
 			contentType: "application/json; charset=utf-8",
 			success: function(data)
 			{
-				//alert(data)
-				for (var i = 0; i < data.length; i++) 
-            	{
-                	alert(data[i])
-            	}
+				if(data.success.length!=0){
+					thanhcong='Đăng ký thành công:<br>'
+					for (var i = 0; i < data.success.length; i++) 
+	            	{
+	                	thanhcong+=data.success[i]+'<br>'
+	            	}
+	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            }
+	            if(data.malopkhongtontai.length!=0 || data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0){
+	            	loi=''
+	            	if(data.malopkhongtontai.length!=0){
+	            		loi+='Mã lớp không tồn tại: '
+	            		if(data.malopkhongtontai.length==1){
+	            			loi+=data.malopkhongtontai[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.malopkhongtontai.length; i++) 
+		            		{
+		            			if(i==(data.malopkhongtontai.length-1))
+		            				loi+=data.malopkhongtontai[i]
+		            			else
+		                			loi+=data.malopkhongtontai[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.lopday.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp đầy: '
+	            		else loi+='Lớp đầy: '
+	            		if(data.lopday.length==1){
+	            			loi+=data.lopday[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.lopday.length; i++) 
+		            		{
+		            			if(i==(data.lopday.length-1))
+		            				loi+=data.lopday[i]
+		            			else
+		                			loi+=data.lopday[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.require.length!=0) loi+=data.require
+	            	if(data.dadk.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
+	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            		if(data.dadk.length==1){
+	            			loi+=data.dadk[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.dadk.length; i++) 
+		            		{
+		            			if(i==(data.dadk.length-1))
+		            				loi+=data.dadk[i]
+		            			else
+		                			loi+=data.dadk[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.trunglich.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
+	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            		if(data.trunglich.length==1){
+	            			loi+=data.trunglich[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.trunglich.length; i++) 
+		            		{
+		            			if(i==(data.trunglich.length-1))
+		            				loi+=data.trunglich[i]
+		            			else
+		                			loi+=data.trunglich[i]+','
+		            		}
+		            	}
+	            	}
+	            	$('#error').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+loi+"</div>")
+	            }
+	            $('#edit-dsmh').val('')
 			},
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -211,10 +285,8 @@ $(document).ready(function(){
             }
 		})
 	})
-	$('#asd').click(function(){
-		$('#erro').addClass('alert-danger')
-		$('#erro').removeClass('alert-info')
-		
+	$('#dkn').click(function(){
+		$('#edit-dsmh').val('')
 	})
 })
 

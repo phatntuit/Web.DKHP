@@ -2,15 +2,11 @@
 	<section id="content">
 		<div class="row" id="result">
 			<div class="container"><br><br><br>
+				<div align="center"><h4 style="color:blue">ĐĂNG KÝ HỌC PHẦN HỌC KỲ <?php if(isset($_SESSION['hocky'])) echo $_SESSION['hocky']?> NĂM HỌC <?php if(isset($_SESSION['namhoc'])) echo $_SESSION['namhoc']?></h3></div>
+				<div id="success"></div>
+				<div id="error"></div>
 				<div>
-					<div class="alert alert-info alert-dismissible" role="alert" id="erro">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						gfyjhjnb jbjhj
-					</div>
-				</div>
-				<button id="asd">dfgjh</button>
-				<div>
-					<div class="form-wrapper"><span><a data-toggle="collapse" data-target="#dangkynhanh">Đăng ký nhanh</a><hr></span></div><br>
+					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dangkynhanh" href="javascript:void(0)" id="dkn">Đăng ký nhanh</a><hr></span></div><br>
 					<div id="dangkynhanh" class="collapse">
 						<label>Đăng ký nhanh</label>
 						<div class="form-textarea">
@@ -21,7 +17,7 @@
 					</div>
 				</div>
 				<div>
-					<div class="form-wrapper"><span><a data-toggle="collapse" data-target="#dieukienloc">Chọn điều kiện lọc</a><hr></span></div><br>
+					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dieukienloc" href="javascript:void(0)">Chọn điều kiện lọc</a><hr></span></div><br>
 					<div id="dieukienloc" class="collapse">
 						<div class="form-group col-md-4">
 							<label>Loại môn học</label>
@@ -43,7 +39,7 @@
 						</div>
 					</div>
 				</div>
-				<div align="center"><h4 style="color:blue">Lớp học đang mở</h3></div>
+				<div align="center"><h4 style="color:blue">LỚP HỌC ĐANG MỞ</h3></div>
 				<div>
 
 				</div>
