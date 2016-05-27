@@ -12,7 +12,7 @@ class User extends  CI_Controller
 	}
 	public function Login()
 	{
-		//$this->_validate();
+		// echo json_encode() nua de chay ajax login
 		$data = array(
 			'id' => $this->input->post('id'),
 			'pwd'=>md5($this->input->post('pwd'))

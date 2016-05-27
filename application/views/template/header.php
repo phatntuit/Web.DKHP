@@ -119,17 +119,32 @@
       </div>
       <!-- /.container -->
     </nav>
-  <!-- Section: intro -->
-  <section id="intro" class="intro">
+    <!-- Section: intro -->
+    <section id="intro" class="intro">
 
-    <div class="slogan">
-     <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
-     <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
-   </div>
-   <div class="page-scroll">
-     <a href="#content" class="btn btn-circle">
-      <i class="fa fa-angle-double-down animated"></i>
-    </a>
+      <div class="slogan">
+       <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
+       <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
+     </div>
+     <div class="page-scroll">
+       <a href="#content" class="btn btn-circle">
+        <i class="fa fa-angle-double-down animated"></i>
+      </a>
+    </div>
+  </section>
+  <!-- /Section: intro -->
+  <div class="row">
+  </br>
+</div>
+<section id="content">
+  <div class="row" id="result">
+    <div class="container">
+      <?php if(isset($_SESSION['id'])==False ){ ?>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="login_area">
+          <?php $this->load->view('template/login'); ?>
+        </div>
+        <?php } ?>
+    </div>
   </div>
 </section>
-	<!-- /Section: intro -->

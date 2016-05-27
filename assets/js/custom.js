@@ -37,7 +37,29 @@
 
 })(jQuery);
 // login form
+$(document).ready(function(){
+	$("#login").click(function (e)
+	{
+		e.preventDefault();
+		var url_reload="<?php echo current_url(); ?>";
+		var url="<?php echo site_url('User/Login'); ?>";
+		alert("Hello ! I'm still logining!");
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: $('#formlogin').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success:function(data){
+				//print code
+			},
+			error:function(error){
+				//print code
+			}
+		});
 
+	});
+});
 //checked table
 $(document).ready(function(){
 $("#mytable #checkall").click(function () {

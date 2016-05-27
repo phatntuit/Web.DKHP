@@ -2,6 +2,9 @@
 $this->load->view('template/header');?>
 <!-- write content -->
 <div class="row"><p></p></div>
+<?php 
+	if(isset($_SESSION['id'])){
+ ?>
 <section id="sinhvien">
 	<div class="row">
 		<!-- table sinhvien -->
@@ -82,7 +85,7 @@ $this->load->view('template/header');?>
 		</div>
 	</div>
 </section>
-
+<?php } ?>
 <!-- end of content -->
 <?php 
 $this->load->view('template/about');

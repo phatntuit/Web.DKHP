@@ -1,4 +1,4 @@
-<form action="" method="POST" role="form">
+<form action="#" method="POST" role="form" id="form_login">
 <div class="row"></br>
    <p style="color:red">(*) Bạn vui lòng đăng nhập để sử dụng website.</p>
 </div>
