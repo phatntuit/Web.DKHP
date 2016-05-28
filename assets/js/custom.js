@@ -158,13 +158,11 @@ $(document).ready(function(){
 			contentType: "application/json; charset=utf-8",
 			success: function(data)
 			{
-<<<<<<< HEAD
 				//alert(data)
 				for (var i = 0; i < data.length; i++) 
 				{
 					alert(data[i])
 				}
-=======
 				if(data.success.length!=0){
 					thanhcong='Đăng ký thành công:<br>'
 					for (var i = 0; i < data.success.length; i++) 
@@ -245,7 +243,6 @@ $(document).ready(function(){
 	            	$('#error').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+loi+"</div>")
 	            }
 	            $('#edit-dsmh').val('')
->>>>>>> origin/master
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{
