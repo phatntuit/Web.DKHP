@@ -141,10 +141,14 @@
     <div class="container">
       <?php if(isset($_SESSION['id'])==False ){ ?>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="login_area">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="login_area">
           <?php $this->load->view('template/login'); ?>
         </div>
-        <?php } ?>
+        <?php } else { ?>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="body_contain">
+          
+        </div>
+        <?php  } ?>
     </div>
   </div>
 </section>

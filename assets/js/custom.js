@@ -37,62 +37,39 @@
 
 })(jQuery);
 // login form
-$(document).ready(function(){
-	$("#login").click(function (e)
-	{
-		e.preventDefault();
-		var url_reload="<?php echo current_url(); ?>";
-		var url="<?php echo site_url('User/Login'); ?>";
-		alert("Hello ! I'm still logining!");
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: $('#formlogin').serialize(),
-			dataType: 'JSON',
-			contentType: "application/json; charset=utf-8",
-			success:function(data){
-				//print code
-			},
-			error:function(error){
-				//print code
-			}
-		});
-
-	});
-});
 //checked table
 $(document).ready(function(){
-$("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
+	$("#mytable #checkall").click(function () {
+		if ($("#mytable #checkall").is(':checked')) {
+			$("#mytable input[type=checkbox]").each(function () {
+				$(this).prop("checked", true);
+			});
 
-        } else {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
+		} else {
+			$("#mytable input[type=checkbox]").each(function () {
+				$(this).prop("checked", false);
+			});
+		}
+	});
+
+	$("[data-toggle=tooltip]").tooltip();
 });
 //datetime picker
 //change class below
 $(document).ready(function(){
-$('.datepicker').datepicker({
-        autoclose: true,
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        orientation: "top auto",
-        todayBtn: true,
-        todayHighlight: true,  
-   });
-    });
+	$('.datepicker').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "top auto",
+		todayBtn: true,
+		todayHighlight: true,  
+	});
+});
 //bootstrap-select
 $('.selectpicker').selectpicker({
-  style: 'btn-info',
-  size: 2,
+	style: 'btn-info',
+	size: 2,
 });
 var method_save
 //add học phần. show form
@@ -141,53 +118,36 @@ $(document).ready(function(){
 				}
 				else{
 					for (var i = 0; i < data.inputerror.length; i++) 
-                	{
+					{
                     	$('[id="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
                     	$('[id="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                	}
-				}
-				$("#btluu").text("Lưu")
-				$("#btluu").attr('disabled',false)
-			},
+                    }
+                }
+                $("#btluu").text("Lưu")
+                $("#btluu").attr('disabled',false)
+            },
             error: function (jqXHR, textStatus, errorThrown)
             {
 
-                $("#btluu").text("Lưu")
-				$("#btluu").attr('disabled',false)
+            	$("#btluu").text("Lưu")
+            	$("#btluu").attr('disabled',false)
             }
-		})
+        })
 	})
 })
 var table
 //remove thông báo lỗi
 $(document).ready(function(){
 	$("input").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-    $("select").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
+		$(this).parent().parent().removeClass('has-error');
+		$(this).next().empty();
+	});
+	$("select").change(function(){
+		$(this).parent().parent().removeClass('has-error');
+		$(this).next().empty();
+	});
     //$('#tablehocphan').DataTable()
 });
-// Test ajax post
-// function Testajaxpost() {
-// 	var url="<php echo site_url('Sinhvien/Testajax') ?>";
-// 	$.ajax({
-// 		url:url,
-// 		type:'POST',
-// 		dataType:'text',
-// 		data :{'in' : $('#test')},
-// 		success: function(data) {
-// 			$('#result').html(data);
-// 		},
-// 		error: function() {
-// 			$('#result').html(data);
-// 		}
-// 	});
-// }
-//
 $(document).ready(function(){
 	$('#dangky').click(function(){
 		url="Dangky/dangkynhanh"
@@ -201,14 +161,14 @@ $(document).ready(function(){
 			{
 				//alert(data)
 				for (var i = 0; i < data.length; i++) 
-            	{
-                	alert(data[i])
-            	}
+				{
+					alert(data[i])
+				}
 			},
-            error: function (jqXHR, textStatus, errorThrown)
-            {
+			error: function (jqXHR, textStatus, errorThrown)
+			{
 
-            }
+			}
 		})
 	})
 	$('#asd').click(function(){
