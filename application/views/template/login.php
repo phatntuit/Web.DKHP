@@ -37,7 +37,6 @@
           $('#login').text('Login');
           if( data.check=='Success')
           {
-            alert('Hi '+data.id)
             window.location.assign("<?php echo current_url(); ?>")
           }
           else

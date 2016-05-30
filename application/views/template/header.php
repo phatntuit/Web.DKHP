@@ -96,7 +96,7 @@
           <?php }}?>
           <!-- kết thúc xử lý đăng nhập -->
           <li><a href="#">Trợ giúp</a></li>
-          <li><a href="#">Liên hệ</a></li>
+          <li><a href="#lienhe">Liên hệ</a></li>
           <li><a href="#about">Về chúng tôi</a></li>
           <?php 
           if(isset($_SESSION['id']) )

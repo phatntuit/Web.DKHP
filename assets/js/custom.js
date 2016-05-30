@@ -36,7 +36,46 @@
 	});
 
 })(jQuery);
-// login form
+// sinhvie form
+$(document).ready(function(){
+	$('.ngaysv').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "bottom auto",
+		todayBtn: true,
+		todayHighlight: true,  
+	});
+});
+$(document).ready(function(){
+	$("#btluu").click(function(){
+		$("#btluu").text("Đang lưu....")
+		$("#btluu").attr('disabled',true)
+		url="Sinhvien/Themsinhvien"
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: $('#formsv').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				//xu ly
+
+				//
+				// reset buton
+                $("#btluu").text("Lưu")
+                $("#btluu").attr('disabled',false)
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+
+            	$("#btluu").text("Lưu")
+            	$("#btluu").attr('disabled',false)
+            }
+        })
+	})
+});
 //checked table
 $(document).ready(function(){
 	$("#mytable #checkall").click(function () {
@@ -62,6 +101,14 @@ $(document).ready(function(){
 		format: "yyyy-mm-dd",
 		todayHighlight: true,
 		orientation: "top auto",
+		todayBtn: true,
+		todayHighlight: true,  
+	});
+	$('#ngaysinh_sv').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "bottom auto",
 		todayBtn: true,
 		todayHighlight: true,  
 	});

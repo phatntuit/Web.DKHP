@@ -830,3 +830,11 @@ Parallax
 }
 
 /*header*/
+/* sinh vien*/
+.table > tbody > tr >.sv{
+  border-top: none;
+}
+.has-error{
+  color: red;
+}
+/* end sinhvien*/
