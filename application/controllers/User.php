@@ -12,39 +12,44 @@ class User extends  CI_Controller
 	}
 	public function Login()
 	{
-		//$this->_validate();
+		// echo json_encode() nua de chay ajax login
 		$data = array(
 			'id' => $this->input->post('id'),
 			'pwd'=>md5($this->input->post('pwd'))
 			);
-		// print_r($data);
+		$response='';
 		$this->load->model('User_model');
-		$this->User_model->check_login($data['id'],$data['pwd']);
+		$check=$this->User_model->check_login($data['id'],$data['pwd']);
 		$thamso=$this->User_model->Get_thamso();
 		mysqli_next_result( $this->db->conn_id );
-		$check=$this->User_model->check_login($data['id'],$data['pwd']);
-		if ($check==true) {
+		$ck=$check[0]['ck'];
+		if ($ck==1) {
 			#login thanh cong
-			$user= $this->User_model->get_user($data['id']);
-			//set session data
-			$_SESSION['id']      = $user[0]['Manguoidung'];
-			$_SESSION['quyen']     =$user[0]['Quyen'];
+			$_SESSION['id']      = $data['id'];
+			$_SESSION['quyen']     =$check[0]['quyen'];
 			$_SESSION['hocky']     =$thamso[0]['Hocky'];
 			$_SESSION['namhoc']     =$thamso[0]['Namhoc'];
 			$_SESSION['ngaybatdau']  =$thamso[0]['Ngaybatdaudk'];
 			$_SESSION['ngayketthuc']     =$thamso[0]['Ngayketthucdk'];
-			//call view
-			redirect(site_url(''));
+			//response result for ajax
+			$status='Success';
+			$id=$data['id'];
+			$response=array('check'=>$status,'id'=>$id);
 		}
 		else
-			echo "Error.";
+		{	
+			$status='Fail';
+			$error=$check[0]['error'];
+			$response=array('check'=>$status,'error'=>$error);
+		}
+		echo json_encode($response);
 
 	}
 	public function logout()
 	{
 		# code...
 		session_destroy();
-		redirect(site_url(''));
+		redirect(site_url());
 	}
 	// test area
 	public function Login_md5()

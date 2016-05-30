@@ -47,7 +47,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
         <i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#home">
+      <a class="navbar-brand" href="<?php echo site_url(''); ?>">
         <h1>University of Information Technology</h1>
       </a>
     </div>
@@ -60,7 +60,7 @@
         <?php 
         if(isset($_SESSION['quyen']))
         {
-          if($_SESSION['quyen']=='MQ002')
+          if($_SESSION['quyen']=='SV')
           {
            ?>
            <li class="dropdown">
@@ -85,9 +85,9 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id="dropmenu">
-              <li><a href="#">Thông tin sinh viên</a></li>
+              <li><a href="<?php echo site_url('Sinhvien')?>">Quản trị sinh viên</a></li>
               <li><a href="#">Học phí</a></li>
-              <li><a href="#">Học phần</a></li>
+              <li><a href="<?php echo site_url('Hocphan')?>">Học phần</a></li>
               <li><a href="#">Quản lý tài khoản</a></li>
               <li><a href="#">Quản lý giáo viên</a></li>
               <li class="disabled"><a href="#" >Quản lý phòng học</a></li>
@@ -96,7 +96,7 @@
           <?php }}?>
           <!-- kết thúc xử lý đăng nhập -->
           <li><a href="#">Trợ giúp</a></li>
-          <li><a href="#">Liên hệ</a></li>
+          <li><a href="#lienhe">Liên hệ</a></li>
           <li><a href="#about">Về chúng tôi</a></li>
           <?php 
           if(isset($_SESSION['id']) )
@@ -112,12 +112,6 @@
                 <li><a href="<?php echo site_url('User/logout') ?>">Đăng xuất</a></li>
               </ul>
             </li>
-            <?php 
-          } 
-          else
-          {
-            ?>
-            <li id="loginform"><a href="#">Đăng nhập</a></li>
             <?php } ?>
           </ul>
         </div>
@@ -125,50 +119,21 @@
       </div>
       <!-- /.container -->
     </nav>
-    <!-- login form -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
+    <!-- Section: intro -->
+    <section id="intro" class="intro">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header" style="padding:35px 50px;">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4><span class="glyphicon glyphicon-log-in"  style="font-size:1.3em;"></span> Login</h4>
-          </div>
-          <div class="modal-body" style="padding:40px 50px;">
-            <form role="form" method="post" action="<?php echo site_url('User/Login'); ?>">
-              <div class="form-group">
-                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                <input type="text" class="form-control" id="id" name="id" placeholder="User name">
-              </div>
-              <div class="form-group">
-                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Passwords</label>
-                <input type="password" class="form-control" id="psw" name="pwd" placeholder="Passwords">
-              </div>
-              <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span>Login</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <!-- <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p> -->
-        </div>
-      </div>
-      
+      <div class="slogan">
+       <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
+       <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
+     </div>
+     <div class="page-scroll">
+       <a href="#content" class="btn btn-circle">
+        <i class="fa fa-angle-double-down animated"></i>
+      </a>
     </div>
-  </div>
-  <!-- end login form -->
-  <!-- Section: intro -->
-  <section id="intro" class="intro">
-
-    <div class="slogan">
-     <h3>Trường ĐH Công Nghệ Thông Tin-<span class="text_color">ĐHQG TP.HCM</span></h3>
-     <h4><?php if(isset($header)) echo $header; else echo "Trang chủ"; ?></h4>
-   </div>
-   <div class="page-scroll">
-     <a href="#content" class="btn btn-circle">
-      <i class="fa fa-angle-double-down animated"></i>
-    </a>
-  </div>
-</section>
-	<!-- /Section: intro -->
+  </section>
+  <!-- /Section: intro -->
+  <div class="row">
+  </br>
+</div>
+<section id="content">
