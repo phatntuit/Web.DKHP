@@ -38,8 +38,8 @@
 								<td><?php echo $hp->Tenkhoa?></td>
 								<td><?php echo $hp->Tengiaovien?></td>
 								<td><?php echo $hp->Maphong?></td>
-								<td><?php echo $hp->Tennamhoc?></td>
-								<td><?php echo $hp->Tenhocky?></td>
+								<td><?php echo $hp->Manamhoc?></td>
+								<td><?php echo $hp->Mahocky?></td>
 								<td><?php echo $hp->Thu?></td>
 								<td><?php for($i=$hp->Tietbatdau;$i<=$hp->Tietketthuc;$i++) echo $i.',';?></td>
 								<td><?php echo $hp->Cachtuan?></td>
@@ -124,7 +124,7 @@
 										<select class="form-control  " id="namhoc" name="namhoc">
 											<option value="">--Chọn năm học--</option>
 											<?php foreach ($namhoc as $nh) {?>
-												<option value="<?php echo $nh->Manamhoc?>"><?php echo $nh->Tennamhoc;?></option>
+												<option value="<?php echo $nh->Manamhoc?>"><?php echo $nh->Manamhoc;?></option>
 											<?php } ?>
 										</select>
 										<span class="help-block"></span>
@@ -136,7 +136,7 @@
 										<select class="form-control  " id="hocky" name="hocky">
 											<option value="">--Chọn học kỳ--</option>
 											<?php foreach ($hocky as $hk) {?>
-												<option value="<?php echo $hk->Mahocky?>"><?php echo $hk->Tenhocky;?></option>
+												<option value="<?php echo $hk->Mahocky?>"><?php echo $hk->Mahocky;?></option>
 											<?php } ?>
 										</select>
 										<span class="help-block"></span>

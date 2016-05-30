@@ -47,7 +47,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
         <i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#home">
+      <a class="navbar-brand" href="<?php echo site_url(''); ?>">
         <h1>University of Information Technology</h1>
       </a>
     </div>
@@ -60,7 +60,7 @@
         <?php 
         if(isset($_SESSION['quyen']))
         {
-          if($_SESSION['quyen']=='MQ002')
+          if($_SESSION['quyen']=='SV')
           {
            ?>
            <li class="dropdown">
@@ -73,7 +73,7 @@
               <li><a href="#">Kết quả học tập</a></li>
               <li><a href="#">Thời khóa biểu</a></li>
               <li><a href="#">Thông tin đăng ký học phần</a></li>
-              <li class="disabled"><a href="#" >Đăng ký học phần</a></li>
+              <li><a href="<?php echo base_url('dangky')?>" >Đăng ký học phần</a></li>
             </ul>
           </li>
           <?php 
@@ -85,9 +85,9 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id="dropmenu">
-              <li><a href="#">Thông tin sinh viên</a></li>
+              <li><a href="<?php echo site_url('Sinhvien')?>">Quản trị sinh viên</a></li>
               <li><a href="#">Học phí</a></li>
-              <li><a href="#">Học phần</a></li>
+              <li><a href="<?php echo site_url('Hocphan')?>">Học phần</a></li>
               <li><a href="#">Quản lý tài khoản</a></li>
               <li><a href="#">Quản lý giáo viên</a></li>
               <li class="disabled"><a href="#" >Quản lý phòng học</a></li>
@@ -96,7 +96,7 @@
           <?php }}?>
           <!-- kết thúc xử lý đăng nhập -->
           <li><a href="#">Trợ giúp</a></li>
-          <li><a href="#">Liên hệ</a></li>
+          <li><a href="#lienhe">Liên hệ</a></li>
           <li><a href="#about">Về chúng tôi</a></li>
           <?php 
           if(isset($_SESSION['id']) )
@@ -137,14 +137,3 @@
   </br>
 </div>
 <section id="content">
-  <div class="row" id="result">
-    <div class="container">
-      <?php if(isset($_SESSION['id'])==False ){ ?>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="login_area">
-          <?php $this->load->view('template/login'); ?>
-        </div>
-        <?php } ?>
-    </div>
-  </div>
-</section>

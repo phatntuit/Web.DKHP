@@ -21,5 +21,15 @@ class Sinhvien_model extends CI_model
 		$result = $sp_data->result_array();
 		return $result;
 	}
+	public function Get_khoahoc()
+	{
+		$q=$this->db->get('khoahoc');
+		return $q->result_object();
+	}
+	public function get_nganh()
+	{
+		$q=$this->db->get('nganh');
+		return $q->result_object();
+	}
 }
 ?>

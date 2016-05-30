@@ -36,63 +36,85 @@
 	});
 
 })(jQuery);
-// login form
+// sinhvie form
 $(document).ready(function(){
-	$("#login").click(function (e)
-	{
-		e.preventDefault();
-		var url_reload="<?php echo current_url(); ?>";
-		var url="<?php echo site_url('User/Login'); ?>";
-		alert("Hello ! I'm still logining!");
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: $('#formlogin').serialize(),
-			dataType: 'JSON',
-			contentType: "application/json; charset=utf-8",
-			success:function(data){
-				//print code
-			},
-			error:function(error){
-				//print code
-			}
-		});
-
+	$('.ngaysv').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "bottom auto",
+		todayBtn: true,
+		todayHighlight: true,  
 	});
 });
+function Luusv() {
+		$("#btluu").text("Đang lưu....");
+		$("#btluu").attr('disabled',true);
+		url="Sinhvien/Themsinhvien";
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: $('#formsv').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				//xu ly
+
+				//
+				// reset buton
+                $("#btluu").text("Lưu");
+                $("#btluu").attr('disabled',false);
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+
+            	$("#btluu").text("Lưu");
+            	$("#btluu").attr('disabled',false);
+            }
+        });
+}
 //checked table
 $(document).ready(function(){
-$("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
+	$("#mytable #checkall").click(function () {
+		if ($("#mytable #checkall").is(':checked')) {
+			$("#mytable input[type=checkbox]").each(function () {
+				$(this).prop("checked", true);
+			});
 
-        } else {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
+		} else {
+			$("#mytable input[type=checkbox]").each(function () {
+				$(this).prop("checked", false);
+			});
+		}
+	});
+
+	$("[data-toggle=tooltip]").tooltip();
 });
 //datetime picker
 //change class below
 $(document).ready(function(){
-$('.datepicker').datepicker({
-        autoclose: true,
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        orientation: "top auto",
-        todayBtn: true,
-        todayHighlight: true,  
-   });
-    });
+	$('.datepicker').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "top auto",
+		todayBtn: true,
+		todayHighlight: true,  
+	});
+	$('#ngaysinh_sv').datepicker({
+		autoclose: true,
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		orientation: "bottom auto",
+		todayBtn: true,
+		todayHighlight: true,  
+	});
+});
 //bootstrap-select
 $('.selectpicker').selectpicker({
-  style: 'btn-info',
-  size: 2,
+	style: 'btn-info',
+	size: 2,
 });
 var method_save
 //add học phần. show form
@@ -141,53 +163,35 @@ $(document).ready(function(){
 				}
 				else{
 					for (var i = 0; i < data.inputerror.length; i++) 
-                	{
+					{
                     	$('[id="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
                     	$('[id="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                	}
-				}
-				$("#btluu").text("Lưu")
-				$("#btluu").attr('disabled',false)
-			},
+                    }
+                }
+                $("#btluu").text("Lưu")
+                $("#btluu").attr('disabled',false)
+            },
             error: function (jqXHR, textStatus, errorThrown)
             {
 
-                $("#btluu").text("Lưu")
-				$("#btluu").attr('disabled',false)
+            	$("#btluu").text("Lưu")
+            	$("#btluu").attr('disabled',false)
             }
-		})
+        })
 	})
 })
-var table
 //remove thông báo lỗi
 $(document).ready(function(){
 	$("input").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-    $("select").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
+		$(this).parent().parent().removeClass('has-error');
+		$(this).next().empty();
+	});
+	$("select").change(function(){
+		$(this).parent().parent().removeClass('has-error');
+		$(this).next().empty();
+	});
     //$('#tablehocphan').DataTable()
 });
-// Test ajax post
-// function Testajaxpost() {
-// 	var url="<php echo site_url('Sinhvien/Testajax') ?>";
-// 	$.ajax({
-// 		url:url,
-// 		type:'POST',
-// 		dataType:'text',
-// 		data :{'in' : $('#test')},
-// 		success: function(data) {
-// 			$('#result').html(data);
-// 		},
-// 		error: function() {
-// 			$('#result').html(data);
-// 		}
-// 	});
-// }
-//
 $(document).ready(function(){
 	$('#dangky').click(function(){
 		url="Dangky/dangkynhanh"
@@ -201,20 +205,98 @@ $(document).ready(function(){
 			{
 				//alert(data)
 				for (var i = 0; i < data.length; i++) 
-            	{
-                	alert(data[i])
-            	}
+				{
+					alert(data[i])
+				}
+				if(data.success.length!=0){
+					thanhcong='Đăng ký thành công:<br>'
+					for (var i = 0; i < data.success.length; i++) 
+	            	{
+	                	thanhcong+=data.success[i]+'<br>'
+	            	}
+	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            }
+	            if(data.malopkhongtontai.length!=0 || data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0){
+	            	loi=''
+	            	if(data.malopkhongtontai.length!=0){
+	            		loi+='Mã lớp không tồn tại: '
+	            		if(data.malopkhongtontai.length==1){
+	            			loi+=data.malopkhongtontai[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.malopkhongtontai.length; i++) 
+		            		{
+		            			if(i==(data.malopkhongtontai.length-1))
+		            				loi+=data.malopkhongtontai[i]
+		            			else
+		                			loi+=data.malopkhongtontai[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.lopday.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp đầy: '
+	            		else loi+='Lớp đầy: '
+	            		if(data.lopday.length==1){
+	            			loi+=data.lopday[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.lopday.length; i++) 
+		            		{
+		            			if(i==(data.lopday.length-1))
+		            				loi+=data.lopday[i]
+		            			else
+		                			loi+=data.lopday[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.require.length!=0) loi+=data.require
+	            	if(data.dadk.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
+	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            		if(data.dadk.length==1){
+	            			loi+=data.dadk[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.dadk.length; i++) 
+		            		{
+		            			if(i==(data.dadk.length-1))
+		            				loi+=data.dadk[i]
+		            			else
+		                			loi+=data.dadk[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.trunglich.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
+	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            		if(data.trunglich.length==1){
+	            			loi+=data.trunglich[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.trunglich.length; i++) 
+		            		{
+		            			if(i==(data.trunglich.length-1))
+		            				loi+=data.trunglich[i]
+		            			else
+		                			loi+=data.trunglich[i]+','
+		            		}
+		            	}
+	            	}
+	            	$('#error').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+loi+"</div>")
+	            }
+	            $('#edit-dsmh').val('')
 			},
-            error: function (jqXHR, textStatus, errorThrown)
-            {
+			error: function (jqXHR, textStatus, errorThrown)
+			{
 
-            }
+			}
 		})
 	})
-	$('#asd').click(function(){
-		$('#erro').addClass('alert-danger')
-		$('#erro').removeClass('alert-info')
-		
+	$('#dkn').click(function(){
+		$('#edit-dsmh').val('')
 	})
 })
 
