@@ -25,17 +25,15 @@ class User extends  CI_Controller
 		$ck=$check[0]['ck'];
 		if ($ck==1) {
 			#login thanh cong
-			$user= $this->User_model->get_user($data['id']);
-			//set session data
-			$_SESSION['id']      = $user[0]['Manguoidung'];
-			$_SESSION['quyen']     =$user[0]['Quyen'];
+			$_SESSION['id']      = $data['id'];
+			$_SESSION['quyen']     =$check[0]['quyen'];
 			$_SESSION['hocky']     =$thamso[0]['Hocky'];
 			$_SESSION['namhoc']     =$thamso[0]['Namhoc'];
 			$_SESSION['ngaybatdau']  =$thamso[0]['Ngaybatdaudk'];
 			$_SESSION['ngayketthuc']     =$thamso[0]['Ngayketthucdk'];
 			//response result for ajax
 			$status='Success';
-			$id=$user[0]['Manguoidung'];
+			$id=$data['id'];
 			$response=array('check'=>$status,'id'=>$id);
 		}
 		else

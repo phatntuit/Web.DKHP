@@ -1,6 +1,5 @@
 <form action="javascipt:void(0)" method="POST" role="form" id="form_login" >
   <div class="row"></br>
-   <p style="color:red">(*) Bạn vui lòng đăng nhập để sử dụng website.</p>
  </div>
  <legend>Login</legend>
  <div class="form-group">

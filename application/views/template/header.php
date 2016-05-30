@@ -47,7 +47,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
         <i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#home">
+      <a class="navbar-brand" href="<?php echo site_url(''); ?>">
         <h1>University of Information Technology</h1>
       </a>
     </div>
@@ -60,7 +60,7 @@
         <?php 
         if(isset($_SESSION['quyen']))
         {
-          if($_SESSION['quyen']=='MQ002')
+          if($_SESSION['quyen']=='SV')
           {
            ?>
            <li class="dropdown">
@@ -85,9 +85,9 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id="dropmenu">
-              <li><a href="#">Thông tin sinh viên</a></li>
+              <li><a href="<?php echo site_url('Sinhvien')?>">Quản trị sinh viên</a></li>
               <li><a href="#">Học phí</a></li>
-              <li><a href="#">Học phần</a></li>
+              <li><a href="<?php echo site_url('Hocphan')?>">Học phần</a></li>
               <li><a href="#">Quản lý tài khoản</a></li>
               <li><a href="#">Quản lý giáo viên</a></li>
               <li class="disabled"><a href="#" >Quản lý phòng học</a></li>
@@ -137,18 +137,3 @@
   </br>
 </div>
 <section id="content">
-  <div class="row" id="result">
-    <div class="container">
-      <?php if(isset($_SESSION['id'])==False ){ ?>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="login_area">
-          <?php $this->load->view('template/login'); ?>
-        </div>
-        <?php } else { ?>
-        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="body_contain">
-          
-        </div>
-        <?php  } ?>
-    </div>
-  </div>
-</section>
