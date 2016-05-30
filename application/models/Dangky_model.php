@@ -46,15 +46,15 @@ class Dangky_model extends CI_model
 	public function kiemtratrungmonhoc($mssv,$mahk,$namhoc,$malop)
 	{
 		$manh=$this->getmanh($namhoc);
-		$this->db->query("CALL getmamhcuahocphan('$malop',@mhdangdk)");
-		$q=$this->db->query('select @mhdangdk as lopdangdk');
+		$this->db->query("CALL getmamhcuahocphan('$malop',@mhdangdk,@ht)");
+		$q=$this->db->query('select @mhdangdk as lopdangdk,@ht as hinhthuc');
 		$q=$q->result_array();
-		$this->db->query("CALL getmamhdadangky('$mssv','$mahk','$manh',@mhdadk)");
-		$w=$this->db->query('select @mhdadk as lopdadk');
+		$this->db->query("CALL getmamhdadangky('$mssv','$mahk','$manh',@mhdadk,@ht,@malop)");
+		$w=$this->db->query('select @mhdadk as lopdadk,@ht as hinhthuc');
 		$w=$w->result_object();
 		foreach ($q as $mhp) {
 			foreach ($w as $mdk) {
-				if($mdk->lopdadk==$mhp['lopdangdk'] )
+				if($mdk->lopdadk==$mhp['lopdangdk'] && $mdk->hinhthuc==$mhp['hinhthuc'])
 					return FALSE;
 			}
 		}
@@ -63,20 +63,22 @@ class Dangky_model extends CI_model
 	public function kiemtralopltvoith($mssv,$mahk,$namhoc,$malop)
 	{
 		$manh=$this->getmanh($namhoc);
-		$q=$this->db->query("CALL getmamhcuahocphan('$malop')");
+		$this->db->query("CALL getmamhcuahocphan('$malop',@mhdangdk,@ht)");
+		$q=$this->db->query('select @mhdangdk as lopdangdk,@ht as hinhthuc');
 		$q=$q->result_array();
-		$w=$this->db->query("CALL getmamhdadangky('$mssv','$mahk','$manh')");
-		$w=$w->result_array();
+		$this->db->query("CALL getmamhdadangky('$mssv','$mahk','$manh',@mhdadk,@ht,@malop)");
+		$w=$this->db->query('select @mhdadk as lopdadk,@ht as hinhthuc,@malop as malop');
+		$w=$w->result_object();
 		foreach ($q as $mhp) {
 			foreach ($w as $mdk) {
-				if($mdk['Mamonhoc']==$mhp['Mamonhoc'] && $mdk['Hinhthuc']!=$mhp['Hinhthuc'])
-					if(strlen($malop)>strlen($mdk['Malop'])){
+				if($mdk->lopdadk==$mhp['lopdangdk'] && $mdk->hinhthuc!=$mhp['hinhthuc'])
+					if(strlen($malop)>strlen($mdk->malop)){
 						$a=substr($malop, 0,9);
-						if($a!=$mdk['Malop'])
+						if($a!=$mdk->malop)
 							return FALSE;
 					}
 					else{
-						$a=substr($mdk['Malop'],0,9);
+						$a=substr($mdk->malop,0,9);
 						if($a!=$malop)
 							return FALSE;
 					}	
@@ -115,9 +117,11 @@ class Dangky_model extends CI_model
 	{
 		$manh=$this->getmanh($namhoc);
 		if($this->kiemtratrungthu($mssv,$mahk,$manh,$malop)===TRUE){
-			$dadk=$this->db->query("CALL gettietdadk('$mssv','$mahk','$manh')");
+			$this->db->query("CALL gettietdadk('$mssv','$mahk','$manh',@tbd,@tkt)");
+			$dadk=$this->db->query('select @tbd as Tietbatdau,@tkt as Tietketthuc');
 			$dadk=$dadk->result_object();
-			$dangdk=$this->db->query("CALL gettietlopdangdk('$malop')");
+			$this->db->query("CALL gettietlopdangdk('$malop',@tbd,@tkt)");
+			$dangdk=$this->db->query('select @tbd as Tietbatdau,@tkt as Tietketthuc');
 			$dangdk=$dangdk->result_array();
 			foreach ($dadk as $a) {
 				foreach ($dangdk as $b) {
