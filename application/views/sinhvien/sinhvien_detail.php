@@ -122,7 +122,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<button type="submit" class="btn btn-primary" id="btluu">Lưu</button>
+								<button type="submit" class="btn btn-primary" id="btluu" onsubmit="Luusv();">Lưu</button>
 								<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 							</div>
 						</div>

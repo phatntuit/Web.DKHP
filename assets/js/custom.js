@@ -47,11 +47,10 @@ $(document).ready(function(){
 		todayHighlight: true,  
 	});
 });
-$(document).ready(function(){
-	$("#btluu").click(function(){
-		$("#btluu").text("Đang lưu....")
-		$("#btluu").attr('disabled',true)
-		url="Sinhvien/Themsinhvien"
+function Luusv() {
+		$("#btluu").text("Đang lưu....");
+		$("#btluu").attr('disabled',true);
+		url="Sinhvien/Themsinhvien";
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -64,18 +63,17 @@ $(document).ready(function(){
 
 				//
 				// reset buton
-                $("#btluu").text("Lưu")
-                $("#btluu").attr('disabled',false)
+                $("#btluu").text("Lưu");
+                $("#btluu").attr('disabled',false);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
 
-            	$("#btluu").text("Lưu")
-            	$("#btluu").attr('disabled',false)
+            	$("#btluu").text("Lưu");
+            	$("#btluu").attr('disabled',false);
             }
-        })
-	})
-});
+        });
+}
 //checked table
 $(document).ready(function(){
 	$("#mytable #checkall").click(function () {
