@@ -172,10 +172,22 @@ class Dangky_model extends CI_model
 					}
 					return FALSE;
 				}
-			}
-			
+			}	
 		}
-
+	}
+	public function addphieudangky($mssv,$mahk,$manh,$malop)
+	{
+		$tt=$this->db->query("CALL kiemtratontaipdk('$mssv','$manh','$mahk')");
+		$tt=$tt->result_array();
+		mysqli_next_result( $this->db->conn_id);
+		return $tt;
+		if(count($tt)==0){
+			//add pdk
+			//add ct_pdk
+		}
+		else{
+			//add ct_pdk
+		}
 	}
 }
 ?>
