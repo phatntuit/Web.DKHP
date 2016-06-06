@@ -7,7 +7,14 @@ class DangKy extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Dangky_model');
+		$this->load->model('Taoma');
 		
+	}
+	public function Taoma()
+	{
+		$chuoi="DK".date("Y");
+		$ma = $this->Taoma->Matudong("MaDK","phieudangky",$chuoi,12);
+		return $ma;
 	}
 	public function index()
 	{
