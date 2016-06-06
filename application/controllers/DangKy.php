@@ -20,7 +20,7 @@ class DangKy extends CI_Controller {
 	{
 		if(isset($_SESSION['id'])){
 			$this->data['page_title']='Đăng ký  | Hệ thống đăng ký học phần';
-			//$this->data['test']=$this->Dangky_model->kiemtramontq($_SESSION['id'],'EN002.G32',$_SESSION['hocky'],$_SESSION['namhoc']);
+			$this->data['test']=$this->Dangky_model->addphieudangky($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],'');
 			$this->load->view('template/header',$this->data);
 			$this->load->view('dangky');
 		}
