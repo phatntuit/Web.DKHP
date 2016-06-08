@@ -5,32 +5,28 @@
 <div class="row"><p></p></div>
 <div class="container">
 	<div class="row">
-    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i>Thêm giáo viên</button>
+    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i>Thêm môn học</button>
         <div class="col-md-12">
         <div class="table-responsive" id="newtable">
               <table id="mytable" class="table table-bordred table-striped">
                    <thead>
-                   <th>Tên giáo viên</th>
-                    <th>Giới tính</th>
-                     <th>Học vị</th>
-                     <th>Ngày sinh</th>
-                     <th>Địa chỉ</th>
-                      <th>Điện thoại</th>
-                      <th>Email</th>
-                      <th stle="width:125px;">Action</th>
+                   <th>Mã môn học</th>
+                    <th>Tên môn học</th>
+                     <th>Số tín chỉ lt</th>
+                     <th>Số tín chỉ th</th>
+                     <th>Tổng tín chỉ</th>
+                     <th>Action</th>
                    </thead>
     <tbody>
-      <?php foreach($giaovien as $gv){?>
+      <?php foreach($monhoc as $mh){?>
       <tr>
-        <td><?php echo $gv->Tengiaovien; ?> </td>
-        <td><?php echo $gv->Gioitinh; ?> </td>
-        <td><?php echo $gv->Mahocvi; ?> </td>
-        <td><?php echo $gv->Ngaysinh; ?> </td>
-        <td><?php echo $gv->Diachi; ?> </td>
-        <td><?php echo $gv->Dienthoai; ?> </td>
-        <td><?php echo $gv->Email; ?> </td>
-        <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_giaovien('<?php echo $gv->Magiaovien; ?>')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
-        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_giaovien('<?php echo $gv->Magiaovien ?>')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
+        <td><?php echo $mh->Mamonhoc; ?> </td>
+        <td><?php echo $mh->Tenmonhoc; ?> </td>
+        <td><?php echo $mh->Sotinchi_lt; ?> </td>
+        <td><?php echo $mh->Sotinchi_th; ?> </td>
+        <td><?php echo $mh->Sotinchi; ?> </td>
+        <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_monhoc('<?php echo $mh->Mamonhoc; ?>')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
+        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_monhoc('<?php echo $mh->Mamonhoc ?>')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
 
   </tr>
       <?php } ?>
@@ -54,62 +50,26 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-var save_method; //for save method string
-var table;
-$(document).ready(function() {
-    $('.datepicker').datepicker({
-        autoclose: true,
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        orientation: "top auto",
-        todayBtn: true,
-        todayHighlight: true,
-    });
-
-    //set input/textarea/select event when change value, remove class error and remove text help block 
-    $("input").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-    $("textarea").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-    $("select").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-
-});
-
-function reload_table()
-{
-    table.ajax.reload(null,false); //reload datatable ajax 
-}
-function edit_giaovien(Magiaovien)
+function edit_monhoc(Mamonhoc)
 {
     save_method='edit';
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Sửa Giáo Viên'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Sửa Môn Học'); // Set Title to Bootstrap modal title
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
-    url="<?php echo base_url('giaovien/ajax_edit')?>/" + Magiaovien;
+    url="<?php echo base_url('monhoc/ajax_edit')?>/" + Mamonhoc;
     $.ajax({
         url:url,
         type: "GET",
         dataType: "JSON",
         success:function(data)
         {
-            $('[name="Magiaovien"]').val(data.Magiaovien);
-            $('[name="Tengiaovien"]').val(data.Tengiaovien);
-            $('[name="Mahocvi"]').val(data.Mahocvi);
-            $('[name="Gioitinh"]').val(data.Gioitinh);
-            $('[name="Ngaysinh"]').val(data.Ngaysinh);
-            $('[name="Diachi"]').val(data.Diachi);
-            $('[name="Dienthoai"]').val(data.Dienthoai);
-            $('[name="Email"]').val(data.Email);
+            $('[name="Mamonhoc"]').val(data.Mamonhoc);
+            $('[name="Tenmonhoc"]').val(data.Tenmonhoc);
+            $('[name="Sotinchi_lt"]').val(data.Sotinchi_lt);
+            $('[name="Sotinchi_th"]').val(data.Sotinchi_th);
+            $('[name="Sotinchi"]').val(data.Sotinchi);
         },
         error:function(data)
         {
@@ -118,6 +78,7 @@ function edit_giaovien(Magiaovien)
     });
             
 }
+var save_method; 
 function add_person()
 {
     save_method = 'add';
@@ -125,16 +86,16 @@ function add_person()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Thêm Giáo Viên'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Thêm Môn học'); // Set Title to Bootstrap modal title
 }
 function save()
 {
         $('#btnSave').text('saving...'); 
         $('#btnSave').attr('disabled',true);
         if(save_method=='edit')
-            url="<?php echo base_url('Giaovien/ajax_update')?>";
+            url="<?php echo base_url('monhoc/ajax_update')?>";
         else
-             url="<?php echo base_url('Giaovien/ajax_add') ?>";
+             url="<?php echo base_url('monhoc/ajax_add') ?>";
         $.ajax({
             url : url,
             type:"GET",
@@ -148,7 +109,7 @@ function save()
                     $('#modal_form').modal('hide');
                     alert('Thành công');
                     //reload_table();
-                    $('div#newtable').load ('Giaovien/Get_new_data', 'update=true', 'refresh');
+                   // $('div#newtable').load ('Giaovien/Get_new_data', 'update=true', 'refresh');
                 }
                 else
                 {
@@ -170,7 +131,7 @@ function save()
         });
 
 }
-function delete_giaovien(id)
+function delete_monhoc(id)
 {
     if(confirm('Bạn có thật sự muốn xóa ?'))
     {
@@ -196,76 +157,59 @@ function delete_giaovien(id)
     }
 }
 </script>
-  <?php $query = $this->db->get('hocvi');
-        $hocvi = $query->result_object();
-  ?>
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Thêm Giáo Viên</h3>
+                <h3 class="modal-title">Thêm Môn học</h3>
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
                     <input type="hidden" name="Magiaovien" />
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Tên giáo viên</label>
+                            <label class="control-label col-md-3">Mã môn học</label>
                             <div class="col-md-9">
-                                <input name="Tengiaovien" placeholder="Trần Anh Dũng" class="form-control" type="text">
+                                <input name="Mamonhoc" placeholder="IS307" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Học vị</label>
+                            <label class="control-label col-md-3">Tên môn học</label>
                             <div class="col-md-9">
-                                <select name="Mahocvi" class="form-control">
-                                    <?php foreach($hocvi as $hv){?>
-                                    <option value='<?php echo "$hv->Mahocvi" ?>'><?php echo "$hv->Tenhocvi" ?></option>
-                                    <?php } ?>
-                                </select>
-                                
+                                <input name="Tenmonhoc" placeholder="Lập trình hướng đối tượng" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Giới tính</label>
+                            <label class="control-label col-md-3">Số tín chỉ lt</label>
                             <div class="col-md-9">
-                                <select name="Gioitinh" class="form-control">
-                                    <option value="">--Chọn giới tính--</option>
-                                    <option value="Nam">Nam</option>
-                                    <option value="Nữ">Nữ</option>
+                                <select name="Sotinchilt" class="form-control">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
                                 </select>
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Địa chỉ</label>
+                            <label class="control-label col-md-3">Số tín chỉ th</label>
                             <div class="col-md-9">
-                                <textarea name="Diachi" placeholder="Address" class="form-control"></textarea>
+                                <select name="Sotinchith" class="form-control">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select>
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Ngày sinh</label>
+                            <label class="control-label col-md-3">Số tín chỉ</label>
                             <div class="col-md-9">
-                                <input name="Ngaysinh" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <input name="Sotinchi" placeholder="4" class="form-control" type="text">
                                 <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Điện thoại</label>
-                            <div class="col-md-9">
-                                <input name="Dienthoai" placeholder="0967076900" class="form-control phoneNumber_inputControl" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Email</label>
-                            <div class="col-md-9">
-                                <input name="Email" id="email" placeholder="vonganhquyen@gmail.com" class="form-control required email" type="email">
-                                <span id="ClasSpan" class="help-block"></span>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,9 @@
-	<div class="row"></div>
-	<section id="content">
+
 		<div class="row" id="result">
 			<div class="container"><br><br><br>
 				<div align="center"><h4 style="color:blue">ĐĂNG KÝ HỌC PHẦN HỌC KỲ <?php if(isset($_SESSION['hocky'])) echo $_SESSION['hocky']?> NĂM HỌC <?php if(isset($_SESSION['namhoc'])) echo $_SESSION['namhoc']?></h3></div>
 				<div id="success"></div>
 				<div id="error"></div>
-				<?php //print_r($test)?>
 				<div class="row">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
 					<div id="dadk" class="collapse table-responsive">
@@ -22,7 +20,7 @@
 							<tbody>
 								<?php foreach ($test as $key) { ?>
 								<tr>
-									<td><input type="checkbox" value='<?php echo $key["Malop"]?>' id="check-malop"></td>
+									<td><input id="check-malop" type="checkbox" value='<?php echo $key["Malop"] ?>'></td>
 									<td><?php echo $key['Malop']?></td>
 									<td><?php echo $key['Tenmonhoc']?></td>
 									<td><?php echo $key['Tengiaovien']?></td>
@@ -73,15 +71,40 @@
 						</div>
 					</div>
 				</div>
-				<div align="center"><h4 style="color:blue">LỚP HỌC ĐANG MỞ</h3></div>
-				<div>
-
+				<div align="center"><h4 style="color:blue">LỚP HỌC ĐANG MỞ</h3>
 				</div>
-			</div>
+				<div class="table-responsive">
+					<table id="mytable" class="table table-bordred table-striped">
+                   <thead>
+                   	<th>Chọn</th>
+                   <th>Mã lớp</th>
+                   <th>Tên môn học</th>
+                   <th>Tên giáo viên</th>
+                   <th>Thứ</th>
+                   <th>Tiết bắt đầu</th>
+                   <th>Tiết kết thúc</th>
+                   <th>Sỉ số dự kiến</th>
+                   <th>Sỉ số hiện tại</th>
+                   </thead>
+    				<tbody>
+				      <?php foreach($hocphan as $hp){?>
+
+				      <tr>
+				      	<td><input type="checkbox"></td>
+				        <td><?php echo $hp->Malop; ?> </td>
+				        <td><?php echo $hp->Tenmonhoc; ?> </td>
+				        <td><?php echo $hp->Tengiaovien; ?> </td>
+				        <td><?php echo $hp->Thu; ?> </td>
+				        <td><?php echo $hp->Tietbatdau; ?> </td>
+				        <td><?php echo $hp->Tietketthuc; ?> </td>
+				        <td><?php echo $hp->Sisodukien; ?> </td>
+				        <td><?php echo $hp->Sisohientai; ?> </td>
+  						</tr>
+  						<?php } ?>
+    					</tbody>
+					</table>
+				</div>
 		</div>
-	</section>
+	</div>
 	<?php $this->load->view('template/about.php'); ?>
 	<?php $this->load->view('template/footer.php'); ?>
-</body>
-
-</html>

@@ -36,7 +36,7 @@
 	});
 
 })(jQuery);
-// sinhvie form
+// sinhvien form
 $(document).ready(function(){
 	$('.ngaysv').datepicker({
 		autoclose: true,
@@ -47,67 +47,40 @@ $(document).ready(function(){
 		todayHighlight: true,  
 	});
 });
-function Luusv() {
-		$("#btluu").text("Đang lưu....");
-		$("#btluu").attr('disabled',true);
-		url="Sinhvien/Themsinhvien";
-		$.ajax({
-			url: url,
-			type: "GET",
-			data: $('#formsv').serialize(),
-			dataType: 'JSON',
-			contentType: "application/json; charset=utf-8",
-			success: function(data)
-			{
-				//xu ly
-
-				//
-				// reset buton
-                $("#btluu").text("Lưu");
-                $("#btluu").attr('disabled',false);
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-
-            	$("#btluu").text("Lưu");
-            	$("#btluu").attr('disabled',false);
-            }
-        });
-}
 //checked table
-$(document).ready(function(){
-	$("#mytable #checkall").click(function () {
-		if ($("#mytable #checkall").is(':checked')) {
-			$("#mytable input[type=checkbox]").each(function () {
-				$(this).prop("checked", true);
-			});
+// $(document).ready(function(){
+// 	$("#mytable #checkall").click(function () {
+// 		if ($("#mytable #checkall").is(':checked')) {
+// 			$("#mytable input[type=checkbox]").each(function () {
+// 				$(this).prop("checked", true);
+// 			});
 
-		} else {
-			$("#mytable input[type=checkbox]").each(function () {
-				$(this).prop("checked", false);
-			});
-		}
-	});
+// 		} else {
+// 			$("#mytable input[type=checkbox]").each(function () {
+// 				$(this).prop("checked", false);
+// 			});
+// 		}
+// 	});
 
-	$("[data-toggle=tooltip]").tooltip();
-	$('#check-malop').click(function(){
-		if($('#check-malop').is(':checked')){
-			var malop=$('#ds-malop-huy').val();
-			malop=malop.replace(/-/g,"");
-			var output2='';
-			malop=malop+ $('#check-malop').val();
-			malop=malop.replace("-","");
-			for (i=0; i<malop.length; i++) 
-			{
-			    if (i>0 && i%11 == 0)
-			      output2 += '-';
-			    output2 += malop.charAt(i);
-			}
-			malop=output2;
-			$('#ds-malop-huy').val(malop);
-		}
-	})
-});
+// 	$("[data-toggle=tooltip]").tooltip();
+// 	$('#check-malop').click(function(){
+// 		if($('#check-malop').is(':checked')){
+// 			var malop=$('#ds-malop-huy').val();
+// 			malop=malop.replace(/-/g,"");
+// 			var output2='';
+// 			malop=malop+ $('#check-malop').val();
+// 			malop=malop.replace("-","");
+// 			for (i=0; i<malop.length; i++) 
+// 			{
+// 			    if (i>0 && i%11 == 0)
+// 			      output2 += '-';
+// 			    output2 += malop.charAt(i);
+// 			}
+// 			malop=output2;
+// 			$('#ds-malop-huy').val(malop);
+// 		}
+// 	})
+// });
 
 //datetime picker
 //change class below

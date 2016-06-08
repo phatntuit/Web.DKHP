@@ -9,18 +9,49 @@ class Giaovien_model extends CI_model
 	}
 	public function update($where, $data)
 	{
+		$this->db->trans_begin();
 		$this->db->update('giaovien', $data, $where);
+		if($this->db->trans_status()=== FALSE)
+		{
+			$this->db->trans_rollback();	
+		}
+		else
+		{
+			$this->db->trans_commit();
+		}
 	}
 
 	public function add($data)
 	{
-		 $this->db->insert('giaovien', $data);
+		$this->db->trans_begin();
+		$this->db->insert('giaovien', $data);
+		if($this->db->trans_status()=== FALSE)
+		{
+			$this->db->trans_rollback();
+		}
+		else
+		{
+			$this->db->trans_commit();
+
+		}
+	
 	}
 
 	public function delete_by_id($id)
 	{
+		
+		$this->db->trans_begin();
 		$this->db->where('Magiaovien', $id);
 		$this->db->delete('giaovien');
+		if($this->db->trans_status()=== FALSE)
+		{
+			$this->db->trans_rollback();
+		}
+		else
+		{
+			$this->db->trans_commit();
+		}
+
 	}
 	public function get_by_id($id)
 	{

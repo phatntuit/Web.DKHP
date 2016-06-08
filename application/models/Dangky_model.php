@@ -18,7 +18,7 @@ class Dangky_model extends CI_model
 	}
 	public function gethocphan()
 	{
-		$query= $this->db->get('hocphan');
+		$query= $this->db->query("CALL join_hocphan");
     	$query_result= $query->result_object();
     	return $query_result;
 	}
