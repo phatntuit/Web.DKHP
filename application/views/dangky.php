@@ -20,7 +20,7 @@
 							<tbody>
 								<?php foreach ($test as $key) { ?>
 								<tr>
-									<td><input id="check-malop" type="checkbox" value='<?php echo $key["Malop"] ?>'></td>
+									<td><input id="check-malop"  onchange="testchange(this);" type="checkbox" value='<?php echo $key["Malop"] ?>'></td>
 									<td><?php echo $key['Malop']?></td>
 									<td><?php echo $key['Tenmonhoc']?></td>
 									<td><?php echo $key['Tengiaovien']?></td>
@@ -31,7 +31,7 @@
 								<?php }?>
 							</tbody>
 						</table>
-						<input  value="" id='ds-malop-huy' name="ds-malop-huy">
+						<textarea id='ds-malop-huy' name="ds-malop-huy"></textarea>
 						<button id="huydk" class="btn-danger btn">Hủy học phần</button>
 						<p>Tổng số tín chỉ:<?php echo $test[0]['Tongsotinchi']?></p>
 						<p>Học phí tạm tính:<?php echo $test[0]['Hocphitamtinh']?></p>

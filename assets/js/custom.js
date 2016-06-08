@@ -81,78 +81,26 @@ $(document).ready(function(){
 // 		}
 // 	})
 // });
-$.fn.extend({
-	Select: function() 
-	{
-		//cap nhat input hidden 
 
-			var dsmalop=$('#ds-malop-huy').val();
-			dsmalop=dsmalop.replace(/-/g,"");
-			var output2='';
-			dsmalop=dsmalop+ $(this).val();
-			dsmalop=dsmalop.replace("-","");
-			for (i=0; i<dsmalop.length; i++) 
-			{
-			    if (i>0 && i%11 == 0)
-			      output2 += '-';
-			    output2 += dsmalop.charAt(i);
-			}
-			dsmalop=output2;
-			$('#ds-malop-huy').val(dsmalop);
-			//bo class Selected
-			return $(this).addClass('Selected');
-	},
-	Unselect: function() {
-			//cap nhat input hidden
-
-			var dsmalop=$(this).val();
-			var replit = $('#ds-malop-huy').val().replace(/-/g,"");
-			replit = replit.replace(dsmalop,"");
-			replit = replit.replace("-","");
-			var output='';
-			for (i=0; i<replit.length; i++) 
-			{
-			    if (i>0 && i%11 == 0)
-			      output += '-';
-			    output += replit.charAt(i);
-			}
-			replit=output;
-			$('#ds-malop-huy').val(replit);
-			return $(this).removeClass('Selected');
-	},
-	MyApplication: {
-		Ready: function() {
-			$(this).click(
-				function() {
-					$('#chonghe li[name="ghe"]').Select();
-				}
-				);
-			$('#chonghe li[name="ghe"]').click(
-			function()
-			{
-				var note="ghedadat";
-				if($(this).attr('id')!=note)
-				{
-					if($(this).hasClass('Selected')) 
-					{
-		        				$(this).Unselect();	
-			       		 }
-		        			else
-				        	{
-				        		if($(".Selected").length<4)
-				        		{
-				        			$(this).Select();
-				        		}	
-				        		else
-				        			alert("Lỗi!Quý khách chỉ được đặt tối đa 4 ghế");
-				        	} 
-	        			}
-
-			}
-			);
-		}
-	}
-});
+function testchange (checkbox) {
+	var t=$('#ds-malop-huy').val();
+	var ckvalue=checkbox.value;
+    if (checkbox.checked) {
+        if(t!='')
+        {
+        	t+="\r\n";
+        	t+=ckvalue;
+        }
+        else
+        	t+=ckvalue;
+    }
+    else 
+    {
+    	t=t.replace("\r\n",'');
+        t=t.replace(ckvalue,'');
+    }
+    $('#ds-malop-huy').val(t);
+}
 //datetime picker
 //change class below
 $(document).ready(function(){
