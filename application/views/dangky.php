@@ -32,10 +32,10 @@
 								<?php }?>
 							</tbody>
 						</table>
-						<input class="hiden" value="sdfghj-fghj" id='ds-malop-huy' name="ds-malop-huy">
+						<input  value="" id='ds-malop-huy' name="ds-malop-huy">
 						<button id="huydk" class="btn-danger btn">Hủy học phần</button>
-						<p>Tổng số tín chỉ:</p>
-						<p>Học phí tạm tính:</p>
+						<p>Tổng số tín chỉ:<?php echo $test[0]['Tongsotinchi']?></p>
+						<p>Học phí tạm tính:<?php echo $test[0]['Hocphitamtinh']?></p>
 					</div>
 				</div>
 				<div class="row">
