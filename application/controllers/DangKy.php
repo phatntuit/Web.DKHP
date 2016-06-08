@@ -12,12 +12,8 @@ class DangKy extends CI_Controller {
 	{
 		if(isset($_SESSION['id'])){
 			$this->data['page_title']='Đăng ký  | Hệ thống đăng ký học phần';
-<<<<<<< HEAD
-			//$this->data['test']=$this->Dangky_model->kiemtratrungtiet($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],'IS334.G31');	
 			$this->data['hocphan'] = $this->Dangky_model->gethocphan();
-=======
 			$this->data['test']=$this->Dangky_model->showpdk($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc']);
->>>>>>> nghiant
 			$this->load->view('template/header',$this->data);
 			$this->load->view('dangky');
 
