@@ -12,7 +12,7 @@ class DangKy extends CI_Controller {
 	{
 		if(isset($_SESSION['id'])){
 			$this->data['page_title']='Đăng ký  | Hệ thống đăng ký học phần';
-			//$this->data['test']=$this->Dangky_model->kiemtratrungtiet($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],'IS334.G31');
+			$this->data['test']=$this->Dangky_model->showpdk($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc']);
 			$this->load->view('template/header',$this->data);
 			$this->load->view('dangky');
 		}
@@ -65,6 +65,29 @@ class DangKy extends CI_Controller {
 				else array_push($data['malopkhongtontai'],$dsml[$i]);
 			}
 			echo json_encode($data);
+		}
+	}
+	public function showdadk()
+	{
+		$tb='';
+		$tb='<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
+					<div id="dadk" class="collapse">';
+
+		$tb.='</div>';
+	}
+	public function huyhocphan()
+	{
+		if(isset($_SESSION['id'])){
+			$dsmh=$this->input->get('ds-malop-huy');
+			$dsmh=strtoupper($dsmh);
+			if($dsmh==''){
+				$data['require']="Vui lòng điền mã lớp";
+				echo json_encode($dsmh);
+				exit();
+			}
+			$dsml=explode("-", $dsmh);
+			
+			echo json_encode($dsml);
 		}
 	}
 }

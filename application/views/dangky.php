@@ -6,7 +6,40 @@
 				<div id="success"></div>
 				<div id="error"></div>
 				<?php //print_r($test)?>
-				<div>
+				<div class="row">
+					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
+					<div id="dadk" class="collapse table-responsive">
+						<table class="table table-bordred table-striped" id='chonmalop'>
+							<thead>
+								<th></th>
+								<th>Mã lớp</th>
+								<th>Tên môn học</th>
+								<th>Tên giáo viên</th>
+								<th>Phòng</th>
+								<th>Thứ</th>
+								<th>Tiết học</th>
+							</thead>
+							<tbody>
+								<?php foreach ($test as $key) { ?>
+								<tr>
+									<td><input type="checkbox" value='<?php echo $key["Malop"]?>' id="check-malop"></td>
+									<td><?php echo $key['Malop']?></td>
+									<td><?php echo $key['Tenmonhoc']?></td>
+									<td><?php echo $key['Tengiaovien']?></td>
+									<td><?php echo $key['Maphong']?></td>
+									<td><?php echo $key['Thu']?></td>
+									<td><?php for($i=$key['Tietbatdau'];$i<=$key['Tietketthuc'];$i++) echo $i.',';?></td>
+								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+						<input class="hiden" value="sdfghj-fghj" id='ds-malop-huy' name="ds-malop-huy">
+						<button id="huydk" class="btn-danger btn">Hủy học phần</button>
+						<p>Tổng số tín chỉ:</p>
+						<p>Học phí tạm tính:</p>
+					</div>
+				</div>
+				<div class="row">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dangkynhanh" href="javascript:void(0)" id="dkn">Đăng ký nhanh</a><hr></span></div><br>
 					<div id="dangkynhanh" class="collapse">
 						<label>Đăng ký nhanh</label>
@@ -17,7 +50,7 @@
 						<button id="dangky" class="btn-success btn">Đăng ký</button>
 					</div>
 				</div>
-				<div>
+				<div class="row">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dieukienloc" href="javascript:void(0)">Chọn điều kiện lọc</a><hr></span></div><br>
 					<div id="dieukienloc" class="collapse">
 						<div class="form-group col-md-4">

@@ -211,5 +211,16 @@ class Dangky_model extends CI_model
 			//add ct_pdk
 		}
 	}
+	public function showpdk($mssv,$mahk,$manh)
+	{
+		$q=$this->db->query("CALL getphieudangky('$mssv','$mahk','$manh')");
+		$q=$q->result_array();
+		return $q;
+	}
+	public function huyhocphan($malop)
+	{
+		$this->db->where('Malop',$malop);
+		$this->db->delete('')
+	}
 }
 ?>

@@ -90,7 +90,25 @@ $(document).ready(function(){
 	});
 
 	$("[data-toggle=tooltip]").tooltip();
+	$('#check-malop').click(function(){
+		if($('#check-malop').is(':checked')){
+			var malop=$('#ds-malop-huy').val();
+			malop=malop.replace(/-/g,"");
+			var output2='';
+			malop=malop+ $('#check-malop').val();
+			malop=malop.replace("-","");
+			for (i=0; i<malop.length; i++) 
+			{
+			    if (i>0 && i%11 == 0)
+			      output2 += '-';
+			    output2 += malop.charAt(i);
+			}
+			malop=output2;
+			$('#ds-malop-huy').val(malop);
+		}
+	})
 });
+
 //datetime picker
 //change class below
 $(document).ready(function(){
@@ -204,10 +222,7 @@ $(document).ready(function(){
 			success: function(data)
 			{
 				//alert(data)
-				for (var i = 0; i < data.length; i++) 
-				{
-					alert(data[i])
-				}
+				
 				if(data.success.length!=0){
 					thanhcong='Đăng ký thành công:<br>'
 					for (var i = 0; i < data.success.length; i++) 
@@ -332,5 +347,25 @@ $(document).ready(function(){
 	$('#dkn').click(function(){
 		$('#edit-dsmh').val('')
 	})
-})
+	$('#huydk').click(function(){
+		url="Dangky/huyhocphan"
+		$.ajax({
+			url:url,
+			type:"GET",
+			data: $('#ds-malop-huy').serialize(),
+			dataType: 'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				for (var i = 0; i < data.length; i++) 
+				{
+					alert(data[i])
+				}
+			},
+			error: function(err)
+			{
 
+			}
+		})
+	})
+})
