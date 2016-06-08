@@ -10,7 +10,6 @@ class Giaovien extends  CI_Controller
 	}
 	public function index()
 	{	
-		$this->load->helper('url');
 		$this->data['page_title'] = 'Thông tin giáo viên';
 		$this->load->model('Giaovien_model');
 		$this->data['giaovien'] = $this->Giaovien_model->show();
