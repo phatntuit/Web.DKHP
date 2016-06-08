@@ -9,6 +9,9 @@ class Sinhvien extends  CI_Controller
 		$this->data['nganh']=$this->Sinhvien_model->Get_nganh();
 		$this->data['khoahoc']=$this->Sinhvien_model->Get_khoahoc();
 		$this->data['sinhvien']=$this->Sinhvien_model->Get_sv();
+		$this->data['page_title'] = 'Quản lý sinh viên';
+		$this->data['header']="Trang quản lý sinh viên";
+		// header là chức năng của page
 	}
 	public function taoma()
 	{
@@ -19,10 +22,9 @@ class Sinhvien extends  CI_Controller
 	}
 	public function index()
 	{	
-		$this->data['page_title'] = 'Quản lý sinh viên';
-		$this->data['header']="Trang quản lý sinh viên";
-		// header là chức năng của page
-		$this->load->view('sinhvien/sinhvien_view',$this->data);
+		if (isset($_SESSION['id'])) {
+			$this->load->view('sinhvien/sinhvien_view',$this->data);
+		}
 		
 	}
 	public function ajax_add()
