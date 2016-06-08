@@ -161,7 +161,7 @@ $this->load->view('template/about');
 	    {
 	        // ajax delete data to database
 	        $.ajax({
-	            url : "<?php echo base_url('Sinvien/ajax_delete')?>/"+id,
+	            url : "<?php echo base_url('Sinhvien/ajax_delete')?>/"+id,
 	            type: "POST",
 	            dataType: "JSON",
 	            success: function(data)

@@ -35,8 +35,8 @@ class Sinhvien extends  CI_Controller
 		$data = array(
 				'Mssv' => $this->taoma(),
 				'Hoten' => $this->input->get('Tensinhvien'),
-				'Manganh' => $this->input->get('Manganh'),
 				'Gioitinh' => $gioitinh,
+				'Manganh' => $this->input->get('Manganh'),
 				'Ngaysinh' => $this->input->get('Ngaysinh'),
 				'Quequan' => $this->input->get('Quequan'),
 				'Makhoahoc' => $this->input->get('Makhoahoc'),
@@ -56,7 +56,7 @@ class Sinhvien extends  CI_Controller
 		$this->_validate();
 		$data = array(
 				'Mssv' => $this->taoma(),
-				'Tensinhvien' => $this->input->get('Tensinhvien'),
+				'Hoten' => $this->input->get('Tensinhvien'),
 				'Manganh' => $this->input->get('Manganh'),
 				'Gioitinh' => $this->input->get('Gioitinh'),
 				'Ngaysinh' => $this->input->get('Ngaysinh'),
@@ -114,7 +114,7 @@ class Sinhvien extends  CI_Controller
 			$data['error_string'][] = '*Vui lòng nhập ngày sinh';
 			$data['status'] = FALSE;
 		}
-		else if(year('Y')-$year<18)
+		else if($date >'1997/01/01')
 		{
 			$data['inputerror'][] = 'Ngaysinh';
 			$data['error_string'][] = '*Ngày sinh không hợp lệ';
@@ -155,8 +155,6 @@ class Sinhvien extends  CI_Controller
 					</thead>
 					<tbody>';
                    foreach($sinhvien as $sv){
-                   		$edit="edit_sinhvien('".$sv->Mssv."')";
-						$delete="delete_sinhvien('".$sv->Mssv."')";
                    		$tb.='<tr>
                    		 <td>'.$sv->Mssv.'</td>
         				<td>'.$sv->Hoten.'</td>
@@ -166,11 +164,8 @@ class Sinhvien extends  CI_Controller
         				<td>'.$sv->Tennganh.'</td>
         				<td>'.$sv->Makhoahoc.'</td>
         				<td>
-        					<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Sửa" onclick="$edit"><i class="glyphicon glyphicon-pencil"></i>Sửa
-							</a>
-							<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Xóa" onclick="$delete">
-								<i class="glyphicon glyphicon-trash"></i>Xóa
-							</a>
+        					 <td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_sinhvien('."'".$sv->Mssv."'".')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
+        <td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_sinhvien('."'".$sv->Mssv."'".')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
         				</td>';
 
                    }
