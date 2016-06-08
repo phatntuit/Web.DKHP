@@ -89,7 +89,7 @@
               <li><a href="#">Học phí</a></li>
               <li><a href="<?php echo site_url('Hocphan')?>">Học phần</a></li>
               <li><a href="#">Quản lý tài khoản</a></li>
-              <li><a href="#">Quản lý giáo viên</a></li>
+              <li><a href="<?php echo base_url('Giaovien')?>" >Quản lý giáo viên</a></li>
               <li class="disabled"><a href="#" >Quản lý phòng học</a></li>
             </ul>
           </li>

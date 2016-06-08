@@ -10,11 +10,35 @@ class Giaovien extends  CI_Controller
 	}
 	public function index()
 	{	
-		$this->data['page_title'] = 'Thông tin giáo viên';
-		$this->load->model('Giaovien_model');
-		$this->data['giaovien'] = $this->Giaovien_model->show();
-		$this->load->view('template/header',$this->data);
-		$this->load->view('giaovien_view');
+		if(isset($_SESSION['id']))
+   		{ 
+        	if ($_SESSION['quyen']=='ADMIN')
+        	{
+            	$this->data['page_title'] = 'Thông tin giáo viên';
+				$this->load->model('Giaovien_model');
+				$this->data['giaovien'] = $this->Giaovien_model->show();
+				$this->load->view('template/header',$this->data);
+				$this->load->view('giaovien_view');
+        	}
+        	else
+        	{
+        		$this->data['page_title'] = 'dn';
+        		$this->load->view('template/header',$this->data);
+        		
+            $this->load->view('template/login');
+           
+            $this->load->view('template/footer');
+        	}
+        }
+        else
+        {
+        	$this->data['page_title'] = 'dn';
+        		$this->load->view('template/header',$this->data);
+        	$this->load->view('template/login');
+        	
+        	$this->load->view('template/footer');
+        }
+		
 	}
 	public function taoma()
 	{
