@@ -90,7 +90,7 @@ class DangKy extends CI_Controller {
 				echo json_encode($data);
 				exit();
 			}
-			$dsml=explode("-", $dsmh);
+			$dsml=explode("\n\r", $dsmh);
 			for ($i=0;$i<count($dsml);$i++) {
 				$this->Dangky_model->huyhocphan($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i]);
 				array_push($data['success'],$dsml[$i]);
