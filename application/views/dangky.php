@@ -4,7 +4,6 @@
 				<div align="center"><h4 style="color:blue">ĐĂNG KÝ HỌC PHẦN HỌC KỲ <?php if(isset($_SESSION['hocky'])) echo $_SESSION['hocky']?> NĂM HỌC <?php if(isset($_SESSION['namhoc'])) echo $_SESSION['namhoc']?></h3></div>
 				<div id="success"></div>
 				<div id="error"></div>
-				<?php //print_r($test)?>
 				<div class="row">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
 					<div id="dadk" class="collapse table-responsive">
@@ -21,7 +20,7 @@
 							<tbody>
 								<?php foreach ($test as $key) { ?>
 								<tr>
-									<td><input type="checkbox" value='<?php echo $key["Malop"]?>' id="check-malop"></td>
+									<td><input id="check-malop" type="checkbox" value='<?php echo $key["Malop"] ?>'></td>
 									<td><?php echo $key['Malop']?></td>
 									<td><?php echo $key['Tenmonhoc']?></td>
 									<td><?php echo $key['Tengiaovien']?></td>

@@ -1,5 +1,5 @@
 <?php 
-  echo $error; 
+  if (isset($error)){ echo $error; }; 
 ?>
 <form action="javascipt:void(0)" method="POST" role="form" id="form_login" >
   <div class="row"></br>

@@ -28,7 +28,7 @@ class Sinhvien extends  CI_Controller
 		{
 			if($_SESSION['quyen']=='ADMIN')
 			{
-				$this->load->view('sinhvien/sinhvien_view',$this->data);
+				$this->load->view('sinhvien/sinhvien_view');
 				$this->load->view('template/about');
 				$this->load->view('template/footer');
 			}
