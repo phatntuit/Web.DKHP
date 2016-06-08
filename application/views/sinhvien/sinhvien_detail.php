@@ -55,14 +55,8 @@
 								<td><?php echo $sv->Quequan; ?></td>
 								<td><?php echo $sv->Tennganh; ?></td>
 								<td><?php echo $sv->Makhoahoc; ?></td>
-								<td>
-									<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Sửa" onclick="<?php echo $edit; ?>">
-										<i class="glyphicon glyphicon-pencil"></i>Sửa
-									</a>
-									<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Xóa" onclick="<?php echo $delete; ?>">
-										<i class="glyphicon glyphicon-trash"></i>Xóa
-									</a>
-								</td>
+								<td><a class="btn btn-sm btn-primary" data-toggle="modal"  title="Edit" onclick="edit_sinhvien('<?php echo $sv->Mssv; ?>')"><i class="glyphicon glyphicon-pencil"></i> Sửa</a></td>
+        						<td><a class="btn btn-sm btn-danger" title="Hapus" onclick="delete_sinhvien('<?php echo $sv->Mssv ?>')"><i class="glyphicon glyphicon-trash"></i> Xóa</a></td>
 							</tr>
 							<?php } ?>
 						</tbody>
