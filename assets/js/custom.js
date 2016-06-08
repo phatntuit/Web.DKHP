@@ -216,7 +216,7 @@ $(document).ready(function(){
 	            	}
 	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
 	            }
-	            if(data.malopkhongtontai.length!=0 || data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0){
+	            if(data.malopkhongtontai.length!=0 || data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0 || data.ltvsth.length!=0 || data.tienquyet.length!=0){
 	            	loi=''
 	            	if(data.malopkhongtontai.length!=0){
 	            		loi+='Mã lớp không tồn tại: '
@@ -268,6 +268,23 @@ $(document).ready(function(){
 		            		}
 		            	}
 	            	}
+	            	if(data.ltvsth.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp thực hành phải cùng mã lớp lý thuyết: '
+	            		else loi+='Lớp thực hành phải cùng mã lớp lý thuyết: '
+	            		if(data.ltvsth.length==1){
+	            			loi+=data.ltvsth[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.ltvsth.length; i++) 
+		            		{
+		            			if(i==(data.ltvsth.length-1))
+		            				loi+=data.ltvsth[i]
+		            			else
+		                			loi+=data.ltvsth[i]+','
+		            		}
+		            	}
+	            	}
 	            	if(data.trunglich.length!=0){
 	            		if(loi.length!=0)
 	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
@@ -282,6 +299,23 @@ $(document).ready(function(){
 		            				loi+=data.trunglich[i]
 		            			else
 		                			loi+=data.trunglich[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.tienquyet.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học phải hoàn thành môn tiên quyết: '
+	            		else loi+='Môn học phải hoàn thành môn tiên quyết: '
+	            		if(data.tienquyet.length==1){
+	            			loi+=data.tienquyet[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.tienquyet.length; i++) 
+		            		{
+		            			if(i==(data.tienquyet.length-1))
+		            				loi+=data.tienquyet[i]
+		            			else
+		                			loi+=data.tienquyet[i]+','
 		            		}
 		            	}
 	            	}
