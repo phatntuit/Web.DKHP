@@ -78,16 +78,21 @@ class DangKy extends CI_Controller {
 	public function huyhocphan()
 	{
 		if(isset($_SESSION['id'])){
+			$data['success']=array();
+			$data['require']='';
 			$dsmh=$this->input->get('ds-malop-huy');
 			$dsmh=strtoupper($dsmh);
 			if($dsmh==''){
-				$data['require']="Vui lòng điền mã lớp";
-				echo json_encode($dsmh);
+				$data['require']="Vui lòng chọn lớp hủy";
+				echo json_encode($data);
 				exit();
 			}
 			$dsml=explode("-", $dsmh);
-			
-			echo json_encode($dsml);
+			for ($i=0;$i<count($dsml);$i++) {
+				$this->Dangky_model->huyhocphan($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i]);
+				array_push($data['success'],$dsml[$i]);
+			}
+			echo json_encode($data);
 		}
 	}
 }

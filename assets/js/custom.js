@@ -357,10 +357,18 @@ $(document).ready(function(){
 			contentType: "application/json; charset=utf-8",
 			success: function(data)
 			{
-				for (var i = 0; i < data.length; i++) 
-				{
-					alert(data[i])
+				if(data.require.length!=0){
+					loi=data.require
+					$('#error').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+loi+"</div>")
 				}
+				if(data.success.length!=0){
+					thanhcong='Hủy lớp thành công:<br>'
+					for (var i = 0; i < data.success.length; i++) 
+	            	{
+	                	thanhcong+=data.success[i]+'<br>'
+	            	}
+	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            }
 			},
 			error: function(err)
 			{

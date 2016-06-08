@@ -217,10 +217,14 @@ class Dangky_model extends CI_model
 		$q=$q->result_array();
 		return $q;
 	}
-	public function huyhocphan($malop)
+	public function huyhocphan($mssv,$mahk,$manh,$malop)
 	{
-		$this->db->where('Malop',$malop);
-		$this->db->delete('')
+		$tt=$this->db->query("CALL kiemtratontaipdk('$mssv','$manh','$mahk')");
+		$tt=$tt->result_array();
+		mysqli_next_result( $this->db->conn_id);
+		$data=array('Malop'=>$malop,'MaDK'=>$tt[0]['MaDK']);
+		//$this->db->where($data);
+		$this->db->delete('ct_phieudangky',$data);
 	}
 }
 ?>
