@@ -7,20 +7,12 @@ class DangKy extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Dangky_model');
-		$this->load->model('Taoma');
-		
-	}
-	public function Taoma()
-	{
-		$chuoi="DK".date("Y");
-		$ma = $this->Taoma->Matudong("MaDK","phieudangky",$chuoi,12);
-		return $ma;
 	}
 	public function index()
 	{
 		if(isset($_SESSION['id'])){
 			$this->data['page_title']='Đăng ký  | Hệ thống đăng ký học phần';
-			$this->data['test']=$this->Dangky_model->addphieudangky($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],'');
+			//$this->data['test']=$this->Dangky_model->kiemtratrungtiet($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],'IS334.G31');
 			$this->load->view('template/header',$this->data);
 			$this->load->view('dangky');
 		}
@@ -51,12 +43,13 @@ class DangKy extends CI_Controller {
 					//kiểm tra lớp lý thuyết vs lớp thục hành
 					if($this->Dangky_model->kiemtralopltvoith($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i])===TRUE){
 						//kiểm tra lớp đăng ký hiện tại đã đăng ký chưa(cho học kỳ và năm học đang đăng ký)
-						if($this->Dangky_model->kiemtratrungmonhoc($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i])===TRUE){
+						if($this->Dangky_model->kiemtratrungmonhoc($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i])==TRUE){
 						//kiểm tra lớp đăng ký đã đủ số lượng sinh viên chưa
 							if($this->Dangky_model->kiemtraslsv($dsml[$i])===TRUE){
 								//kiểm tra trùng lịch học với các môn đã đăng ký
 								if($this->Dangky_model->kiemtratrungtiet($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i])===TRUE){
 									if($this->Dangky_model->kiemtramontq($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i])===TRUE){
+										$this->Dangky_model->addphieudangky($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i]);
 										array_push($data['success'],$dsml[$i]);
 									}
 									else array_push($data['tienquyet'],$dsml[$i]);

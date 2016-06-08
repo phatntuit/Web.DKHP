@@ -287,8 +287,8 @@ $(document).ready(function(){
 	            	}
 	            	if(data.trunglich.length!=0){
 	            		if(loi.length!=0)
-	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
-	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            			loi+='<br>Lớp học đã trùng lịch với lớp khác: '
+	            		else loi+='Lớp học đã trùng lịch với lớp khác: '
 	            		if(data.trunglich.length==1){
 	            			loi+=data.trunglich[0]
 	            		}
