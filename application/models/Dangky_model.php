@@ -8,6 +8,13 @@ class Dangky_model extends CI_model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Taoma');
+	}
+	public function Taoma()
+	{
+		$chuoi="DK".date("Y");
+		$ma = $this->Taoma->Matudong("MaDK","phieudangky",$chuoi,12);
+		return $ma;
 	}
 	public function gethocphan()
 	{
@@ -54,8 +61,9 @@ class Dangky_model extends CI_model
 		mysqli_next_result( $this->db->conn_id );
 		foreach ($q as $mhp) {
 			foreach ($w as $mdk) {
-				if($mdk->Mamonhoc==$mhp['mhdangdk'] && $mdk->Hinhthuc==$mhp['hinhthuc'])
+				if($mdk->Mamonhoc==$mhp['mhdangdk'] && $mdk->Hinhthuc==$mhp['hinhthuc']){
 					return FALSE;
+				}
 			}
 		}
 		return TRUE;
@@ -71,10 +79,10 @@ class Dangky_model extends CI_model
 			//$w=$this->db->query('select @mhdadk as mhdadk,@ht as hinhthuc,@malop as malop');
 			$w=$w->result_object();
 			mysqli_next_result( $this->db->conn_id );
+			$a=substr($malop, 0,9);
 			foreach ($q as $mhp) {
 				foreach ($w as $mdk) {
 					if($mdk->Mamonhoc==$mhp['mhdangdk'] && $mdk->Hinhthuc!=$mhp['hinhthuc'])
-						$a=substr($malop, 0,9);
 						if($a!=$mdk->malop)
 							return FALSE;
 				}
@@ -83,7 +91,7 @@ class Dangky_model extends CI_model
 		return TRUE;
 	}
 	//trả về true khi thứ của lớp đang dk trùng thứ của lớp đã dk
-	public function kiemtratrungthu($mssv,$mahk,$manh,$malop)
+	/*public function kiemtratrungthu($mssv,$mahk,$manh,$malop)
 	{
 		$thudadk=$this->db->query("CALL getthulopdadk('$mssv','$mahk','$manh')");
 		//$thudadk=$this->db->query('select @thu as thulopdadk');
@@ -99,25 +107,25 @@ class Dangky_model extends CI_model
 			}
 		}
 		return FALSE;
-	}
+	}*/
 	//trả về true khi không trùng lịch vs các môn đã đăng ký
 	public function kiemtratrungtiet($mssv,$mahk,$manh,$malop)
 	{
-		if($this->kiemtratrungthu($mssv,$mahk,$manh,$malop)===TRUE){
+		//if($this->kiemtratrungthu($mssv,$mahk,$manh,$malop)===TRUE){
 			$dadk=$this->db->query("CALL gettietdadk('$mssv','$mahk','$manh')");
 			//$dadk=$this->db->query('select @tbd as Tietbatdau,@tkt as Tietketthuc');
 			$dadk=$dadk->result_object();
 			mysqli_next_result( $this->db->conn_id );
-			$this->db->query("CALL gettietlopdangdk('$malop',@tbd,@tkt)");
-			$dangdk=$this->db->query('select @tbd as Tietbatdau,@tkt as Tietketthuc');
+			$this->db->query("CALL gettietlopdangdk('$malop',@tbd,@tkt,@thu)");
+			$dangdk=$this->db->query('select @tbd as Tietbatdau,@tkt as Tietketthuc,@thu as thu');
 			$dangdk=$dangdk->result_array();
 			foreach ($dadk as $a) {
 				foreach ($dangdk as $b) {
-					if($a->Tietbatdau==$b['Tietbatdau'] || $a->Tietketthuc==$b['Tietketthuc'] || $b['Tietbatdau']==$a->Tietketthuc || $a->Tietbatdau==$b['Tietketthuc'] || ($a->Tietbatdau<$b['Tietbatdau'] && $a->Tietketthuc>$b['Tietketthuc']) || ($a->Tietbatdau>$b['Tietbatdau'] && $a->Tietketthuc<$b['Tietketthuc']))
+					if(($a->Tietbatdau==$b['Tietbatdau'] || $a->Tietketthuc==$b['Tietketthuc'] || $b['Tietbatdau']==$a->Tietketthuc || $a->Tietbatdau==$b['Tietketthuc'] || ($a->Tietbatdau<$b['Tietbatdau'] && $a->Tietketthuc>$b['Tietketthuc']) || ($a->Tietbatdau>$b['Tietbatdau'] && $a->Tietketthuc<$b['Tietketthuc']))&&$a->Thu==$b['thu'])
 						return FALSE;
 				}
 			}
-		}
+		//}
 		return TRUE;
 	}
 	public function kiemtramontq($mssv,$mahk,$manh,$malop)
@@ -180,12 +188,26 @@ class Dangky_model extends CI_model
 		$tt=$this->db->query("CALL kiemtratontaipdk('$mssv','$manh','$mahk')");
 		$tt=$tt->result_array();
 		mysqli_next_result( $this->db->conn_id);
-		return $tt;
 		if(count($tt)==0){
+			$ma=$this->Taoma();
+			$data=array(
+				'MaDK'=>$ma,
+				'Mssv'=>$mssv,
+				'Manamhoc'=>$manh,
+				'Mahocky'=>$mahk,);
+			$this->db->insert('phieudangky',$data);
+			$data1=array(
+				'MaDK'=>$ma,
+				'Malop'=>$malop);
+			$this->db->insert('ct_phieudangky',$data1);
 			//add pdk
 			//add ct_pdk
 		}
 		else{
+			$data1=array(
+				'MaDK'=>$tt[0]['MaDK'],
+				'Malop'=>$malop);
+			$this->db->insert('ct_phieudangky',$data1);
 			//add ct_pdk
 		}
 	}
