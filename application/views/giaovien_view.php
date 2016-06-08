@@ -132,9 +132,9 @@ function save()
         $('#btnSave').text('saving...'); 
         $('#btnSave').attr('disabled',true);
         if(save_method=='edit')
-            url="<?php echo base_url('giaovien/ajax_update')?>";
+            url="<?php echo base_url('Giaovien/ajax_update')?>";
         else
-             url="<?php echo base_url('giaovien/ajax_add') ?>";
+             url="<?php echo base_url('Giaovien/ajax_add') ?>";
         $.ajax({
             url : url,
             type:"GET",

@@ -36,7 +36,7 @@
 	});
 
 })(jQuery);
-// sinhvie form
+// sinhvien form
 $(document).ready(function(){
 	$('.ngaysv').datepicker({
 		autoclose: true,
@@ -47,33 +47,6 @@ $(document).ready(function(){
 		todayHighlight: true,  
 	});
 });
-function Luusv() {
-		$("#btluu").text("Đang lưu....");
-		$("#btluu").attr('disabled',true);
-		url="Sinhvien/Themsinhvien";
-		$.ajax({
-			url: url,
-			type: "GET",
-			data: $('#formsv').serialize(),
-			dataType: 'JSON',
-			contentType: "application/json; charset=utf-8",
-			success: function(data)
-			{
-				//xu ly
-
-				//
-				// reset buton
-                $("#btluu").text("Lưu");
-                $("#btluu").attr('disabled',false);
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-
-            	$("#btluu").text("Lưu");
-            	$("#btluu").attr('disabled',false);
-            }
-        });
-}
 //checked table
 $(document).ready(function(){
 	$("#mytable #checkall").click(function () {
