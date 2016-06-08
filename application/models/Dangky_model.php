@@ -20,6 +20,7 @@ class Dangky_model extends CI_model
 	{
 		$query= $this->db->query("CALL join_hocphan");
     	$query_result= $query->result_object();
+    	mysqli_next_result( $this->db->conn_id);
     	return $query_result;
 	}
 	//kiểm tra tính tồn tại của mã lớp
@@ -215,6 +216,7 @@ class Dangky_model extends CI_model
 	{
 		$q=$this->db->query("CALL getphieudangky('$mssv','$mahk','$manh')");
 		$q=$q->result_array();
+		mysqli_next_result( $this->db->conn_id);
 		return $q;
 	}
 	public function huyhocphan($mssv,$mahk,$manh,$malop)
