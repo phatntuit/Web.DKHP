@@ -222,6 +222,7 @@ $(document).ready(function(){
 	                	thanhcong+=data.success[i]+'<br>'
 	            	}
 	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            	$('div#thongtindk').load ('Dangky/showdadk', 'update=true', 'refresh');
 	            }
 	            if(data.malopkhongtontai.length!=0 || data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0 || data.ltvsth.length!=0 || data.tienquyet.length!=0){
 	            	loi=''
@@ -360,6 +361,7 @@ $(document).ready(function(){
 	                	thanhcong+=data.success[i]+'<br>'
 	            	}
 	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            	$('div#thongtindk').load ('Dangky/showdadk', 'update=true', 'refresh');
 	            }
 			},
 			error: function(err)

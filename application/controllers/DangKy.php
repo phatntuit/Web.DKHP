@@ -72,11 +72,42 @@ class DangKy extends CI_Controller {
 	}
 	public function showdadk()
 	{
+		$test=$this->Dangky_model->showpdk($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc']);
 		$tb='';
-		$tb='<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
-					<div id="dadk" class="collapse">';
+		$tb.='<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
+					<div id="dadk" class="collapse table-responsive">
+						<table class="table table-bordred table-striped" id="chonmalop">
+							<thead>
+								<th></th>
+								<th>Mã lớp</th>
+								<th>Tên môn học</th>
+								<th>Tên giáo viên</th>
+								<th>Phòng</th>
+								<th>Thứ</th>
+								<th>Tiết học</th>
+							</thead>
+							<tbody>';
+							foreach ($test as $key) { 
+								$tiethoc='';
+								for($i=$key['Tietbatdau'];$i<=$key['Tietketthuc'];$i++)  $tiethoc.= $i.',';
+								$tb.='<tr>
+									<td><input id="check-malop"  onchange="testchange(this);" type="checkbox" value='."'". $key["Malop"]."'".'></td>
+									<td>'. $key['Malop'].'</td>
+									<td>'. $key['Tenmonhoc'].'</td>
+									<td>'.$key['Tengiaovien'].'</td>
+									<td>'.$key['Maphong'].'</td>
+									<td>'.$key['Thu'].'</td>
+									<td>'. $tiethoc.'</td>
+								</tr>';
+							}
+						$tb.='</tbody></table><textarea id="ds-malop-huy" name="ds-malop-huy" class="hidden"></textarea>
+						<button id="huydk" class="btn-danger btn">Hủy học phần</button>
+						<p>Tổng số tín chỉ:'. $test[0]['Tongsotinchi'].'</p>
+						<p>Học phí tạm tính:'. $test[0]['Hocphitamtinh'].'</p>';
+
 
 		$tb.='</div>';
+		echo $tb;
 	}
 	public function huyhocphan()
 	{
@@ -90,10 +121,12 @@ class DangKy extends CI_Controller {
 				echo json_encode($data);
 				exit();
 			}
-			$dsml=explode("\n\r", $dsmh);
+			$dsml=explode("\r\n", $dsmh);
 			for ($i=0;$i<count($dsml);$i++) {
-				$this->Dangky_model->huyhocphan($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i]);
-				array_push($data['success'],$dsml[$i]);
+				if($this->Dangky_model->kiemtramalop($dsml[$i])===TRUE){
+					$this->Dangky_model->huyhocphan($_SESSION['id'],$_SESSION['hocky'],$_SESSION['namhoc'],$dsml[$i]);
+					array_push($data['success'],$dsml[$i]);
+				}
 			}
 			echo json_encode($data);
 		}

@@ -5,9 +5,11 @@
 				<div id="success"></div>
 				<div id="error"></div>
 				<div class="row">
+					<?php if(!empty($test)){?>
+					<div id="thongtindk">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dadk" href="javascript:void(0)">Lớp đã đăng ký</a><hr></span></div><br>
 					<div id="dadk" class="collapse table-responsive">
-						<table class="table table-bordred table-striped" id='chonmalop'>
+						<table class="table table-bordred table-striped" id="chonmalop">
 							<thead>
 								<th></th>
 								<th>Mã lớp</th>
@@ -31,11 +33,13 @@
 								<?php }?>
 							</tbody>
 						</table>
-						<textarea id='ds-malop-huy' name="ds-malop-huy"></textarea>
+						<textarea id='ds-malop-huy' name="ds-malop-huy" class="hidden"></textarea>
 						<button id="huydk" class="btn-danger btn">Hủy học phần</button>
 						<p>Tổng số tín chỉ:<?php echo $test[0]['Tongsotinchi']?></p>
 						<p>Học phí tạm tính:<?php echo $test[0]['Hocphitamtinh']?></p>
 					</div>
+					</div>
+					<?php } ?>
 				</div>
 				<div class="row">
 					<div class="form-wrapper"><span><a style="color:blue" data-toggle="collapse" data-target="#dangkynhanh" href="javascript:void(0)" id="dkn">Đăng ký nhanh</a><hr></span></div><br>

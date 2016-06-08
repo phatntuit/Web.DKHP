@@ -143,6 +143,7 @@ class Dangky_model extends CI_model
 				$diemtq=$this->db->query("CALL getdiemtq('$mssv','$mamh')");
 				//$diemtq=$this->db->query('select @nh as namhoc,@hk as hocky,@diem as diem');
 				$diemtq=$diemtq->result_array();
+				mysqli_next_result( $this->db->conn_id );
 				if(count($diemtq)==0)//chưa học môn tiên quyết không cho đăng ký
 					return FALSE;
 				else{
