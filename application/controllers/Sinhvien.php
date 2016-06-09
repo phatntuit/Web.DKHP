@@ -61,16 +61,16 @@ class Sinhvien extends  CI_Controller
 		if ($this->input->get('Gioitinh')=='1')
 			$gioitinh='Nam';
 		$gioitinh='Nữ';
-		$TEST='13520604';
+		$Mssv=$this->taoma();
 		$data = array(
-				'Mssv' => $this->taoma(),
+				'Mssv' => $Mssv,
 				'Hoten' => $this->input->get('Tensinhvien'),
 				'Gioitinh' => $gioitinh,
 				'Manganh' => $this->input->get('Manganh'),
 				'Ngaysinh' => $this->input->get('Ngaysinh'),
 				'Quequan' => $this->input->get('Quequan'),
 				'Makhoahoc' => $this->input->get('Makhoahoc'),
-				'Manguoidung'=> $TEST
+				'Manguoidung'=> $Mssv
 			);
 		 $this->Sinhvien_model->add($data);
 		echo json_encode(array("status" => TRUE));
