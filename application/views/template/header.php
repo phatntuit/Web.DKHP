@@ -68,7 +68,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" id="dropmenu">
-              <li><a href="#">Thông tin sinh viên</a></li>
+              <li><a href="<?php echo site_url('Sinhvien/Thongtinsinhvien');?>">Thông tin sinh viên</a></li>
               <li><a href="#">Thông tin học phí</a></li>
               <li><a href="#">Kết quả học tập</a></li>
               <li><a href="#">Thời khóa biểu</a></li>

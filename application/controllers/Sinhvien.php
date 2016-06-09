@@ -55,6 +55,21 @@ class Sinhvien extends  CI_Controller
 		}
 		
 	}
+	public function Thongtinsinhvien()
+	{
+		$this->data['page_title'] = 'Thông tin sinh viên';
+		$this->data['header']="Trang thông tin sinh viên";
+		if(isset($_SESSION['id']))
+		{
+			$this->data['sinhvien']=$this->Sinhvien_model->get_by_id($_SESSION['id']);
+			$this->data['nganh']=$this->Sinhvien_model->get_nganh_by_id($this->data['sinhvien']->Manganh);
+			$this->load->view('template/header',$this->data);
+			//print_r($this->data['sinhvien']);
+			$this->load->view('sinhvien/thongtinsinhvien',$this->data);
+			$this->load->view('template/about');
+			$this->load->view('template/footer');
+		}
+	}
 	public function ajax_add()
 	{
 		$this->_validate();

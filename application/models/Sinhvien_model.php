@@ -54,5 +54,12 @@ class Sinhvien_model extends CI_model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function get_nganh_by_id($id)
+	{
+		$this->db->from('nganh');
+		$this->db->where('Manganh',$id);
+		$query = $this->db->get();
+		return $query->row();
+	}
 }
 ?>
