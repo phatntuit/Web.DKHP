@@ -94,7 +94,7 @@
 				      <?php foreach($hocphan as $hp){?>
 
 				      <tr>
-				      	<td><input type="checkbox"></td>
+				      	<td><input type="checkbox" onchange="chondk(this);" value='<?php echo $hp->Malop; ?>'></td>
 				        <td><?php echo $hp->Malop; ?> </td>
 				        <td><?php echo $hp->Tenmonhoc; ?> </td>
 				        <td><?php echo $hp->Tengiaovien; ?> </td>
@@ -107,6 +107,8 @@
   						<?php } ?>
     					</tbody>
 					</table>
+					<textarea id='ds-malop-dk' name="ds-malop-dk" class="hidden"></textarea>
+					<div><button id="chondangky" class="btn-success btn">Đăng ký</button></div>
 				</div>
 		</div>
 	</div>
