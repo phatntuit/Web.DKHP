@@ -101,6 +101,25 @@ function testchange (checkbox) {
     }
     $('#ds-malop-huy').val(t);
 }
+function chondk (checkbox) {
+	var t=$('#ds-malop-dk').val();
+	var ckvalue=checkbox.value;
+    if (checkbox.checked) {
+        if(t!='')
+        {
+        	t+="\r\n";
+        	t+=ckvalue;
+        }
+        else
+        	t+=ckvalue;
+    }
+    else 
+    {
+    	t=t.replace("\r\n",'');
+        t=t.replace(ckvalue,'');
+    }
+    $('#ds-malop-dk').val(t);
+}
 //datetime picker
 //change class below
 $(document).ready(function(){
@@ -369,5 +388,124 @@ $(document).ready(function(){
 
 			}
 		})
+		$('#ds-malop-huy').val('')
+	})
+	$('#chondangky').click(function(){
+		url="Dangky/dangkychon"
+		$.ajax({
+			url:url,
+			type:"GET",
+			data:$('#ds-malop-dk').serialize(),
+			dataType:'JSON',
+			contentType: "application/json; charset=utf-8",
+			success: function(data)
+			{
+				if(data.success.length!=0){
+					thanhcong='Đăng ký thành công:<br>'
+					for (var i = 0; i < data.success.length; i++) 
+	            	{
+	                	thanhcong+=data.success[i]+'<br>'
+	            	}
+	            	$('#success').html("<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+thanhcong+"</div>")
+	            	$('div#thongtindk').load ('Dangky/showdadk', 'update=true', 'refresh');
+	            }
+	            if(data.lopday.length!=0 || data.require.length!=0 || data.dadk.length!=0 || data.trunglich.length!=0 || data.ltvsth.length!=0 || data.tienquyet.length!=0){
+	            	loi=''
+	            	if(data.lopday.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp đầy: '
+	            		else loi+='Lớp đầy: '
+	            		if(data.lopday.length==1){
+	            			loi+=data.lopday[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.lopday.length; i++) 
+		            		{
+		            			if(i==(data.lopday.length-1))
+		            				loi+=data.lopday[i]
+		            			else
+		                			loi+=data.lopday[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.require.length!=0) loi+=data.require
+	            	if(data.dadk.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học đã đăng ký cho học kỳ này: '
+	            		else loi+='Môn học đã đăng ký cho học kỳ này: '
+	            		if(data.dadk.length==1){
+	            			loi+=data.dadk[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.dadk.length; i++) 
+		            		{
+		            			if(i==(data.dadk.length-1))
+		            				loi+=data.dadk[i]
+		            			else
+		                			loi+=data.dadk[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.ltvsth.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp thực hành phải cùng mã lớp lý thuyết: '
+	            		else loi+='Lớp thực hành phải cùng mã lớp lý thuyết: '
+	            		if(data.ltvsth.length==1){
+	            			loi+=data.ltvsth[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.ltvsth.length; i++) 
+		            		{
+		            			if(i==(data.ltvsth.length-1))
+		            				loi+=data.ltvsth[i]
+		            			else
+		                			loi+=data.ltvsth[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.trunglich.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Lớp học đã trùng lịch với lớp khác: '
+	            		else loi+='Lớp học đã trùng lịch với lớp khác: '
+	            		if(data.trunglich.length==1){
+	            			loi+=data.trunglich[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.trunglich.length; i++) 
+		            		{
+		            			if(i==(data.trunglich.length-1))
+		            				loi+=data.trunglich[i]
+		            			else
+		                			loi+=data.trunglich[i]+','
+		            		}
+		            	}
+	            	}
+	            	if(data.tienquyet.length!=0){
+	            		if(loi.length!=0)
+	            			loi+='<br>Môn học phải hoàn thành môn tiên quyết: '
+	            		else loi+='Môn học phải hoàn thành môn tiên quyết: '
+	            		if(data.tienquyet.length==1){
+	            			loi+=data.tienquyet[0]
+	            		}
+	            		else{
+		            		for (var i = 0; i < data.tienquyet.length; i++) 
+		            		{
+		            			if(i==(data.tienquyet.length-1))
+		            				loi+=data.tienquyet[i]
+		            			else
+		                			loi+=data.tienquyet[i]+','
+		            		}
+		            	}
+	            	}
+	            	$('#error').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+loi+"</div>")
+	            }
+			},
+			error:function(err)
+			{
+
+			}
+		})
+		$('#ds-malop-dk').val('')
+		$('input:checkbox').removeAttr('checked')
 	})
 })
